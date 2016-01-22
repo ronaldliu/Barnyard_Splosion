@@ -7,7 +7,9 @@ public class Controller2D : RaycastController{
 
 	float maxClimbAngle = 80;
 	float maxDescendAngle = 75;
+	public float punchLength = 5;
 
+	public LayerMask fightingMask;
 	public CollisionInfo collisions;
 
 	public override void Start(){
@@ -32,6 +34,7 @@ public class Controller2D : RaycastController{
 			collisions.below = true;
 		}
 	}
+
 	void HorizonatalCollisions(ref Vector3 velocity){
 		float directionX = Mathf.Sign (velocity.x);
 		float rayLength = Mathf.Abs (velocity.x)+ skinWidth;
@@ -77,6 +80,7 @@ public class Controller2D : RaycastController{
 			}
 		}
 	}
+
 	void VerticalCollisions(ref Vector3 velocity){
 		float directionY = Mathf.Sign (velocity.y);
 		float rayLength = Mathf.Abs (velocity.y)+ skinWidth;
@@ -114,6 +118,7 @@ public class Controller2D : RaycastController{
 			}
 		}
 	}
+
 	void ClimbSlope(ref Vector3 velocity, float slopeAngle){
 
 		float moveDistance = Mathf.Abs (velocity.x);
@@ -147,12 +152,26 @@ public class Controller2D : RaycastController{
 					}
 				}
 			}
-
 		}
-
 	}
+	public void Punch(float directionX){
+		float rayLength =skinWidth * punchLength;
 
+		Vector2 rayOrigin = ((directionX == -1) ? raycastOrigins.fistLeft : raycastOrigins.fistRight);
+		RaycastHit2D hit = Physics2D.Raycast (rayOrigin, Vector2.right * directionX, rayLength, fightingMask);
 
+		Debug.DrawRay (rayOrigin, Vector2.right * directionX * rayLength, Color.red);
+
+		if (hit) {
+			foreach (Controller2D player in hit.transform.GetComponents<Controller2D>()) {
+				if (player == this) {
+					continue;
+				}
+				print ("hit em");
+				player.Move (new Vector3 (2, 10), false);
+			}
+		}
+	}
 	public struct CollisionInfo{
 		public bool above, below;
 		public bool left, right;
