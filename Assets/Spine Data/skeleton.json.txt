@@ -1,0 +1,322 @@
+{
+"skeleton": { "hash": "FAnJwUc/zJMt/NWSEu8VRlo70lI", "spine": "3.0.06", "width": 27, "height": 55, "images": "" },
+"bones": [
+	{ "name": "root" },
+	{ "name": "Hip", "parent": "root", "x": -2.96, "y": -3.59 },
+	{ "name": "Spine", "parent": "Hip", "length": 15.75, "x": -0.62, "y": 0.85, "rotation": 90.28 },
+	{ "name": "Tail", "parent": "Spine", "length": 13.08, "x": 0.35, "y": 2.11, "rotation": 152.94 },
+	{ "name": "RShoulder", "parent": "Spine", "length": 9, "x": 15.24, "y": 1.33, "rotation": 222.43 },
+	{ "name": "RForearm", "parent": "RShoulder", "length": 7.5, "x": 8.84, "rotation": 98.05 },
+	{ "name": "RHand", "parent": "RForearm", "length": 2.7, "x": 7.8, "y": -0.07, "rotation": 16.15 },
+	{ "name": "Neck", "parent": "Spine", "length": 4.85, "x": 16.61, "y": 0.09, "rotation": 0.89 },
+	{ "name": "Skull", "parent": "Neck", "length": 5.54, "x": 6.43, "y": 0.16, "rotation": -2.18 },
+	{ "name": "Jaw", "parent": "Skull", "length": 7.03, "x": -2.2, "y": -4.39, "rotation": -91.41 },
+	{ "name": "LShoulder", "parent": "Spine", "length": 9, "x": 15.22, "y": -1.66, "rotation": 222.43 },
+	{ "name": "LForearm", "parent": "LShoulder", "length": 7.5, "x": 8.84, "rotation": 98.05 },
+	{ "name": "LHand", "parent": "LForearm", "length": 2.56, "x": 7.8, "y": -0.07, "rotation": 16.15 },
+	{ "name": "RLeg", "parent": "Hip", "length": 14.41, "x": -2.03, "y": -1.4, "rotation": 294.79 },
+	{ "name": "RShin", "parent": "RLeg", "length": 6.36, "x": 14.31, "rotation": 320.79 },
+	{ "name": "RFoot", "parent": "RShin", "length": 2.42, "x": 6.66, "y": 0.16, "rotation": 372.6 },
+	{ "name": "LLeg", "parent": "Hip", "length": 14.41, "x": 0.96, "y": -1.4, "rotation": 294.79 },
+	{ "name": "LShin", "parent": "LLeg", "length": 6.36, "x": 14.31, "rotation": 320.79 },
+	{ "name": "LFoot", "parent": "LShin", "length": 2.42, "x": 6.66, "y": 0.16, "rotation": 372.6 }
+],
+"slots": [
+	{ "name": "CowFull", "bone": "root" },
+	{ "name": "LThigh", "bone": "LLeg", "attachment": "Barnyard-Explosion-master/core/assets/Cow Components/CowThigh" },
+	{ "name": "LArm", "bone": "LForearm", "attachment": "Barnyard-Explosion-master/core/assets/Cow Components/CowForearm" },
+	{ "name": "LBiceps", "bone": "LShoulder", "attachment": "Barnyard-Explosion-master/core/assets/Cow Components/CowBiceps" },
+	{ "name": "Neck", "bone": "Neck", "attachment": "Barnyard-Explosion-master/core/assets/Cow Components/CowNeck" },
+	{ "name": "TorsoUdder", "bone": "Spine", "attachment": "Barnyard-Explosion-master/core/assets/Cow Components/CowTorsoUdder" },
+	{ "name": "LShin", "bone": "LShin", "attachment": "Barnyard-Explosion-master/core/assets/Cow Components/CowLowerLeg" },
+	{ "name": "Shin", "bone": "RShin", "attachment": "Barnyard-Explosion-master/core/assets/Cow Components/CowLowerLeg" },
+	{ "name": "RThigh", "bone": "RLeg", "attachment": "Barnyard-Explosion-master/core/assets/Cow Components/CowThigh" },
+	{ "name": "RFoot", "bone": "RFoot", "attachment": "Barnyard-Explosion-master/core/assets/Cow Components/CowHoof" },
+	{ "name": "LFoot", "bone": "LFoot", "attachment": "Barnyard-Explosion-master/core/assets/Cow Components/CowHoof" },
+	{ "name": "RBicep", "bone": "RShoulder", "attachment": "Barnyard-Explosion-master/core/assets/Cow Components/CowBiceps" },
+	{ "name": "Head", "bone": "Skull", "attachment": "Barnyard-Explosion-master/core/assets/Cow Components/CowHead" },
+	{ "name": "Mouth", "bone": "Jaw", "attachment": "Barnyard-Explosion-master/core/assets/Cow Components/CowJaw" },
+	{ "name": "RHand", "bone": "RHand", "attachment": "Barnyard-Explosion-master/core/assets/Cow Components/CowHand" },
+	{ "name": "LHand", "bone": "LHand", "attachment": "Barnyard-Explosion-master/core/assets/Cow Components/CowHand" },
+	{ "name": "RArm", "bone": "RForearm", "attachment": "Barnyard-Explosion-master/core/assets/Cow Components/CowForearm" },
+	{ "name": "Tail", "bone": "Tail", "attachment": "Barnyard-Explosion-master/core/assets/Cow Components/CowTail" }
+],
+"skins": {
+	"default": {
+		"Head": {
+			"Barnyard-Explosion-master/core/assets/Cow Components/CowHead": { "x": 0.75, "y": -4.04, "rotation": 270.99, "width": 20, "height": 13 }
+		},
+		"LArm": {
+			"Barnyard-Explosion-master/core/assets/Cow Components/CowForearm": { "x": 2.81, "y": -0.28, "rotation": -50.76, "width": 8, "height": 8 }
+		},
+		"LBiceps": {
+			"Barnyard-Explosion-master/core/assets/Cow Components/CowBiceps": { "x": 3.92, "y": -0.9, "rotation": 47.28, "width": 12, "height": 11 }
+		},
+		"LFoot": {
+			"Barnyard-Explosion-master/core/assets/Cow Components/CowHoof": { "x": 1.48, "y": 0.54, "rotation": 91.81, "width": 5, "height": 3 }
+		},
+		"LHand": {
+			"Barnyard-Explosion-master/core/assets/Cow Components/CowHand": { "x": 0.92, "y": 0.39, "rotation": -66.92, "width": 4, "height": 4 }
+		},
+		"LShin": {
+			"Barnyard-Explosion-master/core/assets/Cow Components/CowLowerLeg": { "x": 3.99, "y": 0.5, "rotation": 104.41, "width": 6, "height": 9 }
+		},
+		"LThigh": {
+			"Barnyard-Explosion-master/core/assets/Cow Components/CowThigh": { "x": 6.94, "y": -0.45, "rotation": 65.2, "width": 12, "height": 18 }
+		},
+		"Mouth": {
+			"Barnyard-Explosion-master/core/assets/Cow Components/CowJaw": { "x": 2.74, "y": -0.93, "rotation": 2.39, "width": 14, "height": 5 }
+		},
+		"Neck": {
+			"Barnyard-Explosion-master/core/assets/Cow Components/CowNeck": { "x": 2.1, "y": -0.8, "rotation": 268.83, "width": 9, "height": 6 }
+		},
+		"RArm": {
+			"Barnyard-Explosion-master/core/assets/Cow Components/CowForearm": { "x": 2.81, "y": -0.28, "rotation": -50.76, "width": 8, "height": 8 }
+		},
+		"RBicep": {
+			"Barnyard-Explosion-master/core/assets/Cow Components/CowBiceps": { "x": 3.92, "y": -0.9, "rotation": 47.28, "width": 12, "height": 11 }
+		},
+		"RFoot": {
+			"Barnyard-Explosion-master/core/assets/Cow Components/CowHoof": { "x": 1.48, "y": 0.54, "rotation": 91.81, "width": 5, "height": 3 }
+		},
+		"RHand": {
+			"Barnyard-Explosion-master/core/assets/Cow Components/CowHand": { "x": 0.92, "y": 0.39, "rotation": 293.07, "width": 4, "height": 4 }
+		},
+		"RThigh": {
+			"Barnyard-Explosion-master/core/assets/Cow Components/CowThigh": { "x": 6.94, "y": -0.46, "rotation": 65.2, "width": 12, "height": 18 }
+		},
+		"Shin": {
+			"Barnyard-Explosion-master/core/assets/Cow Components/CowLowerLeg": { "x": 3.99, "y": 0.5, "rotation": 104.41, "width": 6, "height": 9 }
+		},
+		"Tail": {
+			"Barnyard-Explosion-master/core/assets/Cow Components/CowTail": { "x": 9.17, "y": -0.18, "rotation": 116.78, "width": 7, "height": 16 }
+		},
+		"TorsoUdder": {
+			"Barnyard-Explosion-master/core/assets/Cow Components/CowTorsoUdder": { "x": 6.22, "y": -2.11, "rotation": -90.28, "width": 14, "height": 24 }
+		}
+	}
+},
+"animations": {
+	"Arms-Weapon": {
+		"bones": {
+			"LForearm": {
+				"rotate": [
+					{ "time": 0, "angle": -21.8 }
+				]
+			},
+			"LShoulder": {
+				"rotate": [
+					{ "time": 0, "angle": -379.62 }
+				]
+			},
+			"RShoulder": {
+				"rotate": [
+					{ "time": 0, "angle": -55.09 }
+				]
+			},
+			"RForearm": {
+				"rotate": [
+					{ "time": 0, "angle": 12.6 }
+				]
+			}
+		}
+	},
+	"Moo": {
+		"bones": {
+			"Jaw": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.0666, "x": -1.08, "y": -0.01, "curve": "stepped" },
+					{ "time": 0.6, "x": -1.08, "y": -0.01, "curve": "stepped" },
+					{ "time": 0.6666, "x": -1.08, "y": -0.01 }
+				]
+			}
+		}
+	},
+	"Poke": {
+		"bones": {
+			"RShoulder": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.1666, "angle": -315.28 },
+					{ "time": 0.3333, "angle": 0 }
+				]
+			},
+			"RForearm": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.1666, "angle": -90.74 },
+					{ "time": 0.3333, "angle": 0 }
+				]
+			},
+			"RHand": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.1666, "angle": -32.78 },
+					{ "time": 0.3333, "angle": 0 }
+				]
+			}
+		}
+	},
+	"Standing": {
+		"bones": {
+			"RShoulder": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.6666, "x": -0.5, "y": 0 },
+					{ "time": 1.3333, "x": 0, "y": 0 }
+				]
+			},
+			"LShoulder": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.6666, "x": -0.5, "y": 0 },
+					{ "time": 1.3333, "x": 0, "y": 0 }
+				]
+			},
+			"Hip": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0 },
+					{ "time": 0.6666, "x": 0, "y": -0.4 },
+					{ "time": 1.3333, "x": 0, "y": 0 }
+				]
+			},
+			"LLeg": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.6666, "angle": 3.2 },
+					{ "time": 1.3333, "angle": 0 }
+				]
+			},
+			"RLeg": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.6666, "angle": 3.2 },
+					{ "time": 1.3333, "angle": 0 }
+				]
+			},
+			"RShin": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.6666, "angle": -363.25 },
+					{ "time": 1.3333, "angle": 0 }
+				]
+			},
+			"LShin": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.6666, "angle": -3.24 },
+					{ "time": 1.3333, "angle": 0 }
+				]
+			}
+		}
+	},
+	"animation": {
+		"bones": {
+			"RLeg": {
+				"rotate": [
+					{ "time": 0, "angle": -10 },
+					{ "time": 0.1333, "angle": -20 },
+					{ "time": 0.4, "angle": 0 },
+					{ "time": 0.5333, "angle": 10 },
+					{ "time": 0.6666, "angle": -347.6 },
+					{ "time": 0.8, "angle": 0 },
+					{ "time": 0.9333, "angle": -371.91 }
+				]
+			},
+			"LLeg": {
+				"rotate": [
+					{ "time": 0, "angle": 10 },
+					{ "time": 0.2666, "angle": 0 },
+					{ "time": 0.4, "angle": -10 },
+					{ "time": 0.5333, "angle": -20 },
+					{ "time": 0.6666, "angle": -30 },
+					{ "time": 0.9333, "angle": 9.9 }
+				]
+			},
+			"RShin": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.1666, "angle": -377.46 },
+					{ "time": 0.4, "angle": 0 },
+					{ "time": 0.9333, "angle": 1.9 }
+				]
+			},
+			"LShin": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.5, "angle": -7.22 },
+					{ "time": 0.6666, "angle": -369.63 }
+				]
+			},
+			"Hip": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0.89 },
+					{ "time": 0.2666, "x": 0, "y": 0.29 },
+					{ "time": 0.4, "x": 0, "y": 0.89 },
+					{ "time": 0.5333, "x": 0, "y": 1.19 },
+					{ "time": 0.6666, "x": 0, "y": 0.3 },
+					{ "time": 0.9333, "x": 0, "y": 0.9 }
+				]
+			}
+		}
+	},
+	"run": {
+		"bones": {
+			"LLeg": {
+				"rotate": [
+					{ "time": 0, "angle": -339.21 },
+					{ "time": 0.0666, "angle": -333.74 },
+					{ "time": 0.1333, "angle": -357.32 },
+					{ "time": 0.2, "angle": -380.1 },
+					{ "time": 0.2666, "angle": -47.06 },
+					{ "time": 0.3333, "angle": -387.64 },
+					{ "time": 0.4666, "angle": 20.78 }
+				]
+			},
+			"RLeg": {
+				"rotate": [
+					{ "time": 0, "angle": -395.36 },
+					{ "time": 0.0666, "angle": -407.07 },
+					{ "time": 0.1333, "angle": -384.33 },
+					{ "time": 0.2, "angle": 20.78 },
+					{ "time": 0.2666, "angle": 26.25 },
+					{ "time": 0.3333, "angle": 2.68 },
+					{ "time": 0.4, "angle": -20.1 },
+					{ "time": 0.4666, "angle": -35.35 }
+				]
+			},
+			"RShin": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.1333, "angle": -397.01 },
+					{ "time": 0.2, "angle": -0.01 },
+					{ "time": 0.2666, "angle": -5.61 },
+					{ "time": 0.4666, "angle": -0.01 }
+				]
+			},
+			"LShin": {
+				"rotate": [
+					{ "time": 0, "angle": 0 },
+					{ "time": 0.2, "angle": -376.9 },
+					{ "time": 0.2666, "angle": -18.5 },
+					{ "time": 0.3333, "angle": -385.98 },
+					{ "time": 0.4, "angle": -408.45 },
+					{ "time": 0.4666, "angle": 0 }
+				]
+			},
+			"Hip": {
+				"translate": [
+					{ "time": 0, "x": 0, "y": 0.79 },
+					{ "time": 0.0666, "x": 0, "y": 0.19 },
+					{ "time": 0.2, "x": 0, "y": 0.79 },
+					{ "time": 0.2666, "x": 0, "y": 0.19 },
+					{ "time": 0.3333, "x": 0, "y": -0.06 },
+					{ "time": 0.4, "x": 0, "y": 1.35 },
+					{ "time": 0.4666, "x": 0, "y": 1.19 }
+				]
+			}
+		}
+	}
+}
+}
