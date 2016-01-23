@@ -34,6 +34,10 @@ public class RaycastController : MonoBehaviour {
 		raycastOrigins.bottomRight = new Vector2 (bounds.max.x, bounds.min.y);
 		raycastOrigins.topLeft = new Vector2 (bounds.min.x, bounds.max.y);
 		raycastOrigins.topRight= new Vector2 (bounds.max.x, bounds.max.y);
+		raycastOrigins.fistRight= new Vector2 (bounds.max.x, (bounds.max.y + bounds.min.y) / 2);
+		raycastOrigins.fistLeft= new Vector2 (bounds.min.x, (bounds.max.y + bounds.min.y) / 2);
+
+
 	}
 	public void CalculateRaySpacing() {
 		Bounds bounds = collider.bounds;
@@ -48,5 +52,6 @@ public class RaycastController : MonoBehaviour {
 	public struct RaycastOrigins{
 		public Vector2 topLeft,topRight;
 		public Vector2 bottomLeft,bottomRight;
+		public Vector2 fistRight,fistLeft;
 	}
 }
