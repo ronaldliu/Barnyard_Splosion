@@ -3,29 +3,28 @@ using System.Collections;
 
 [RequireComponent(typeof (BoxCollider2D))]
 public class RaycastController : MonoBehaviour {
+
+	//Editor Customizable
 	public const float skinWidth = 0.015f;
 	public int horizontalRayCount = 4;
 	public int verticalRayCount = 4;
+	public LayerMask collisionMask;			//Used to Specify layers to Collide With //CREATE LAYER FOR EACH PLAYER AND COMBINE WITH COLLISONMASK -- Set this value on startin Player and platform
+	public RaycastOrigins raycastOrigins; 	//Struct for storing Raycast Data
 
-
-	public LayerMask collisionMask;
-
-
+	//Non-Editor Customizable, but Still Visible from Other Classes
 	[HideInInspector]
-	public float horizontalRaySpacing;
+	public float horizontalRaySpacing;	
 	[HideInInspector]
 	public float verticalRaySpacing;
-
 	[HideInInspector]
 	public BoxCollider2D collider;
-	public RaycastOrigins raycastOrigins;
 
 	public virtual void Start() {
-		
 		collider = GetComponent<BoxCollider2D> ();
 		CalculateRaySpacing ();
 	}
 
+	//Sets the Raycast Data to Correct Locations Based on the Location of the Character
 	public void UpdateRaycastOrigins(){
 		Bounds bounds = collider.bounds;
 		bounds.Expand (skinWidth * -2);
@@ -39,6 +38,8 @@ public class RaycastController : MonoBehaviour {
 
 
 	}
+
+	//Evenly Spaces Raycastings
 	public void CalculateRaySpacing() {
 		Bounds bounds = collider.bounds;
 		bounds.Expand (skinWidth * -2);
@@ -49,6 +50,7 @@ public class RaycastController : MonoBehaviour {
 		horizontalRaySpacing = bounds.size.y / (horizontalRayCount - 1);
 		verticalRaySpacing = bounds.size.x / (verticalRayCount - 1);
 	}
+
 	public struct RaycastOrigins{
 		public Vector2 topLeft,topRight;
 		public Vector2 bottomLeft,bottomRight;

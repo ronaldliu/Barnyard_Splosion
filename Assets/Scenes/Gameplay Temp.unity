@@ -363,9 +363,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 953943538}
-  m_LocalRotation: {x: 0, y: 0, z: -0.25881907, w: 0.9659258}
-  m_LocalPosition: {x: 3.76, y: 3.79, z: 0}
-  m_LocalScale: {x: 7.5853024, y: 0.59451145, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.31, y: 6.04, z: 0}
+  m_LocalScale: {x: 3.3196929, y: 0.59451145, z: 1}
   m_Children: []
   m_Father: {fileID: 1066374683}
   m_RootOrder: 16
@@ -511,7 +511,7 @@ GameObject:
   - 114: {fileID: 1655455904}
   - 114: {fileID: 1655455903}
   m_Layer: 8
-  m_Name: CharacterRobotBoy
+  m_Name: Player 1
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -547,6 +547,7 @@ MonoBehaviour:
   moveSpeed: 6
   accelerationTimeAirborne: 0.2
   accelerationTimeGrounded: 0.1
+  player: P1
 --- !u!114 &1655455904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -626,7 +627,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1655455901}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.36, y: 1.92, z: 0}
+  m_LocalPosition: {x: -0.29, y: 0.54, z: 0}
   m_LocalScale: {x: 1.7715329, y: 1.7715304, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -656,8 +657,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1663747683}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.75, y: 2.39, z: 0}
-  m_LocalScale: {x: 7.585303, y: 0.56236887, z: 1}
+  m_LocalPosition: {x: -0.84, y: 2.39, z: 0}
+  m_LocalScale: {x: 16.77544, y: 0.56236887, z: 1}
   m_Children: []
   m_Father: {fileID: 1066374683}
   m_RootOrder: 13
@@ -722,7 +723,7 @@ GameObject:
   - 114: {fileID: 1906404983}
   - 114: {fileID: 1906404982}
   m_Layer: 8
-  m_Name: CharacterRobotBoy (1)
+  m_Name: Player 2
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -744,6 +745,7 @@ MonoBehaviour:
   moveSpeed: 6
   accelerationTimeAirborne: 0.2
   accelerationTimeGrounded: 0.1
+  player: P2
 --- !u!114 &1906404983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -979,6 +981,7 @@ MonoBehaviour:
   moveSpeed: 6
   accelerationTimeAirborne: 0.2
   accelerationTimeGrounded: 0.1
+  player: P1
 --- !u!114 &2130783239
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,20 +4,22 @@ using System.Collections;
 [RequireComponent (typeof (Controller2D))]
 [RequireComponent (typeof (SpriteRenderer))]
 public class Player : MonoBehaviour {
+
+	//Editor Customizable
 	public float jumpHeight = 4;
 	public float timeToJumpApex = .4f;
 	public float moveSpeed = 6;
 	public float accelerationTimeAirborne = .2f;
 	public float accelerationTimeGrounded = .1f;
+	public string player = "P1";  	//This is for Multiplayer Support
 
-
-	
 	float facing = 1;
 	float gravity;
 	float jumpVelocity;
 	Vector3 velocity;
 	float velocityXSmoothing;
 
+	//Class References
 	SpriteRenderer character;
 	Controller2D controller;
 
@@ -26,38 +28,51 @@ public class Player : MonoBehaviour {
 		controller = GetComponent<Controller2D> ();
 		UpdateGravity ();
 	}
+
 	void Update(){
+	
 		UpdateGravity ();
-		if (controller.collisions.above || controller.collisions.below) {
+
+		//This is a fix for velocity accumulation while on the ground
+		if (controller.collisions.above || controller.collisions.below) { 		
 			velocity.y = 0;
 		}
-		Vector2 input = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical"));
 
-		float targetVelocityX = input.x * moveSpeed;
+		Vector2 input = new Vector2 (Input.GetAxisRaw ("Horizontal_" + player), Input.GetAxisRaw ("Vertical_"+ player));
 
-		velocity.x = Mathf.SmoothDamp (velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
-		velocity.y += gravity * Time.deltaTime;
-		controller.Move (velocity * Time.deltaTime);
-
-		if(input.x != 0){
+		//Sprite Direction
+		if(input.x != 0){ 		
 			facing = Mathf.Sign (input.x);
+			character.flipX = (facing == -1);
 		}
-		character.flipX = facing == -1;
 
-		if ((Input.GetButtonDown ("Jump") || input.y > .35f) && controller.collisions.below) {
+		//Jump
+		if (Input.GetButtonDown ("Jump_" + player) && controller.collisions.below) {
 			print (jumpVelocity);
 			velocity.y = jumpVelocity;
 		}
 
-		if (Input.GetButtonDown ("Fire1")) {
+		//Hit/Fire Weapon
+		if (Input.GetButtonDown ("Fire_" + player)) {
+			//Add Weapon Fire Support Here
 			controller.Punch (facing);
-			print ("Fire");
 		}
+
+		//Horizontal Velocity Smoothing
+		float targetVelocityX = input.x * moveSpeed;
+		velocity.x = Mathf.SmoothDamp (velocity.x, targetVelocityX, ref velocityXSmoothing,
+			(controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
+
+		//Gravity and Move Player for Input
+		velocity.y += gravity * Time.deltaTime;
+		controller.Move (velocity * Time.deltaTime);
 	}
+
+	//This Method is for Converting the More Intuitive Jump Height and Time
+	//Variables into Gravity and Jump Velocity to Use on Character
+	//Calculations Based on Physics
 	public void UpdateGravity(){
 		gravity = -(jumpHeight * 2) / Mathf.Pow (timeToJumpApex, 2);
 		jumpVelocity = Mathf.Abs (gravity) * timeToJumpApex;
-		//print("Gravity: " + gravity + " Jump Vel: " +jumpVelocity);
-
 	}
 }
