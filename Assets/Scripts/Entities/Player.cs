@@ -16,16 +16,18 @@ public class Player : MonoBehaviour {
 	float facing = 1;
 	float gravity;
 	float jumpVelocity;
-	Vector3 velocity;
+	public Vector3 velocity;
 	float velocityXSmoothing;
 
 	//Class References
 	SpriteRenderer character;
 	Controller2D controller;
+	//Class Reference to Item Entity Here!
 
 	void Start () {
 		character = GetComponent<SpriteRenderer> ();
 		controller = GetComponent<Controller2D> ();
+		controller.CatchPlayer (this);
 		UpdateGravity ();
 	}
 
@@ -48,7 +50,6 @@ public class Player : MonoBehaviour {
 
 		//Jump
 		if (Input.GetButtonDown ("Jump_" + player) && controller.collisions.below) {
-			print (jumpVelocity);
 			velocity.y = jumpVelocity;
 		}
 

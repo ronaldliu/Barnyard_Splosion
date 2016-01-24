@@ -8,15 +8,21 @@ public class Controller2D : RaycastController{
 	public float punchLength = 5;
 	public LayerMask fightingMask;	 //Used to Hit Other Players
 	public CollisionInfo collisions; //Collision Struct
+	public float punchForce = 20;
 
 	//For Slope Handling
 	float maxClimbAngle = 80;
 	float maxDescendAngle = 75;
 
+	Player me; //Reference to Player Under Control
+
 	public override void Start(){
 		base.Start ();
 	}
-		
+
+	public void CatchPlayer(Player me){
+		this.me = me;
+	}
 	//Moves Character With Collision Accounted for.
 	//USE THIS NOT TRANSFORM.TRANSLATE!
 	public void Move(Vector3 velocity, bool standingonPlatform = false){
@@ -106,6 +112,7 @@ public class Controller2D : RaycastController{
 
 	//Vertical Collisions Are Very Similar to Horizontal
 	void VerticalCollisions(ref Vector3 velocity){
+		Vector3 velocityTemp = velocity;
 		float directionY = Mathf.Sign (velocity.y);
 		float rayLength = Mathf.Abs (velocity.y)+ skinWidth;
 	
@@ -126,6 +133,11 @@ public class Controller2D : RaycastController{
 
 				collisions.below = directionY == -1;
 				collisions.above = directionY == 1;
+				int collisionLayer = hit.transform.gameObject.layer;
+				if (collisions.below && (fightingMask.value & 1 << collisionLayer) != 0) {		//Jumped/Bounced on Player - Inflict Damage?
+					me.velocity.y = 20;
+					Move(me.velocity * Time.deltaTime);
+				}
 			}
 		}
 
@@ -187,18 +199,17 @@ public class Controller2D : RaycastController{
 	}
 
 	//This is How to Inflict Damage and Affect Other players with a punch
-	public void Punch(float directionX){ //FIX THIS - pass in player number and separate players to different layers then combine in fighing mask do this here or once at start
+	public void Punch(float directionX){ 
 		float rayLength = punchLength / 10;
-		this.gameObject.layer = 10;
 		Vector2 rayOrigin = ((directionX == -1) ? raycastOrigins.fistLeft : raycastOrigins.fistRight);
 		RaycastHit2D hit = Physics2D.Raycast (rayOrigin, Vector2.right * directionX, rayLength, fightingMask);
 
 		Debug.DrawRay (rayOrigin, Vector2.right * directionX * rayLength, Color.red);
 
 		if (hit) {
-			hit.transform.GetComponent<Controller2D>().Move ((new Vector3 (6, 0)) * Time.deltaTime, true);
+			//hit.transform.GetComponent<Controller2D>().Move ((new Vector3 (punchForce * directionX, 15)) * Time.deltaTime, true);	//Using Move Is possibly mro correct
+			hit.transform.GetComponent<Player>().velocity = (new Vector3(punchForce * directionX, 15));								//Looks Better
 		}
-		this.gameObject.layer = 8;
 	}
 
 	public struct CollisionInfo{

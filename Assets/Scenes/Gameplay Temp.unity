@@ -196,59 +196,59 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 47d3e747b2e87de4c8358aaa436365ea, type: 2}
       propertyPath: m_Layer
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 47d3e747b2e87de4c8358aaa436365ea, type: 2}
       propertyPath: m_Layer
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 100022, guid: 47d3e747b2e87de4c8358aaa436365ea, type: 2}
       propertyPath: m_Layer
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 100006, guid: 47d3e747b2e87de4c8358aaa436365ea, type: 2}
       propertyPath: m_Layer
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 100016, guid: 47d3e747b2e87de4c8358aaa436365ea, type: 2}
       propertyPath: m_Layer
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 100026, guid: 47d3e747b2e87de4c8358aaa436365ea, type: 2}
       propertyPath: m_Layer
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 100020, guid: 47d3e747b2e87de4c8358aaa436365ea, type: 2}
       propertyPath: m_Layer
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: 47d3e747b2e87de4c8358aaa436365ea, type: 2}
       propertyPath: m_Layer
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 100010, guid: 47d3e747b2e87de4c8358aaa436365ea, type: 2}
       propertyPath: m_Layer
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 100024, guid: 47d3e747b2e87de4c8358aaa436365ea, type: 2}
       propertyPath: m_Layer
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 100018, guid: 47d3e747b2e87de4c8358aaa436365ea, type: 2}
       propertyPath: m_Layer
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 100008, guid: 47d3e747b2e87de4c8358aaa436365ea, type: 2}
       propertyPath: m_Layer
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 100012, guid: 47d3e747b2e87de4c8358aaa436365ea, type: 2}
       propertyPath: m_Layer
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 100014, guid: 47d3e747b2e87de4c8358aaa436365ea, type: 2}
       propertyPath: m_Layer
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 47d3e747b2e87de4c8358aaa436365ea, type: 2}
@@ -350,7 +350,7 @@ GameObject:
   - 33: {fileID: 953943542}
   - 23: {fileID: 953943541}
   - 61: {fileID: 953943540}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Quad (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -427,7 +427,7 @@ GameObject:
   - 33: {fileID: 1058596554}
   - 23: {fileID: 1058596553}
   - 61: {fileID: 1058596552}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Quad (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -510,7 +510,7 @@ GameObject:
   - 61: {fileID: 1655455902}
   - 114: {fileID: 1655455904}
   - 114: {fileID: 1655455903}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Player 1
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -548,6 +548,7 @@ MonoBehaviour:
   accelerationTimeAirborne: 0.2
   accelerationTimeGrounded: 0.1
   player: P1
+  velocity: {x: 0, y: 0, z: 0}
 --- !u!114 &1655455904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -563,14 +564,15 @@ MonoBehaviour:
   verticalRayCount: 4
   collisionMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 7424
   horizontalRaySpacing: 0
   verticalRaySpacing: 0
   collider: {fileID: 0}
   punchLength: 10
   fightingMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 7168
+  punchForce: 20
 --- !u!95 &1655455907
 Animator:
   serializedVersion: 3
@@ -627,7 +629,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1655455901}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.29, y: 0.54, z: 0}
+  m_LocalPosition: {x: -12.91, y: 0.58, z: 0}
   m_LocalScale: {x: 1.7715329, y: 1.7715304, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -643,7 +645,7 @@ GameObject:
   - 33: {fileID: 1663747687}
   - 23: {fileID: 1663747686}
   - 61: {fileID: 1663747685}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Quad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -722,7 +724,7 @@ GameObject:
   - 61: {fileID: 1906404984}
   - 114: {fileID: 1906404983}
   - 114: {fileID: 1906404982}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Player 2
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -746,6 +748,7 @@ MonoBehaviour:
   accelerationTimeAirborne: 0.2
   accelerationTimeGrounded: 0.1
   player: P2
+  velocity: {x: 0, y: 0, z: 0}
 --- !u!114 &1906404983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -761,14 +764,15 @@ MonoBehaviour:
   verticalRayCount: 4
   collisionMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 6912
   horizontalRaySpacing: 0
   verticalRaySpacing: 0
   collider: {fileID: 0}
   punchLength: 10
   fightingMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 6656
+  punchForce: 20
 --- !u!61 &1906404984
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -839,7 +843,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1906404981}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.52, y: 3.03, z: 0}
+  m_LocalPosition: {x: -10.11, y: 0.83, z: 0}
   m_LocalScale: {x: 1.7715329, y: 1.7715304, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -856,7 +860,7 @@ GameObject:
   - 23: {fileID: 2081701556}
   - 61: {fileID: 2081701555}
   - 114: {fileID: 2081701558}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Quad (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -937,14 +941,14 @@ MonoBehaviour:
   verticalRayCount: 4
   collisionMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 256
   horizontalRaySpacing: 0
   verticalRaySpacing: 0
   collider: {fileID: 0}
   move: {x: 0, y: 0, z: 0}
   passengerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 7680
 --- !u!1 &2130783237
 GameObject:
   m_ObjectHideFlags: 0
@@ -982,6 +986,7 @@ MonoBehaviour:
   accelerationTimeAirborne: 0.2
   accelerationTimeGrounded: 0.1
   player: P1
+  velocity: {x: 0, y: 0, z: 0}
 --- !u!114 &2130783239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1005,6 +1010,7 @@ MonoBehaviour:
   fightingMask:
     serializedVersion: 2
     m_Bits: 256
+  punchForce: 20
 --- !u!61 &2130783240
 BoxCollider2D:
   m_ObjectHideFlags: 0
