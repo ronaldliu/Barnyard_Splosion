@@ -123,8 +123,12 @@ public class Controller2D : RaycastController{
 				
 			Debug.DrawRay (rayOrigin, Vector2.up * directionY * rayLength, Color.red);
 
-			if (hit) {
+			if (hit) {				
+				int collisionLayer = hit.transform.gameObject.layer;
+	
+				if((collisions.below && (fightingMask.value & 1 << collisionLayer) == 0)){
 				velocity.y = (hit.distance - skinWidth) * directionY;
+				}
 				rayLength = hit.distance;
 
 				if (collisions.climbingSlope) {
@@ -133,12 +137,13 @@ public class Controller2D : RaycastController{
 
 				collisions.below = directionY == -1;
 				collisions.above = directionY == 1;
-				int collisionLayer = hit.transform.gameObject.layer;
 				if (collisions.below && (fightingMask.value & 1 << collisionLayer) != 0) {		//Jumped/Bounced on Player - Inflict Damage?
-					me.velocity.y = 20;
-					hit.transform.GetComponent<Player> ().velocity.y = -10; 	//Add implementation of Dictionary Here
-					hit.transform.GetComponent<Player> ().health -= 20;
-					Move(me.velocity * Time.deltaTime);
+					if ((me.transform.position.y - hit.transform.position.y) > 2.1f) {
+						me.velocity.y = 20;
+						hit.transform.GetComponent<Player> ().velocity.y = -10; 	//Add implementation of Dictionary Here
+						hit.transform.GetComponent<Player> ().health -= 20;
+						Move (me.velocity * Time.deltaTime);
+					}
 				}
 			}
 		}

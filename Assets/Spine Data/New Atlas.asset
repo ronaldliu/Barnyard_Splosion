@@ -8,9 +8,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6b194f808b1af6499c93410e504af42, type: 3}
-  m_Name: Skeleton Atlas
+  m_Script: {fileID: 11500000, guid: c89a2c74ce34cde4d85dae21948984d2, type: 3}
+  m_Name: New Atlas
   m_EditorClassIdentifier: 
-  atlasFile: {fileID: 4900000, guid: acffe78c65aae374aaa9bf18b674face, type: 3}
+  atlasFile: {fileID: 4900000, guid: 6c8b16019562b0646a7fc379790a730f, type: 3}
   materials:
-  - {fileID: 2100000, guid: 58457aaeefdeb8d439586763b72b8cb0, type: 2}
+  - {fileID: 2100000, guid: cdd81bf5ef6e8fc4aacb0ccdebc511d1, type: 2}

@@ -1,4 +1,4 @@
-{
+﻿{
 "skeleton": { "hash": "FAnJwUc/zJMt/NWSEu8VRlo70lI", "spine": "3.0.06", "width": 27, "height": 55, "images": "" },
 "bones": [
 	{ "name": "root" },

@@ -2,7 +2,7 @@
 using System.Collections;
 
 [RequireComponent (typeof (Controller2D))]
-[RequireComponent (typeof (SpriteRenderer))]
+[RequireComponent (typeof (SkeletonAnimation))]
 public class Player : MonoBehaviour {
 
 	//Editor Customizable
@@ -22,20 +22,23 @@ public class Player : MonoBehaviour {
 	float velocityXSmoothing;
 
 	//Class References
-	SpriteRenderer character;
+	SkeletonAnimation anim;
+	Renderer character;
 	Controller2D controller;
 	//ItemEnity item;
 	//Class Reference to Item Entity Here!
 
 	void Start () {
-		character = GetComponent<SpriteRenderer> ();
+		character = GetComponent<Renderer> ();
 		controller = GetComponent<Controller2D> ();
+		anim = GetComponent<SkeletonAnimation> ();
+
 		controller.CatchPlayer (this);
 		UpdateGravity ();
 	}
 
 	void Update(){
-	
+
 		UpdateGravity ();
 		Vector2 input = new Vector2 (Input.GetAxisRaw ("Horizontal_" + player), Input.GetAxisRaw ("Vertical_" + player));
 
@@ -45,13 +48,13 @@ public class Player : MonoBehaviour {
 		}
 
 		if (!IsDead ()) {
-			
+
 
 
 			//Sprite Direction
 			if (input.x != 0) { 		
 				facing = Mathf.Sign (input.x);
-				character.flipX = (facing == -1);
+				this.transform.localScale = new Vector3 (facing * 0.05f, 0.05f, 1);
 			}
 
 			//Jump
@@ -62,13 +65,24 @@ public class Player : MonoBehaviour {
 			//Hit/Fire Weapon
 			if (Input.GetButtonDown ("Fire_" + player)) {
 				//Add Weapon Fire Support Here
+				anim.state.SetAnimation (2, "Poke", false);
 				controller.Punch (facing);
 			}
 
 			//Horizontal Velocity Smoothing
+
 			float targetVelocityX = input.x * moveSpeed;
 			velocity.x = Mathf.SmoothDamp (velocity.x, targetVelocityX, ref velocityXSmoothing,
 				(controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
+			
+			if (targetVelocityX != 0) {
+				anim.state.SetAnimation (1, "animation", true);
+			} else {
+				anim.state.SetAnimation (1, "Standing", true);
+				anim.state.ClearTrack(1);
+
+			}
+		
 		} else if (!dead) { //Fix!
 			velocity.x = 0;
 			Death ();
@@ -82,11 +96,14 @@ public class Player : MonoBehaviour {
 	}
 
 	bool IsDead(){
+		
 		return health <= 0;
 	}
 
 	//Drop Item, Animate Death, Ect
 	public void Death(){
+		print (player);
+	//anim.state.SetAnimation (20, "death", true);
 		dead = true;
 	}
 
