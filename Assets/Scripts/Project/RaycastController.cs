@@ -19,11 +19,13 @@ public class RaycastController : MonoBehaviour {
 	[HideInInspector]
 	public BoxCollider2D collider;
 
-	public virtual void Start() {
+	public virtual void Awake() {
 		collider = GetComponent<BoxCollider2D> ();
-		CalculateRaySpacing ();
 	}
 
+	public virtual void Start() {
+		CalculateRaySpacing ();
+	}
 	//Sets the Raycast Data to Correct Locations Based on the Location of the Character
 	public void UpdateRaycastOrigins(){
 		Bounds bounds = collider.bounds;
