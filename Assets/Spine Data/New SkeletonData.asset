@@ -8,33 +8,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1b3b4b945939a54ea0b23d3396115fb, type: 3}
+  m_Script: {fileID: 11500000, guid: 2b262cc8dc6a3574586ab73ff35ea6ea, type: 3}
   m_Name: New SkeletonData
   m_EditorClassIdentifier: 
   atlasAssets:
-  - {fileID: 11400000, guid: 06c3dce969a50a04fa783d1a66e10ba1, type: 2}
-  skeletonJSON: {fileID: 4900000, guid: adbcd2bcf188684428af42f7c2313346, type: 3}
+  - {fileID: 11400000, guid: 91986a86d51dd2341a97eee8701dbf4c, type: 2}
+  skeletonJSON: {fileID: 4900000, guid: 18ccf51f8e9906c48a347a79260816cf, type: 3}
   scale: 1
-  fromAnimation:
-  - InAir
-  - InAir
-  - InAir
-  - Standing
-  - animation
-  - run
-  toAnimation:
-  - Standing
-  - animation
-  - run
-  - InAir
-  - InAir
-  - InAir
-  duration:
-  - 0.1
-  - 0.1
-  - 0.15
-  - 0.1
-  - 0.15
-  - 0.15
+  fromAnimation: []
+  toAnimation: []
+  duration: []
   defaultMix: 0.5
   controller: {fileID: 0}
