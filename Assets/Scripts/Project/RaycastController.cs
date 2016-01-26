@@ -5,7 +5,7 @@ using System.Collections;
 public class RaycastController : MonoBehaviour {
 
 	//Editor Customizable
-	public const float skinWidth = 0.015f;
+	public const float skinWidth = 0.025f;
 	public int horizontalRayCount = 4;
 	public int verticalRayCount = 4;
 	public LayerMask collisionMask;			//Used to Specify layers to Collide With //CREATE LAYER FOR EACH PLAYER AND COMBINE WITH COLLISONMASK -- Set this value on startin Player and platform
@@ -28,6 +28,7 @@ public class RaycastController : MonoBehaviour {
 	}
 	//Sets the Raycast Data to Correct Locations Based on the Location of the Character
 	public void UpdateRaycastOrigins(){
+		collider = GetComponent<BoxCollider2D> ();
 		Bounds bounds = collider.bounds;
 		bounds.Expand (skinWidth * -2);
 

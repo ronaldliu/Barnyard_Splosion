@@ -2,7 +2,7 @@
 using System.Collections;
 
 [RequireComponent (typeof (Controller2D))]
-[RequireComponent (typeof (SkeletonAnimation))]
+//[RequireComponent (typeof (SkeletonAnimation))]
 public class Player : MonoBehaviour {
 
 	//Editor Customizable
@@ -23,15 +23,15 @@ public class Player : MonoBehaviour {
 
 	//Class References
 	SkeletonAnimation anim;
-	Renderer character;
+	SpriteRenderer character;
 	Controller2D controller;
 	//ItemEnity item;
 	//Class Reference to Item Entity Here!
 
 	void Start () {
-		character = GetComponent<Renderer> ();
+		character = GetComponent<SpriteRenderer> ();
 		controller = GetComponent<Controller2D> ();
-		anim = GetComponent<SkeletonAnimation> ();
+		//anim = GetComponent<SkeletonAnimation> ();
 
 		controller.CatchPlayer (this);
 		UpdateGravity ();
@@ -49,16 +49,15 @@ public class Player : MonoBehaviour {
 
 		if (!IsDead ()) {
 
-
-
 			//Sprite Direction
 			if (input.x != 0) { 		
 				facing = Mathf.Sign (input.x);
-				this.transform.localScale = new Vector3 (facing * 0.05f, 0.05f, 1);
+				character.flipX = facing==1;
 			}
 
 			//Jump
 			if (Input.GetButtonDown ("Jump_" + player) && controller.collisions.below) {
+				
 				velocity.y = jumpVelocity;
 			}
 
@@ -76,10 +75,10 @@ public class Player : MonoBehaviour {
 				(controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
 			
 			if (targetVelocityX != 0) {
-				anim.state.SetAnimation (1, "animation", true);
+				//anim.state.SetAnimation (1, "animation", true);
 			} else {
-				anim.state.SetAnimation (1, "Standing", true);
-				anim.state.ClearTrack(1);
+				//anim.state.SetAnimation (1, "Standing", true);
+				//anim.state.ClearTrack(1);
 
 			}
 		
