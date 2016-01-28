@@ -23,15 +23,15 @@ public class Player : MonoBehaviour {
 
 	//Class References
 	SkeletonAnimation anim;
-	SpriteRenderer character;
+	MeshRenderer character;
 	Controller2D controller;
 	//ItemEnity item;
 	//Class Reference to Item Entity Here!
 
 	void Start () {
-		character = GetComponent<SpriteRenderer> ();
+		character = GetComponent<MeshRenderer> ();
 		controller = GetComponent<Controller2D> ();
-		//anim = GetComponent<SkeletonAnimation> ();
+		anim = GetComponent<SkeletonAnimation> ();
 
 		controller.CatchPlayer (this);
 		UpdateGravity ();
@@ -45,6 +45,9 @@ public class Player : MonoBehaviour {
 		//This is a fix for velocity accumulation while on the ground
 		if (controller.collisions.above || controller.collisions.below) { 		
 			velocity.y = 0;
+			print("yes");
+			print(velocity.y);
+
 		}
 
 		if (!IsDead ()) {
@@ -52,13 +55,15 @@ public class Player : MonoBehaviour {
 			//Sprite Direction
 			if (input.x != 0) { 		
 				facing = Mathf.Sign (input.x);
-				character.flipX = facing==1;
+				character.transform.localScale = new Vector3(facing *1,1,1);
 			}
 
 			//Jump
 			if (Input.GetButtonDown ("Jump_" + player) && controller.collisions.below) {
 				
 				velocity.y = jumpVelocity;
+				print(velocity.y);
+
 			}
 
 			//Hit/Fire Weapon
@@ -73,11 +78,13 @@ public class Player : MonoBehaviour {
 			float targetVelocityX = input.x * moveSpeed;
 			velocity.x = Mathf.SmoothDamp (velocity.x, targetVelocityX, ref velocityXSmoothing,
 				(controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
-			
+			print(velocity.y);
+
 			if (targetVelocityX != 0) {
 				//anim.state.SetAnimation (1, "animation", true);
 			} else {
 				//anim.state.SetAnimation (1, "Standing", true);
+
 				//anim.state.ClearTrack(1);
 
 			}
@@ -88,10 +95,13 @@ public class Player : MonoBehaviour {
 		} else {
 			velocity.x = Mathf.SmoothDamp (velocity.x, 0, ref velocityXSmoothing, 0.05f);
 		}
+		print(velocity.y);
 
 		//Gravity and Move Player for Input
 		velocity.y += gravity * Time.deltaTime;
 		controller.Move (velocity * Time.deltaTime);
+		print(velocity.y);
+
 	}
 
 	bool IsDead(){

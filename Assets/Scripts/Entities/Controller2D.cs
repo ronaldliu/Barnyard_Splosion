@@ -216,7 +216,7 @@ public class Controller2D : RaycastController{
 		if (hit) {
 			Player enemy = hit.transform.GetComponent<Player>(); //Create Player Dictionary
 			enemy.velocity = (new Vector3(punchForce * directionX, 15));	
-			enemy.health -= 10;
+			//enemy.health -= 10;
 		}
 	}
 
