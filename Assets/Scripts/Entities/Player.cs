@@ -61,6 +61,7 @@ public class Player : MonoBehaviour {
 
 			//Jump
 			if (Input.GetButtonDown ("Jump_" + player) && controller.collisions.below) {
+				anim.state.SetAnimation (2, "Jump", false);
 				velocity.y = jumpVelocity;
 			}
 
@@ -106,7 +107,12 @@ public class Player : MonoBehaviour {
 	//Drop Item, Animate Death, Ect
 	public void Death(){
 		print (player);
-	//anim.state.SetAnimation (20, "death", true);
+		anim.state.ClearTracks ();
+		anim.state.SetAnimation (1, "Death", false);
+		boxCollider.size = new Vector2 (55, 22);
+		boxCollider.offset = new Vector2 (-6, -16.4f);
+		gameObject.layer = 14;
+		controller.collisionMask =  1 << LayerMask.NameToLayer("Obsticle");
 		dead = true;
 	}
 
