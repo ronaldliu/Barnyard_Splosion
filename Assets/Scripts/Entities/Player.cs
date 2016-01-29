@@ -52,7 +52,7 @@ public class Player : MonoBehaviour {
 		}
 
 		if (!IsDead ()) {
-
+			character.
 			//Sprite Direction
 			if (input.x != 0) { 		
 				facing = Mathf.Sign (input.x);

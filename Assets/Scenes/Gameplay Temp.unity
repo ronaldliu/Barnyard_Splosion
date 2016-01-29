@@ -132,6 +132,15 @@ Prefab:
       propertyPath: jumpHeight
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 2361016, guid: 52b3c2cbf0c0d894288c34fabe067399, type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 85618b37317b97248b30d879b4b63f66, type: 2}
+    - target: {fileID: 11471220, guid: 52b3c2cbf0c0d894288c34fabe067399, type: 2}
+      propertyPath: skeletonDataAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 69f5b142e802e9849970be1643d5d8de,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 52b3c2cbf0c0d894288c34fabe067399, type: 2}
   m_IsPrefabParent: 0
@@ -181,6 +190,19 @@ Prefab:
     - target: {fileID: 11475206, guid: e733285b4384a474981da780204c176a, type: 2}
       propertyPath: jumpHeight
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2354406, guid: e733285b4384a474981da780204c176a, type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 85618b37317b97248b30d879b4b63f66, type: 2}
+    - target: {fileID: 11401636, guid: e733285b4384a474981da780204c176a, type: 2}
+      propertyPath: skeletonDataAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 69f5b142e802e9849970be1643d5d8de,
+        type: 2}
+    - target: {fileID: 11401636, guid: e733285b4384a474981da780204c176a, type: 2}
+      propertyPath: _animationName
+      value: Standing
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e733285b4384a474981da780204c176a, type: 2}

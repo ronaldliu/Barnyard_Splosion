@@ -53,7 +53,7 @@ public class CameraBox : MonoBehaviour {
 		while(!correct){
 			float width = cam.ViewportToWorldPoint(new Vector3(1,1,cam.nearClipPlane)).x - cam.ViewportToWorldPoint(new Vector3(0,0,cam.nearClipPlane)).x;
 			float height = cam.ViewportToWorldPoint(new Vector3(1,1,cam.nearClipPlane)).y - cam.ViewportToWorldPoint(new Vector3(0,0,cam.nearClipPlane)).y;
-			if (width < focusAreaSize.x || height < focusAreaSize.y){
+			if (focusAreaSize.x / width > .85f || focusAreaSize.y/height > .85f){
 				cam.orthographicSize += .1f;
 				increasing = true;
 			} else if ((focusAreaSize.x / width < .75f || focusAreaSize.y / height < .75f) && !increasing) {
