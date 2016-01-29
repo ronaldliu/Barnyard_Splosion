@@ -20,6 +20,8 @@ public class Player : MonoBehaviour {
 	float jumpVelocity;
 	public Vector3 velocity;
 	float velocityXSmoothing;
+	[HideInInspector]
+	public BoxCollider2D boxCollider;
 
 	//Class References
 	SkeletonAnimation anim;
@@ -29,6 +31,7 @@ public class Player : MonoBehaviour {
 	//Class Reference to Item Entity Here!
 
 	void Start () {
+		boxCollider = GetComponent<BoxCollider2D> ();
 		character = GetComponent<MeshRenderer> ();
 		controller = GetComponent<Controller2D> ();
 		anim = GetComponent<SkeletonAnimation> ();
@@ -45,8 +48,6 @@ public class Player : MonoBehaviour {
 		//This is a fix for velocity accumulation while on the ground
 		if (controller.collisions.above || controller.collisions.below) { 		
 			velocity.y = 0;
-			print("yes");
-			print(velocity.y);
 
 		}
 
@@ -55,15 +56,12 @@ public class Player : MonoBehaviour {
 			//Sprite Direction
 			if (input.x != 0) { 		
 				facing = Mathf.Sign (input.x);
-				character.transform.localScale = new Vector3(facing *1,1,1);
+				character.transform.localScale = new Vector3(facing *.05f,.05f,1);
 			}
 
 			//Jump
 			if (Input.GetButtonDown ("Jump_" + player) && controller.collisions.below) {
-				
 				velocity.y = jumpVelocity;
-				print(velocity.y);
-
 			}
 
 			//Hit/Fire Weapon
@@ -78,14 +76,12 @@ public class Player : MonoBehaviour {
 			float targetVelocityX = input.x * moveSpeed;
 			velocity.x = Mathf.SmoothDamp (velocity.x, targetVelocityX, ref velocityXSmoothing,
 				(controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
-			print(velocity.y);
 
 			if (targetVelocityX != 0) {
-				//anim.state.SetAnimation (1, "animation", true);
+				anim.state.SetAnimation (1, "animation", true);
 			} else {
-				//anim.state.SetAnimation (1, "Standing", true);
-
-				//anim.state.ClearTrack(1);
+				anim.state.SetAnimation (1, "Standing", true);
+				anim.state.ClearTrack(1);
 
 			}
 		
@@ -95,16 +91,13 @@ public class Player : MonoBehaviour {
 		} else {
 			velocity.x = Mathf.SmoothDamp (velocity.x, 0, ref velocityXSmoothing, 0.05f);
 		}
-		print(velocity.y);
 
 		//Gravity and Move Player for Input
 		velocity.y += gravity * Time.deltaTime;
 		controller.Move (velocity * Time.deltaTime);
-		print(velocity.y);
-
 	}
 
-	bool IsDead(){
+	public bool IsDead(){
 		
 		return health <= 0;
 	}

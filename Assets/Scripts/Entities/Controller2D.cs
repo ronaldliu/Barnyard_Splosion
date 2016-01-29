@@ -76,7 +76,7 @@ public class Controller2D : RaycastController{
 
 				float slopeAngle = Vector2.Angle (hit.normal, Vector2.up);
 
-				if (i == 0 && slopeAngle <= maxClimbAngle && slopeAngle > 0) { //Slope Handling
+				if (i == 0 && slopeAngle <= maxClimbAngle){//&& slopeAngle > 0) { //Slope Handling
 					
 					if (collisions.descendingSlope) {
 						collisions.descendingSlope = false;
@@ -112,7 +112,6 @@ public class Controller2D : RaycastController{
 
 	//Vertical Collisions Are Very Similar to Horizontal
 	void VerticalCollisions(ref Vector3 velocity){
-		Vector3 velocityTemp = velocity;
 		float directionY = Mathf.Sign (velocity.y);
 		float rayLength = Mathf.Abs (velocity.y)+ skinWidth;
 	
@@ -125,10 +124,8 @@ public class Controller2D : RaycastController{
 
 			if (hit) {				
 				int collisionLayer = hit.transform.gameObject.layer;
-	
-				if((collisions.below && (fightingMask.value & 1 << collisionLayer) == 0)){
+				float tempVelocityY = velocity.y;
 				velocity.y = (hit.distance - skinWidth) * directionY;
-				}
 				rayLength = hit.distance;
 
 				if (collisions.climbingSlope) {
@@ -137,14 +134,17 @@ public class Controller2D : RaycastController{
 
 				collisions.below = directionY == -1;
 				collisions.above = directionY == 1;
-				/*if (collisions.below && (fightingMask.value & 1 << collisionLayer) != 0) {		//Jumped/Bounced on Player - Inflict Damage?
-					if ((me.transform.position.y - hit.transform.position.y) > 2.1f) {
+
+				if (collisions.below && (fightingMask.value & 1 << collisionLayer) != 0) {		//Jumped/Bounced on Player - Inflict Damage?
+					if ((me.transform.position.y - hit.transform.GetComponent<Player> ().transform.position.y) > 2.1f) {
 						me.velocity.y = 20;
 						hit.transform.GetComponent<Player> ().velocity.y = -10; 	//Add implementation of Dictionary Here
 						hit.transform.GetComponent<Player> ().health -= 20;
 						Move (me.velocity * Time.deltaTime);
+					} else {
+						velocity.y = tempVelocityY;
 					}
-				}*/
+				}
 			}
 		}
 
@@ -216,7 +216,7 @@ public class Controller2D : RaycastController{
 		if (hit) {
 			Player enemy = hit.transform.GetComponent<Player>(); //Create Player Dictionary
 			enemy.velocity = (new Vector3(punchForce * directionX, 15));	
-			//enemy.health -= 10;
+			enemy.health -= 10;
 		}
 	}
 
