@@ -35,7 +35,7 @@ public class Player : MonoBehaviour {
 		character = GetComponent<MeshRenderer> ();
 		controller = GetComponent<Controller2D> ();
 		anim = GetComponent<SkeletonAnimation> ();
-
+		anim.state.ClearTrack(1);
 		controller.CatchPlayer (this);
 		UpdateGravity ();
 	}
@@ -52,9 +52,9 @@ public class Player : MonoBehaviour {
 		}
 
 		if (!IsDead ()) {
-			character.
+			
 			//Sprite Direction
-			if (input.x != 0) { 		
+			if(input.x != 0) { 		
 				facing = Mathf.Sign (input.x);
 				character.transform.localScale = new Vector3(facing *.05f,.05f,1);
 			}
@@ -79,6 +79,7 @@ public class Player : MonoBehaviour {
 
 			if (targetVelocityX != 0) {
 				anim.state.SetAnimation (1, "animation", true);
+
 			} else {
 				anim.state.SetAnimation (1, "Standing", true);
 				anim.state.ClearTrack(1);
