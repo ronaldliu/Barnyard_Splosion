@@ -27,6 +27,7 @@ public class Player : MonoBehaviour {
 	SkeletonAnimation anim;
 	MeshRenderer character;
 	Controller2D controller;
+	SpineBone arm;
 	//ItemEnity item;
 	//Class Reference to Item Entity Here!
 
@@ -35,6 +36,7 @@ public class Player : MonoBehaviour {
 		character = GetComponent<MeshRenderer> ();
 		controller = GetComponent<Controller2D> ();
 		anim = GetComponent<SkeletonAnimation> ();
+		arm = anim.skeleton.FindBone ("RBicep");
 		anim.state.ClearTrack(1);
 		controller.CatchPlayer (this);
 		UpdateGravity ();
@@ -53,16 +55,28 @@ public class Player : MonoBehaviour {
 		}
 
 		if (!IsDead ()) {
-
+			float aimAngle = 0;
 			if (!aimer.Equals (Vector2.zero)) {
-				print ("Hi");
-
+				if (Mathf.Abs(aimer.x) < 0.1) {
+					if (Mathf.Sign (aimer.y) == -1) {
+						aimAngle = 270;
+					} else {
+						aimAngle = 90;
+					}
+				} else if (aimer.y == 0) {
+					facing = Mathf.Sign (aimer.x);
+				} else {
+					aimAngle = Mathf.Atan2(aimer.y, aimer.x);
+					facing = Mathf.Sign (aimer.x);
+				}
 			}
 			//Sprite Direction
-			if(input.x != 0) { 		
+			if(input.x != 0 && Mathf.Abs(aimer.x) < .1) {
 				facing = Mathf.Sign (input.x);
-				character.transform.localScale = new Vector3(facing *.05f,.05f,1);
 			}
+			character.transform.localScale = new Vector3(facing *.05f,.05f,1);
+
+			Debug.DrawRay(character.transform.position,new Vector3(aimAngle == 90 || aimAngle == 270 ? 0  : (Mathf.Abs(Mathf.Cos(aimAngle))*facing),Mathf.Sin(aimAngle) , 0)* 5,Color.cyan);
 
 			//Jump
 			if (Input.GetButtonDown ("Jump_" + player) && controller.collisions.below) {
