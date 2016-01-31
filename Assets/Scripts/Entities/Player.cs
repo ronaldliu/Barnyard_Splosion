@@ -47,6 +47,7 @@ public class Player : MonoBehaviour {
 
 		UpdateGravity ();
 		Vector2 input = new Vector2 (Input.GetAxisRaw ("Horizontal_" + player), Input.GetAxisRaw ("Vertical_" + player));
+		Vector2 aimer = new Vector2 (Input.GetAxisRaw ("AimH_" + player), Input.GetAxisRaw ("AimV_" + player));
 
 		//This is a fix for velocity accumulation while on the ground
 		if (controller.collisions.above || controller.collisions.below) { 		
@@ -55,7 +56,11 @@ public class Player : MonoBehaviour {
 		}
 
 		if (!IsDead ()) {
-			
+
+			if (!aimer.Equals (Vector2.zero)) {
+				print ("Hi");
+
+			}
 			//Sprite Direction
 			if(input.x != 0) { 		
 				facing = Mathf.Sign (input.x);
