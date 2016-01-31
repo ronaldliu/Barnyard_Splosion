@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "U5yRoceqiyAB/1N38OkLhgwccbM", "spine": "3.0.08", "width": 24.5, "height": 54.99, "images": "" },
+"skeleton": { "hash": "9o5I9+2igBFEs38TTQJnaFnOEsU", "spine": "3.0.08", "width": 24.5, "height": 54.99, "images": "" },
 "bones": [
 	{ "name": "root" },
 	{ "name": "Hip", "parent": "root", "x": -2.96, "y": -3.59 },
@@ -22,6 +22,7 @@
 	{ "name": "LFoot", "parent": "LShin", "length": 2.42, "x": 6.66, "y": 0.16, "rotation": 372.6 }
 ],
 "slots": [
+	{ "name": "CowFull", "bone": "root" },
 	{ "name": "LThigh", "bone": "LLeg", "attachment": "Cow Components/CowThigh" },
 	{ "name": "LArm", "bone": "LForearm", "attachment": "Cow Components/CowForearm" },
 	{ "name": "LBiceps", "bone": "LShoulder", "attachment": "Cow Components/CowBiceps" },
@@ -165,30 +166,27 @@
 		"bones": {
 			"LLeg": {
 				"rotate": [
-					{ "time": 0.1666, "angle": 15.2 }
+					{ "time": 0, "angle": 15.2 }
 				]
 			},
 			"RLeg": {
 				"rotate": [
-					{ "time": 0.1666, "angle": 15.2 },
-					{ "time": 0.3333, "angle": -14.79 }
+					{ "time": 0, "angle": -14.79 }
 				]
 			},
 			"RShin": {
 				"rotate": [
-					{ "time": 0.1666, "angle": -20.8, "curve": "stepped" },
-					{ "time": 0.3333, "angle": -20.8 }
+					{ "time": 0, "angle": -20.8 }
 				]
 			},
 			"LShin": {
 				"rotate": [
-					{ "time": 0.1666, "angle": -20.79 },
-					{ "time": 0.3333, "angle": -17.6 }
+					{ "time": 0, "angle": -17.6 }
 				]
 			},
 			"Hip": {
 				"translate": [
-					{ "time": 0.1666, "x": 0, "y": -2.27 }
+					{ "time": 0, "x": 0, "y": -2.27 }
 				]
 			}
 		}
