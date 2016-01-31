@@ -5,9 +5,6 @@ using System.Collections;
 //[RequireComponent (typeof (SkeletonAnimation))]
 public class Player : MonoBehaviour {
 
-    //this is a testing variable
-    private bool oneShot = true;
-
 	//Editor Customizable
 	public float jumpHeight = 4;
 	public float timeToJumpApex = .4f;
@@ -64,14 +61,10 @@ public class Player : MonoBehaviour {
 
 			//Jump
 			if (Input.GetButtonDown ("Jump_" + player) && controller.collisions.below) {
-				
+				anim.state.SetAnimation (2, "Jump", false);
 				velocity.y = jumpVelocity;
 			}
 
-            if(velocity.y != 0)
-            {
-                anim.state.SetAnimation(2, "Jump", false);
-            }
 			//Hit/Fire Weapon
 			if (Input.GetButtonDown ("Fire_" + player)) {
 				//Add Weapon Fire Support Here
@@ -86,16 +79,10 @@ public class Player : MonoBehaviour {
 				(controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
 
 			if (targetVelocityX != 0) {
-                if (oneShot)
-                {
-                    anim.state.SetAnimation(1, "animation", true);
-                    oneShot = false;
-                }
-				   
+				anim.state.SetAnimation (1, "animation", true);
 
 			} else {
 				anim.state.SetAnimation (1, "Standing", true);
-                oneShot = true;
 				anim.state.ClearTrack(1);
 
 			}
