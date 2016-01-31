@@ -94,6 +94,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 370017279}
   - 212: {fileID: 370017278}
+  - 61: {fileID: 370017281}
+  - 114: {fileID: 370017280}
   m_Layer: 0
   m_Name: Spawner2
   m_TagString: Untagged
@@ -127,7 +129,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 78500b89389baa34b8e7f383838ff81f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 803bc603d76fb144fb4bf179c88f01e8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -143,6 +145,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
+--- !u!114 &370017280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 370017277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58dac910482f61d4994fcda3c958bf40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 0}
+  spawnHeight: 1
+--- !u!61 &370017281
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 370017277}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: -0.0014830034, y: -0.058111828}
+  serializedVersion: 2
+  m_Size: {x: 0.17141382, y: 0.23474512}
 --- !u!1001 &554760819
 Prefab:
   m_ObjectHideFlags: 0
@@ -197,7 +226,7 @@ Prefab:
     - target: {fileID: 11471220, guid: 52b3c2cbf0c0d894288c34fabe067399, type: 2}
       propertyPath: skeletonDataAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 01bc1eb250290b24294e4a0392d87602,
+      objectReference: {fileID: 11400000, guid: 69f5b142e802e9849970be1643d5d8de,
         type: 2}
     - target: {fileID: 11471220, guid: 52b3c2cbf0c0d894288c34fabe067399, type: 2}
       propertyPath: timeScale
@@ -278,7 +307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 703171734653c5241adb1f5d9f4d5004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 01bc1eb250290b24294e4a0392d87602, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 69f5b142e802e9849970be1643d5d8de, type: 2}
   initialSkinName: default
   calculateNormals: 0
   calculateTangents: 0
