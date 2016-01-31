@@ -22,7 +22,6 @@
 	{ "name": "LFoot", "parent": "LShin", "length": 2.42, "x": 6.66, "y": 0.16, "rotation": 372.6 }
 ],
 "slots": [
-	{ "name": "CowFull", "bone": "root", "attachment": "Cow Components/CowFull" },
 	{ "name": "LThigh", "bone": "LLeg", "attachment": "Cow Components/CowThigh" },
 	{ "name": "LArm", "bone": "LForearm", "attachment": "Cow Components/CowForearm" },
 	{ "name": "LBiceps", "bone": "LShoulder", "attachment": "Cow Components/CowBiceps" },
@@ -43,9 +42,6 @@
 ],
 "skins": {
 	"default": {
-		"CowFull": {
-			"Cow Components/CowFull": { "width": 27, "height": 55 }
-		},
 		"Head": {
 			"Cow Components/CowHead": { "x": 0.75, "y": -4.04, "rotation": 270.99, "width": 20, "height": 13 }
 		},
