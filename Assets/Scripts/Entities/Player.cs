@@ -4,6 +4,8 @@ using System.Collections;
 [RequireComponent (typeof (Controller2D))]
 //[RequireComponent (typeof (SkeletonAnimation))]
 public class Player : MonoBehaviour {
+    //Temporary fix for the animation
+    private bool oneShot = true;
 
 	//Editor Customizable
 	public float jumpHeight = 4;
@@ -59,12 +61,18 @@ public class Player : MonoBehaviour {
 				character.transform.localScale = new Vector3(facing *.05f,.05f,1);
 			}
 
-			//Jump
+			//Jump Velocity
 			if (Input.GetButtonDown ("Jump_" + player) && controller.collisions.below) {
-				anim.state.SetAnimation (2, "Jump", false);
+				
 				velocity.y = jumpVelocity;
 			}
 
+            //jump Animation
+            if(velocity.y != 0)
+            {
+                anim.state.SetAnimation(2, "Jump", false);
+                
+            }
 			//Hit/Fire Weapon
 			if (Input.GetButtonDown ("Fire_" + player)) {
 				//Add Weapon Fire Support Here
@@ -79,11 +87,19 @@ public class Player : MonoBehaviour {
 				(controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
 
 			if (targetVelocityX != 0) {
-				anim.state.SetAnimation (1, "animation", true);
+                if (oneShot)
+                {
+                    oneShot = false;
+                    anim.state.SetAnimation(1, "animation", true);
+                }
+               
 
 			} else {
 				anim.state.SetAnimation (1, "Standing", true);
 				anim.state.ClearTrack(1);
+
+                //Reset the walk animation
+                oneShot = true;
 
 			}
 		
