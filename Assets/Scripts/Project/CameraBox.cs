@@ -48,28 +48,38 @@ public class CameraBox : MonoBehaviour {
 	//Careful Editing this Section
 	//Changing the wrong thing will result in freezing unity
 	void CameraAdjust(){
-		bool correct = false;
 		bool increasing = false;
-		while(!correct){
-			float width = cam.ViewportToWorldPoint(new Vector3(1,1,cam.nearClipPlane)).x - cam.ViewportToWorldPoint(new Vector3(0,0,cam.nearClipPlane)).x;
-			float height = cam.ViewportToWorldPoint(new Vector3(1,1,cam.nearClipPlane)).y - cam.ViewportToWorldPoint(new Vector3(0,0,cam.nearClipPlane)).y;
-			if (focusAreaSize.x / width > .85f || focusAreaSize.y/height > .85f){
-				cam.orthographicSize += .1f;
-				increasing = true;
-			} else if ((focusAreaSize.x / width < .75f || focusAreaSize.y / height < .75f) && !increasing) {
-				if (width > 10) {
-					cam.orthographicSize -= .1f;
-				} else {
-					print ("Too small");
-					correct = true;
-				}
-			} else {
-				correct = true;
-			}
+		bool heightControlled = false;
 
+		float width = cam.ViewportToWorldPoint(new Vector3(1,1,cam.nearClipPlane)).x - cam.ViewportToWorldPoint(new Vector3(0,0,cam.nearClipPlane)).x;
+		float height = cam.ViewportToWorldPoint(new Vector3(1,1,cam.nearClipPlane)).y - cam.ViewportToWorldPoint(new Vector3(0,0,cam.nearClipPlane)).y;
+		float heightRatio = (focusAreaSize.y / height);
+		float widthRatio = (focusAreaSize.x / width);
+
+		heightControlled = heightRatio > widthRatio;
+		if (heightControlled) {
+			if (focusAreaSize.y / height > .9f) {
+				increasing = true;
+				cam.orthographicSize = Mathf.MoveTowards (cam.orthographicSize, cam.orthographicSize += .3f, .08f);
+			} else if ((focusAreaSize.y / height < .65f) && !increasing) {
+				if (width > 10) {
+					cam.orthographicSize = Mathf.MoveTowards (cam.orthographicSize, cam.orthographicSize -= .3f, .02f);
+				}
+			} 
+		} else {
+			if (focusAreaSize.x / width > .9f) {
+				increasing = true;
+				cam.orthographicSize = Mathf.MoveTowards (cam.orthographicSize, cam.orthographicSize += .3f, .08f);
+			} else if ((focusAreaSize.x / width < .65f) && !increasing) {
+				if (width > 10) {
+					cam.orthographicSize = Mathf.MoveTowards (cam.orthographicSize, cam.orthographicSize -= .3f, .02f);
+				}
+			} 
 		}
 
 	}
+
+
 	struct FocusArea{
 		public Vector2 center;
 		public Vector2 velocity;

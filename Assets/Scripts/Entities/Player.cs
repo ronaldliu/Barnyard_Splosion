@@ -35,7 +35,7 @@ public class Player : MonoBehaviour {
 		character = GetComponent<MeshRenderer> ();
 		controller = GetComponent<Controller2D> ();
 		anim = GetComponent<SkeletonAnimation> ();
-
+		anim.state.ClearTrack(1);
 		controller.CatchPlayer (this);
 		UpdateGravity ();
 	}
@@ -52,15 +52,16 @@ public class Player : MonoBehaviour {
 		}
 
 		if (!IsDead ()) {
-			character.
+			
 			//Sprite Direction
-			if (input.x != 0) { 		
+			if(input.x != 0) { 		
 				facing = Mathf.Sign (input.x);
 				character.transform.localScale = new Vector3(facing *.05f,.05f,1);
 			}
 
 			//Jump
 			if (Input.GetButtonDown ("Jump_" + player) && controller.collisions.below) {
+				anim.state.SetAnimation (2, "Jump", false);
 				velocity.y = jumpVelocity;
 			}
 
@@ -79,6 +80,7 @@ public class Player : MonoBehaviour {
 
 			if (targetVelocityX != 0) {
 				anim.state.SetAnimation (1, "animation", true);
+
 			} else {
 				anim.state.SetAnimation (1, "Standing", true);
 				anim.state.ClearTrack(1);
@@ -105,7 +107,12 @@ public class Player : MonoBehaviour {
 	//Drop Item, Animate Death, Ect
 	public void Death(){
 		print (player);
-	//anim.state.SetAnimation (20, "death", true);
+		anim.state.ClearTracks ();
+		anim.state.SetAnimation (1, "Death", false);
+		boxCollider.size = new Vector2 (55, 22);
+		boxCollider.offset = new Vector2 (-6, -16.4f);
+		gameObject.layer = 14;
+		controller.collisionMask =  1 << LayerMask.NameToLayer("Obsticle");
 		dead = true;
 	}
 
