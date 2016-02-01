@@ -64,13 +64,16 @@ public class Controller2D : RaycastController{
 			rayOrigin += Vector2.up * (horizontalRaySpacing * i);
 
 			//Raycast Detection of Collisions with only collisionMask Layer being considered
-			RaycastHit2D hit = Physics2D.Raycast (rayOrigin, Vector2.right * directionX, rayLength, collisionMask); 
+			RaycastHit2D hit = Physics2D.Raycast (rayOrigin, Vector2.right * directionX, rayLength, collisionMask + fightingMask); 
 
 			Debug.DrawRay (rayOrigin, Vector2.right * directionX * rayLength, Color.red); //Draw Red Lines in Scene for Debuging Purposes
 
 			if (hit) { //Case Ray Hits Considered Target
-				
-				if (hit.distance == 0) { //if inside of object allow player to move freely
+				int collisionLayer = hit.transform.gameObject.layer;
+				if(hit.distance == 0 && collisionLayer == LayerMask.NameToLayer ("Obsticle")){
+					me.velocity.x = 10 * me.facing;
+				}
+				if (hit.distance == 0 || (LayerMask.NameToLayer("Platforms") == collisionLayer)) { //if inside of object allow player to move freely
 					continue;
 				}
 
@@ -118,16 +121,26 @@ public class Controller2D : RaycastController{
 		for (int i = 0; i < verticalRayCount; i++) {
 			Vector2 rayOrigin = (directionY == -1) ? raycastOrigins.bottomLeft : raycastOrigins.topLeft;
 			rayOrigin += Vector2.right * (verticalRaySpacing * i + velocity.x);
-			RaycastHit2D hit = Physics2D.Raycast (rayOrigin, Vector2.up * directionY, rayLength, collisionMask);
+			RaycastHit2D hit = Physics2D.Raycast (rayOrigin, Vector2.up * directionY, rayLength, collisionMask + fightingMask);
 				
 			Debug.DrawRay (rayOrigin, Vector2.up * directionY * rayLength, Color.red);
 
-			if (hit) {				
+			if (hit) {
 				int collisionLayer = hit.transform.gameObject.layer;
+				if(hit.distance == 0 && collisionLayer == LayerMask.NameToLayer ("Obsticle")){
+					me.velocity.x = 10 * me.facing;
+				}
+				if ((hit.distance == 0 && (fightingMask.value & 1 << collisionLayer) == 0)){ //if inside of object allow player to move freely
+					continue;
+				}
+				if (directionY > 0 && LayerMask.NameToLayer ("Platforms") == collisionLayer) {
+					continue;
+				}
 				float tempVelocityY = velocity.y;
-				velocity.y = (hit.distance - skinWidth) * directionY;
-				rayLength = hit.distance;
-
+				if (collisionLayer == LayerMask.NameToLayer ("Platforms") || directionY == -1) {
+					velocity.y = (hit.distance - skinWidth) * directionY;
+					rayLength = hit.distance;
+				}
 				if (collisions.climbingSlope) {
 					velocity.x = velocity.y / Mathf.Tan (collisions.slopeAngle * Mathf.Deg2Rad) * Mathf.Sign (velocity.x);
 				}
@@ -142,7 +155,7 @@ public class Controller2D : RaycastController{
 						hit.transform.GetComponent<Player> ().health -= 20;
 						Move (me.velocity * Time.deltaTime);
 					} else {
-						velocity.y = tempVelocityY;
+						velocity.y = 0;
 					}
 				}
 			}

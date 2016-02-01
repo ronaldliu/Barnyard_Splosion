@@ -17,7 +17,7 @@ public class Player : MonoBehaviour {
 	public float health = 100;
 	public bool dead = false;
 
-	float facing = 1;
+	public float facing = 1;
 	float gravity;
 	float jumpVelocity;
 	public Vector3 velocity;
@@ -151,7 +151,6 @@ public class Player : MonoBehaviour {
 		boxCollider.size = new Vector2 (55, 22);
 		boxCollider.offset = new Vector2 (-6, -16.4f);
 		gameObject.layer = 14;
-		controller.collisionMask =  1 << LayerMask.NameToLayer("Obsticle");
 		dead = true;
 	}
 

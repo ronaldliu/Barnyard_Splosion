@@ -58,21 +58,21 @@ public class CameraBox : MonoBehaviour {
 
 		heightControlled = heightRatio > widthRatio;
 		if (heightControlled) {
-			if (focusAreaSize.y / height > .9f) {
+			if (focusAreaSize.y / height > .85f) {
 				increasing = true;
-				cam.orthographicSize = Mathf.MoveTowards (cam.orthographicSize, cam.orthographicSize += .3f, .02f);
+				cam.orthographicSize += .03f;
 			} else if ((focusAreaSize.y / height < .65f) && !increasing) {
-				if (width > 25) {
-					cam.orthographicSize = Mathf.MoveTowards (cam.orthographicSize, cam.orthographicSize -= .3f, .02f);
+				if (width > 17) {
+					cam.orthographicSize -= .03f;
 				}
 			} 
 		} else {
-			if (focusAreaSize.x / width > .9f) {
+			if (focusAreaSize.x / width > .85f) {
 				increasing = true;
-				cam.orthographicSize = Mathf.MoveTowards (cam.orthographicSize, cam.orthographicSize += .3f, .02f);
+				cam.orthographicSize += .03f;
 			} else if ((focusAreaSize.x / width < .65f) && !increasing) {
-				if (width > 25) {
-					cam.orthographicSize = Mathf.MoveTowards (cam.orthographicSize, cam.orthographicSize -= .3f , .03f  );
+				if (width > 17) {
+					cam.orthographicSize -= .03f;
 				}
 			} 
 		}
