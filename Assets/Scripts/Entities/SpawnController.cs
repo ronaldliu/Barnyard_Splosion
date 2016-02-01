@@ -5,8 +5,11 @@ public class SpawnController : MonoBehaviour {
 
 	public GameObject[] weapon;
 	public float spawnHeight;
+	// Used to choose whether or not to spawn a random Item from list or from choice
+	public bool random;
+	// Which item to spawn
 	public int choice;
-	// Use this for initialization
+
 	void Start () 
 	{
 		SpawnWeapon ();
@@ -15,6 +18,9 @@ public class SpawnController : MonoBehaviour {
 	void SpawnWeapon()
 	{
 		Vector3 spawnPosition = new Vector3(transform.position.x, transform.position.y + spawnHeight, transform.position.z);
-		Instantiate (weapon[choice], spawnPosition, Quaternion.identity);
+		if (random)
+			Instantiate(weapon[Random.Range(0, weapon.Length)], spawnPosition, Quaternion.identity);
+		else
+			Instantiate (weapon[choice], spawnPosition, Quaternion.identity);
 	}
 }
