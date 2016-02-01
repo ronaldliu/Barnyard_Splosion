@@ -19,7 +19,7 @@ public class ItemController : MonoBehaviour {
 	{
 		if (other.tag == "Player") 
 		{
-			wielder = other.gameObject;
+			//wielder = other.gameObject;
 			active = true;
 			grabable = false;
 		}
@@ -27,7 +27,7 @@ public class ItemController : MonoBehaviour {
 
 	void Fire()
 	{
-		Vector3 spawnPosition = new Vector3(transform.position.x, transform.position.y + spawnHeight, transform.position.z);
-		Instantiate (projectile, spawnPosition, Quaternion.identity);
+		//Vector3 spawnPosition = new Vector3(transform.position.x, transform.position.y + spawnHeight, transform.position.z);
+		//Instantiate (projectile, spawnPosition, Quaternion.identity);
 	}
 }
