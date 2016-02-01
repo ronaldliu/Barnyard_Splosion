@@ -9,7 +9,7 @@ public class ItemController : MonoBehaviour {
 
 	public int ammo;
 	public float firerate;
-	public GameObject projectile;
+	public GameObject projectile;//Move Weapon specific variable into a weapon script thet extends item!
 	public float pStartX;
 	public float pStartY;
 	public float damage;

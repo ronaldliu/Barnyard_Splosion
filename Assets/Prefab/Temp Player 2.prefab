@@ -1,19 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &184542
+--- !u!1 &142792
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 497150}
-  - 33: {fileID: 3335246}
-  - 23: {fileID: 2354406}
-  - 114: {fileID: 11401636}
-  - 61: {fileID: 6111166}
-  - 114: {fileID: 11429528}
-  - 114: {fileID: 11475206}
+  - 4: {fileID: 490420}
+  - 61: {fileID: 6139026}
+  - 33: {fileID: 3358210}
+  - 23: {fileID: 2322698}
+  - 114: {fileID: 11496254}
+  - 114: {fileID: 11430620}
+  - 114: {fileID: 11489914}
   m_Layer: 10
   m_Name: Temp Player 2
   m_TagString: Player
@@ -21,29 +21,29 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &497150
+--- !u!4 &490420
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 184542}
+  m_GameObject: {fileID: 142792}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.04, y: 8.56, z: 0}
+  m_LocalPosition: {x: -1.5, y: 0.9, z: 0}
   m_LocalScale: {x: 0.05, y: 0.05, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!23 &2354406
+--- !u!23 &2322698
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 184542}
+  m_GameObject: {fileID: 142792}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 85618b37317b97248b30d879b4b63f66, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -59,19 +59,19 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!33 &3335246
+--- !u!33 &3358210
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 184542}
+  m_GameObject: {fileID: 142792}
   m_Mesh: {fileID: 0}
---- !u!61 &6111166
+--- !u!61 &6139026
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 184542}
+  m_GameObject: {fileID: 142792}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -80,36 +80,12 @@ BoxCollider2D:
   m_Offset: {x: -1.2705052, y: 0.055236816}
   serializedVersion: 2
   m_Size: {x: 24.554293, y: 54.973694}
---- !u!114 &11401636
+--- !u!114 &11430620
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 184542}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 703171734653c5241adb1f5d9f4d5004, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 0}
-  initialSkinName: default
-  calculateNormals: 0
-  calculateTangents: 0
-  zSpacing: 0
-  renderMeshes: 1
-  immutableTriangles: 0
-  frontFacing: 0
-  logErrors: 0
-  submeshSeparators: []
-  _animationName: Standing
-  loop: 1
-  timeScale: 1
---- !u!114 &11429528
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 184542}
+  m_GameObject: {fileID: 142792}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d98dd5457c4bd540938b880d459277b, type: 3}
@@ -128,18 +104,18 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 6656
   punchForce: 20
---- !u!114 &11475206
+--- !u!114 &11489914
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 184542}
+  m_GameObject: {fileID: 142792}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 507ac11b27149834d889560d51a6c67b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpHeight: 4
+  jumpHeight: 6
   timeToJumpApex: 0.4
   moveSpeed: 6
   accelerationTimeAirborne: 0.2
@@ -149,6 +125,30 @@ MonoBehaviour:
   dead: 0
   velocity: {x: 0, y: 0, z: 0}
   boxCollider: {fileID: 0}
+--- !u!114 &11496254
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 142792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 703171734653c5241adb1f5d9f4d5004, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skeletonDataAsset: {fileID: 11400000, guid: 69f5b142e802e9849970be1643d5d8de, type: 2}
+  initialSkinName: default
+  calculateNormals: 0
+  calculateTangents: 0
+  zSpacing: 0
+  renderMeshes: 1
+  immutableTriangles: 0
+  frontFacing: 0
+  logErrors: 0
+  submeshSeparators: []
+  _animationName: Standing
+  loop: 1
+  timeScale: 2
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -158,5 +158,5 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 184542}
+  m_RootGameObject: {fileID: 142792}
   m_IsPrefabParent: 1

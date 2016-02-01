@@ -42,9 +42,6 @@ public class Player : MonoBehaviour {
 		anim = GetComponent<SkeletonAnimation> ();
 		skeleton = anim.skeleton;
 		arm = skeleton.FindBone ("RShoulder");
-		if (arm == null) {
-			print(1212);
-		}
 		anim.state.ClearTrack(1);
 		controller.CatchPlayer (this);
 		UpdateGravity ();
@@ -83,7 +80,9 @@ public class Player : MonoBehaviour {
 				facing = Mathf.Sign (input.x);
 			}
 			arm.rotation = Mathf.Rad2Deg * (aimAngle)-150; 
-			character.transform.localScale = new Vector3(facing *.05f,.05f,1);
+			if (Mathf.Sign (character.transform.localScale.x) != facing) {
+				character.transform.localScale = new Vector3 (facing * .05f, .05f, 0);
+			} 
 			Debug.DrawRay(character.transform.position,new Vector3(aimAngle == 90 || aimAngle == 270 ? 0  : (Mathf.Abs(Mathf.Cos(aimAngle))*facing),Mathf.Sin(aimAngle) , 0)* 5,Color.cyan);
 
 			//Jump Velocity
@@ -141,7 +140,6 @@ public class Player : MonoBehaviour {
 	}
 
 	public bool IsDead(){
-		
 		return health <= 0;
 	}
 
