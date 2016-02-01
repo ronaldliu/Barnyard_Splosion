@@ -3,8 +3,9 @@ using System.Collections;
 
 public class SpawnController : MonoBehaviour {
 
-	public GameObject weapon;
-	public int spawnHeight;
+	public GameObject[] weapon;
+	public float spawnHeight;
+	public int choice;
 	// Use this for initialization
 	void Start () 
 	{
@@ -14,6 +15,6 @@ public class SpawnController : MonoBehaviour {
 	void SpawnWeapon()
 	{
 		Vector3 spawnPosition = new Vector3(transform.position.x, transform.position.y + spawnHeight, transform.position.z);
-		Instantiate (weapon, spawnPosition, Quaternion.identity);
+		Instantiate (weapon[choice], spawnPosition, Quaternion.identity);
 	}
 }

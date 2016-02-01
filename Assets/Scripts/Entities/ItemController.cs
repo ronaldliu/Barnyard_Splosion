@@ -3,6 +3,8 @@ using System.Collections;
 
 public class ItemController : MonoBehaviour {
 
+	bool grabable = true;
+
 	// Use this for initialization
 	void Start () {
 	

@@ -4,6 +4,8 @@ using System.Collections;
 [RequireComponent (typeof (Controller2D))]
 //[RequireComponent (typeof (SkeletonAnimation))]
 public class Player : MonoBehaviour {
+    //Temporary fix for the animation
+    private bool oneShot = true;
 
 	//Editor Customizable
 	public float jumpHeight = 4;
@@ -27,7 +29,9 @@ public class Player : MonoBehaviour {
 	SkeletonAnimation anim;
 	MeshRenderer character;
 	Controller2D controller;
-	SpineBone arm;
+	Spine.SkeletonData skeletonData;
+	Spine.Skeleton skeleton;
+	Spine.Bone arm;
 	//ItemEnity item;
 	//Class Reference to Item Entity Here!
 
@@ -36,7 +40,11 @@ public class Player : MonoBehaviour {
 		character = GetComponent<MeshRenderer> ();
 		controller = GetComponent<Controller2D> ();
 		anim = GetComponent<SkeletonAnimation> ();
-		arm = anim.skeleton.FindBone ("RBicep");
+		skeleton = anim.skeleton;
+		arm = skeleton.FindBone ("RShoulder");
+		if (arm == null) {
+			print(1212);
+		}
 		anim.state.ClearTrack(1);
 		controller.CatchPlayer (this);
 		UpdateGravity ();
@@ -59,14 +67,14 @@ public class Player : MonoBehaviour {
 			if (!aimer.Equals (Vector2.zero)) {
 				if (Mathf.Abs(aimer.x) < 0.1) {
 					if (Mathf.Sign (aimer.y) == -1) {
-						aimAngle = 270;
+						aimAngle = 270 * Mathf.Deg2Rad;
 					} else {
-						aimAngle = 90;
+						aimAngle = 90 * Mathf.Deg2Rad;
 					}
 				} else if (aimer.y == 0) {
 					facing = Mathf.Sign (aimer.x);
 				} else {
-					aimAngle = Mathf.Atan2(aimer.y, aimer.x);
+					aimAngle = Mathf.Atan2(aimer.y, Mathf.Abs(aimer.x));
 					facing = Mathf.Sign (aimer.x);
 				}
 			}
@@ -74,20 +82,26 @@ public class Player : MonoBehaviour {
 			if(input.x != 0 && Mathf.Abs(aimer.x) < .1) {
 				facing = Mathf.Sign (input.x);
 			}
+			arm.rotation = Mathf.Rad2Deg * (aimAngle)-150; 
 			character.transform.localScale = new Vector3(facing *.05f,.05f,1);
-
 			Debug.DrawRay(character.transform.position,new Vector3(aimAngle == 90 || aimAngle == 270 ? 0  : (Mathf.Abs(Mathf.Cos(aimAngle))*facing),Mathf.Sin(aimAngle) , 0)* 5,Color.cyan);
 
-			//Jump
+			//Jump Velocity
 			if (Input.GetButtonDown ("Jump_" + player) && controller.collisions.below) {
-				anim.state.SetAnimation (2, "Jump", false);
+				
 				velocity.y = jumpVelocity;
 			}
 
+            //jump Animation
+            if(velocity.y != 0)
+            {
+                anim.state.SetAnimation(2, "Jump", false);
+                
+            }
 			//Hit/Fire Weapon
 			if (Input.GetButtonDown ("Fire_" + player)) {
 				//Add Weapon Fire Support Here
-				anim.state.SetAnimation (2, "Poke", false);
+				anim.state.SetAnimation (3, "Poke", false);
 				controller.Punch (facing);
 			}
 
@@ -98,11 +112,19 @@ public class Player : MonoBehaviour {
 				(controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
 
 			if (targetVelocityX != 0) {
-				anim.state.SetAnimation (1, "animation", true);
+                if (oneShot)
+                {
+                    oneShot = false;
+                    anim.state.SetAnimation(1, "animation", true);
+                }
+               
 
 			} else {
 				anim.state.SetAnimation (1, "Standing", true);
 				anim.state.ClearTrack(1);
+
+                //Reset the walk animation
+                oneShot = true;
 
 			}
 		

@@ -213,6 +213,7 @@ public class Controller2D : RaycastController{
 
 		Debug.DrawRay (rayOrigin, Vector2.right * directionX * rayLength, Color.red);
 
+		//This is used to obtain
 		if (hit) {
 			Player enemy = hit.transform.GetComponent<Player>(); //Create Player Dictionary
 			enemy.velocity = (new Vector3(punchForce * directionX, 15));	
