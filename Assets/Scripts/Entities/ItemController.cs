@@ -3,15 +3,19 @@ using System.Collections;
 
 public class ItemController : MonoBehaviour {
 
-	bool grabable = true;
+	public bool grabable = true;
+	public bool active = false;
+	public int ammo;
+	public float firerate;
+	public GameObject projectile;
+	public float pStartX;
+	public float pStartY;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+	void OnTriggerEnter2D(Collider2D other)
+	{
+		if (other.tag == "Player") 
+		{
+			// Attach the gun onto player
+		}
 	}
 }
