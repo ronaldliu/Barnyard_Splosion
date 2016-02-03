@@ -154,8 +154,11 @@ public class Controller2D : RaycastController{
 
 				collisions.below = directionY == -1;
 				collisions.above = directionY == 1;
-
-				if (collisions.below && (fightingMask.value & 1 << collisionLayer) != 0) {		//Jumped/Bounced on Player - Inflict Damage?
+				if (me.IsDead ()) {
+					velocity.y = 0;
+					continue;
+				}
+				if (collisions.below  && (fightingMask.value & 1 << collisionLayer) != 0) {		//Jumped/Bounced on Player - Inflict Damage?
 					if ((me.transform.position.y - hit.transform.GetComponent<Player> ().transform.position.y) > 2.1f) {
 						me.velocity.y = 20;
 						hit.transform.GetComponent<Player> ().velocity.y = -10; 	//Add implementation of Dictionary Here
