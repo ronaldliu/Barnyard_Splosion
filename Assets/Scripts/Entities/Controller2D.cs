@@ -8,6 +8,7 @@ public class Controller2D : RaycastController{
 	public float punchLength = 5;
 	public LayerMask fightingMask;	 //Used to Hit Other Players
 	public CollisionInfo collisions; //Collision Struct
+	public LayerMask pickUpMask;
 	public float punchForce = 20;
 
 	//For Slope Handling
@@ -80,7 +81,7 @@ public class Controller2D : RaycastController{
 				float slopeAngle = Vector2.Angle (hit.normal, Vector2.up);
 
 				if (i == 0 && slopeAngle <= maxClimbAngle){//&& slopeAngle > 0) { //Slope Handling
-					
+
 					if (collisions.descendingSlope) {
 						collisions.descendingSlope = false;
 						velocity = collisions.velocityOld;
@@ -132,6 +133,12 @@ public class Controller2D : RaycastController{
 				}
 				if ((hit.distance == 0 && (fightingMask.value & 1 << collisionLayer) == 0)){ //if inside of object allow player to move freely
 					continue;
+				}
+				if (LayerMask.NameToLayer ("Platforms") == collisionLayer) {
+					collisions.droppable = true;
+				} else {
+					collisions.droppable = false;
+
 				}
 				if (directionY > 0 && LayerMask.NameToLayer ("Platforms") == collisionLayer) {
 					continue;
@@ -232,8 +239,31 @@ public class Controller2D : RaycastController{
 			enemy.velocity = (new Vector3(punchForce * directionX, 15));	
 			enemy.health -= 10;
 		}
+
+		//Item Pick Up
+
+		for (int i = 0; i <  pickUpRayCount; i++) {
+			rayOrigin = (directionX == -1) ? raycastOrigins.bottomLeft : raycastOrigins.bottomRight;
+			rayOrigin += Vector2.up * (pickUpRaySpacing * i);
+
+			hit = Physics2D.Raycast (rayOrigin, Vector2.right * directionX, rayLength, pickUpMask); 
+
+			Debug.DrawRay (rayOrigin, Vector2.right * directionX * rayLength, Color.black); //Draw Red Lines in Scene for Debuging Purposes
+
+			if (hit) { //Case Ray Hits Considered Target
+				print("h");
+				Item item = hit.transform.GetComponent<Item>();
+				me.PickUpItem (item);
+				//item.grabbable = false;
+			}
+		}
 	}
 
+	public void FallThrough(){
+		if (collisions.droppable) {
+			transform.Translate (new Vector3 (0, -.5f, 0));
+		}
+	}
 	public struct CollisionInfo{
 		public bool above, below;
 		public bool left, right;
@@ -241,13 +271,16 @@ public class Controller2D : RaycastController{
 		public bool climbingSlope,descendingSlope;
 		public float slopeAngle, slopeAngleOld;
 		public Vector3 velocityOld;
+		public bool droppable;
 
 		public void Reset(){
 			above = below = false;
 			left = right = false;
 			climbingSlope = descendingSlope = false;
+			droppable = false;
 			slopeAngleOld = slopeAngle;
 			slopeAngle = 0;
+
 		}
 	}
 }

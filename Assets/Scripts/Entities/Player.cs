@@ -5,7 +5,7 @@ using System.Collections;
 //[RequireComponent (typeof (SkeletonAnimation))]
 public class Player : MonoBehaviour {
     //Temporary fix for the animation
-    private bool oneShot = true;
+	private bool animReset = true;
 
 	//Editor Customizable
 	public float jumpHeight = 4;
@@ -24,6 +24,8 @@ public class Player : MonoBehaviour {
 	float velocityXSmoothing;
 	[HideInInspector]
 	public BoxCollider2D boxCollider;
+	float coolDown = .5f;
+	int crouchCount = 0;
 
 	//Class References
 	SkeletonAnimation anim;
@@ -32,6 +34,8 @@ public class Player : MonoBehaviour {
 	Spine.SkeletonData skeletonData;
 	Spine.Skeleton skeleton;
 	Spine.Bone arm;
+	Item holding;
+	TapInfo crouchTap;
 	//ItemEnity item;
 	//Class Reference to Item Entity Here!
 
@@ -44,7 +48,9 @@ public class Player : MonoBehaviour {
 		arm = skeleton.FindBone ("RShoulder");
 		anim.state.ClearTrack(1);
 		controller.CatchPlayer (this);
+		crouchTap = new TapInfo (.6f, 3);
 		UpdateGravity ();
+
 	}
 
 	void Update(){
@@ -56,13 +62,12 @@ public class Player : MonoBehaviour {
 		//This is a fix for velocity accumulation while on the ground
 		if (controller.collisions.above || controller.collisions.below) { 		
 			velocity.y = 0;
-
 		}
 
 		if (!IsDead ()) {
 			float aimAngle = 0;
 			if (!aimer.Equals (Vector2.zero)) {
-				if (Mathf.Abs(aimer.x) < 0.1) {
+				if (Mathf.Abs(aimer.x) < 0.1f) {
 					if (Mathf.Sign (aimer.y) == -1) {
 						aimAngle = 270 * Mathf.Deg2Rad;
 					} else {
@@ -75,19 +80,27 @@ public class Player : MonoBehaviour {
 					facing = Mathf.Sign (aimer.x);
 				}
 			}
+
 			//Sprite Direction
-			if(input.x != 0 && Mathf.Abs(aimer.x) < .1) {
+			if(input.x != 0 && Mathf.Abs(aimer.x) < .1f) {
 				facing = Mathf.Sign (input.x);
 			}
-			arm.rotation = Mathf.Rad2Deg * (aimAngle)-150; 
-			if (Mathf.Sign (character.transform.localScale.x) != facing) {
-				character.transform.localScale = new Vector3 (facing * .05f, .05f, 0);
-			} 
+			arm.rotation = Mathf.Rad2Deg * (aimAngle) - 150; 
+			character.transform.localScale = new Vector3 (facing * .05f, .05f, 0);
+
 			Debug.DrawRay(character.transform.position,new Vector3(aimAngle == 90 || aimAngle == 270 ? 0  : (Mathf.Abs(Mathf.Cos(aimAngle))*facing),Mathf.Sin(aimAngle) , 0)* 5,Color.cyan);
+			
+			if (input.y < -0.5f && Mathf.Abs (input.x) < 0.05f) {
+				if (crouchTap.TapCheck () && !crouchTap.activeDTap) {
+					controller.FallThrough ();
+					crouchTap.activeDTap = true;
+				}
+			} else {
+				crouchTap.Reset ();
+			}
 
 			//Jump Velocity
 			if (Input.GetButtonDown ("Jump_" + player) && controller.collisions.below) {
-				
 				velocity.y = jumpVelocity;
 			}
 
@@ -95,15 +108,19 @@ public class Player : MonoBehaviour {
             if(velocity.y != 0)
             {
                 anim.state.SetAnimation(2, "Jump", false);
-                
             }
 			//Hit/Fire Weapon
 			if (Input.GetButtonDown ("Fire_" + player)) {
 				//Add Weapon Fire Support Here
-				anim.state.SetAnimation (3, "Poke", false);
-				controller.Punch (facing);
+				if (holding != null) {
+					Object prefab = UnityEditor.AssetDatabase.LoadAssetAtPath("Assets/Prefab/bullet.prefab", typeof(GameObject)); 
+					GameObject clone = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject; 
+					clone.transform.position = transform.position;
+				} else {
+					anim.state.SetAnimation (3, "Poke", false);
+					controller.Punch (facing);
+				}
 			}
-
 			//Horizontal Velocity Smoothing
 
 			float targetVelocityX = input.x * moveSpeed;
@@ -111,27 +128,26 @@ public class Player : MonoBehaviour {
 				(controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
 
 			if (targetVelocityX != 0) {
-                if (oneShot)
+				if (animReset)
                 {
-                    oneShot = false;
+					animReset = false;
                     anim.state.SetAnimation(1, "animation", true);
                 }
-               
-
 			} else {
 				anim.state.SetAnimation (1, "Standing", true);
 				anim.state.ClearTrack(1);
 
                 //Reset the walk animation
-                oneShot = true;
-
+                animReset = true;
 			}
 		
-		} else if (!dead) { //Fix!
-			velocity.x = 0;
-			Death ();
+		
 		} else {
+			if (!dead) { 
+				Death ();
+			}
 			velocity.x = Mathf.SmoothDamp (velocity.x, 0, ref velocityXSmoothing, 0.05f);
+
 		}
 
 		//Gravity and Move Player for Input
@@ -154,11 +170,51 @@ public class Player : MonoBehaviour {
 		dead = true;
 	}
 
+	public void PickUpItem(Item item){
+		holding = item;
+		print ("Pick Up Successful");
+		//Add to skeleton here
+	}
 	//This Method is for Converting the More Intuitive Jump Height and Time
 	//Variables into Gravity and Jump Velocity to Use on Character
 	//Calculations Based on Physics
 	public void UpdateGravity(){
 		gravity = -(jumpHeight * 2) / Mathf.Pow (timeToJumpApex, 2);
 		jumpVelocity = Mathf.Abs (gravity) * timeToJumpApex;
+	}
+	public struct TapInfo{
+		public bool lastInput;
+		public bool activeDTap;
+		public int tapCount;
+		public float lastTap;
+		public float delay;
+		public int maxTaps;
+
+		public TapInfo(float delay,int maxTaps){
+			this.delay = delay;
+			this.maxTaps = maxTaps;
+			lastInput = false;
+			activeDTap = false;
+			tapCount = 0;
+			lastTap = 0;
+		}
+		public bool TapCheck(){
+			if (!lastInput) {
+				lastTap = Time.time;
+				lastInput = true;
+				tapCount++;
+			}
+			if (tapCount > 1 && tapCount <= maxTaps) {
+				return true;
+			}
+			return false;
+		}
+		public void Reset(){
+			activeDTap = false;
+			lastInput = false;
+			if (Time.time - lastTap > delay) {
+				tapCount = 0;
+			}
+		}
 	}
 }

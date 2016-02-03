@@ -8,6 +8,7 @@ public class RaycastController : MonoBehaviour {
 	public const float skinWidth = 0.025f;
 	public int horizontalRayCount = 4;
 	public int verticalRayCount = 4;
+	public int pickUpRayCount = 3;
 	public LayerMask collisionMask;			//Used to Specify layers to Collide With //CREATE LAYER FOR EACH PLAYER AND COMBINE WITH COLLISONMASK -- Set this value on startin Player and platform
 	public RaycastOrigins raycastOrigins; 	//Struct for storing Raycast Data
 
@@ -16,6 +17,8 @@ public class RaycastController : MonoBehaviour {
 	public float horizontalRaySpacing;	
 	[HideInInspector]
 	public float verticalRaySpacing;
+	[HideInInspector]
+	public float pickUpRaySpacing;
 	[HideInInspector]
 	public BoxCollider2D collider;
 
@@ -49,9 +52,12 @@ public class RaycastController : MonoBehaviour {
 
 		horizontalRayCount = Mathf.Clamp (horizontalRayCount, 2, int.MaxValue);
 		verticalRayCount = Mathf.Clamp (verticalRayCount, 2, int.MaxValue);
+		pickUpRayCount = Mathf.Clamp (verticalRayCount, 2, int.MaxValue);
 
 		horizontalRaySpacing = bounds.size.y / (horizontalRayCount - 1);
 		verticalRaySpacing = bounds.size.x / (verticalRayCount - 1);
+		pickUpRaySpacing = (bounds.size.y/2) / (verticalRayCount - 1);
+
 	}
 
 	public struct RaycastOrigins{

@@ -22,11 +22,15 @@ public class CameraBox : MonoBehaviour {
 	}
 
 	void LateUpdate(){
-
+		List<Player> tempTargets = new List<Player>();
+		//Below is the fix for modifying a list while accessing it error that will happen otherwise
 		foreach (Player t in targets) {
 			if (t.IsDead ()) {
-				targets.Remove (t);
+				tempTargets.Add(t);
 			}
+		}
+		foreach (Player r in tempTargets) {
+			targets.Remove (r);
 		}
 		focusArea.Update (targets, ref focusAreaSize);
 
@@ -41,7 +45,7 @@ public class CameraBox : MonoBehaviour {
 
 	void OnDrawGizmos(){
 		Gizmos.color = new Color (1, 0, 1, .5f);
-		Gizmos.DrawCube (focusArea.center, focusAreaSize);
+		//Gizmos.DrawCube (focusArea.center, focusAreaSize);
 
 	}
 
