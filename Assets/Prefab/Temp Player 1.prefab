@@ -99,6 +99,7 @@ MonoBehaviour:
   player: P1
   health: 100
   dead: 0
+  facing: 1
   velocity: {x: 0, y: 0, z: 0}
   boxCollider: {fileID: 0}
 --- !u!114 &11479404
@@ -114,16 +115,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalRayCount: 4
   verticalRayCount: 4
+  pickUpRayCount: 3
   collisionMask:
     serializedVersion: 2
     m_Bits: 7424
   horizontalRaySpacing: 0
   verticalRaySpacing: 0
+  pickUpRaySpacing: 0
   collider: {fileID: 0}
   punchLength: 5
   fightingMask:
     serializedVersion: 2
     m_Bits: 7168
+  pickUpMask:
+    serializedVersion: 2
+    m_Bits: 0
   punchForce: 20
 --- !u!114 &11490542
 MonoBehaviour:
