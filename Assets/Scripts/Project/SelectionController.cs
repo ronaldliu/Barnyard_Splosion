@@ -12,6 +12,8 @@ public class SelectionController : MonoBehaviour {
 		if (Input.GetJoystickNames ().Length != 0) {
 			currentControllerCount = Input.GetJoystickNames ().Length;
 			foreach (string name in Input.GetJoystickNames()) {
+				ControllerSelector tempRef = new ControllerSelector ();
+				currentControllerNames.Add (name, tempRef);
 
 			}
 		}
