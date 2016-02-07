@@ -11,7 +11,6 @@ public class CameraBox : MonoBehaviour {
 	public Vector2 focusAreaSize;
 
 	public float verticalOffset;
-	public float oldBoundScale = 1;
 
 	public Camera cam;
 	FocusArea focusArea;

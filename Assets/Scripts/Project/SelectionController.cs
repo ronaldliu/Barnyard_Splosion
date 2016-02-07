@@ -3,32 +3,50 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class SelectionController : MonoBehaviour {
-	public int currentControllerCount = 0;
+	public int controllerCount = 0;
 	// Use this for initialization
-	Dictionary<string,ControllerSelector> currentControllerNames = new Dictionary<string,ControllerSelector>();
+	Dictionary<string,ControllerSelector> controllerNames = new Dictionary<string,ControllerSelector>();
 	GameObject controllers;
 	void Start () {
 		controllers = GameObject.Find ("Controllers");
+		print (Input.GetJoystickNames ().Length);
 		if (Input.GetJoystickNames ().Length != 0) {
-			currentControllerCount = Input.GetJoystickNames ().Length;
-			foreach (string name in Input.GetJoystickNames()) {
-				ControllerSelector tempRef = new ControllerSelector ();
-				currentControllerNames.Add (name, tempRef);
+			controllerCount = Input.GetJoystickNames ().Length;
+			string [] name = Input.GetJoystickNames ();
+			for(int i = 0; i < Input.GetJoystickNames().Length; i++) {
+				ControllerSelector tempRef = controllers.AddComponent<ControllerSelector>();
+				tempRef.player = i + 1;
+				controllerNames.Add (name[i], tempRef);
 
 			}
 		}
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		if (currentControllerCount < Input.GetJoystickNames ().Length) {
+		
+		List<string> inputNames = new List<string>(Input.GetJoystickNames ());
+		if (controllerCount < inputNames.Count) {
 			foreach (string name in Input.GetJoystickNames ()) {
-				if (currentControllerNames.ContainsKey(name)) {
+				print (name);
+				if (controllerNames.ContainsKey (name)) {
 					continue;
 				} else {
-
+					controllerCount++;
 				}
 			}
+		} else if (controllerCount > inputNames.Count) {
+			foreach (string name in controllerNames.Keys) {
+				if (inputNames.Contains (name)) {
+					continue;
+				} else {
+					controllerCount--;
+					controllerNames.Remove (name);
+				}
+			}
+
+		} else if (controllerCount == 1 && Input.GetJoystickNames () [0] == "") {
+			controllerCount = 0;
 		}
 	}
 }

@@ -117,7 +117,7 @@ RectTransform:
   - {fileID: 1196707118}
   - {fileID: 1672994944}
   m_Father: {fileID: 1234756356}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -183,6 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5302bb284ad47214bb707ae3a5155927, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controllerCount: 0
 --- !u!4 &580632490
 Transform:
   m_ObjectHideFlags: 0
@@ -192,8 +193,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 349.51785, y: 316.96954, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1886674632}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
 --- !u!1 &610400408
@@ -788,6 +788,7 @@ RectTransform:
   m_Children:
   - {fileID: 2090578904}
   - {fileID: 610400409}
+  - {fileID: 1886674632}
   - {fileID: 262763094}
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -1096,7 +1097,8 @@ GameObject:
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 1886674632}
+  - 224: {fileID: 1886674632}
+  - 222: {fileID: 1886674634}
   m_Layer: 0
   m_Name: Controllers
   m_TagString: Untagged
@@ -1104,8 +1106,8 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1886674632
-Transform:
+--- !u!224 &1886674632
+RectTransform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -1114,8 +1116,19 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 580632490}
-  m_RootOrder: 0
+  m_Father: {fileID: 1234756356}
+  m_RootOrder: 2
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 158.01785, y: 92.46954}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1886674634
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1886674631}
 --- !u!1 &1913393960
 GameObject:
   m_ObjectHideFlags: 0
