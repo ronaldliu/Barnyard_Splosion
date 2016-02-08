@@ -143,7 +143,7 @@ public class Controller2D : RaycastController{
 				if (directionY > 0 && LayerMask.NameToLayer ("Platforms") == collisionLayer) {
 					continue;
 				}
-				float tempVelocityY = velocity.y;
+				//float tempVelocityY = velocity.y;
 				if (collisionLayer == LayerMask.NameToLayer ("Platforms") || directionY == -1) {
 					velocity.y = (hit.distance - skinWidth) * directionY;
 					rayLength = hit.distance;

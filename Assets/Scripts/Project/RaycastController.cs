@@ -20,7 +20,7 @@ public class RaycastController : MonoBehaviour {
 	[HideInInspector]
 	public float pickUpRaySpacing;
 	[HideInInspector]
-	public BoxCollider2D collider;
+	public new BoxCollider2D collider;
 
 	public virtual void Awake() {
 		collider = GetComponent<BoxCollider2D> ();

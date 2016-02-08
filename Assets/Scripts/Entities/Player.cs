@@ -24,8 +24,6 @@ public class Player : MonoBehaviour {
 	float velocityXSmoothing;
 	[HideInInspector]
 	public BoxCollider2D boxCollider;
-	float coolDown = .5f;
-	int crouchCount = 0;
 
 	//Class References
 	SkeletonAnimation anim;
