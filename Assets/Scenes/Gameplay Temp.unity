@@ -94,11 +94,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 490420, guid: e733285b4384a474981da780204c176a, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -10.64
+      value: -22.23
       objectReference: {fileID: 0}
     - target: {fileID: 490420, guid: e733285b4384a474981da780204c176a, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.23
+      value: -2.39
       objectReference: {fileID: 0}
     - target: {fileID: 490420, guid: e733285b4384a474981da780204c176a, type: 2}
       propertyPath: m_LocalPosition.z
@@ -163,6 +163,10 @@ Prefab:
     - target: {fileID: 2322698, guid: e733285b4384a474981da780204c176a, type: 2}
       propertyPath: m_SortingOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11496254, guid: e733285b4384a474981da780204c176a, type: 2}
+      propertyPath: _animationName
+      value: Crouch
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e733285b4384a474981da780204c176a, type: 2}
@@ -380,6 +384,10 @@ Prefab:
     - target: {fileID: 2386774, guid: 52b3c2cbf0c0d894288c34fabe067399, type: 2}
       propertyPath: m_SortingOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11490542, guid: 52b3c2cbf0c0d894288c34fabe067399, type: 2}
+      propertyPath: _animationName
+      value: Crouch
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 52b3c2cbf0c0d894288c34fabe067399, type: 2}
