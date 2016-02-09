@@ -34,7 +34,7 @@ public class Player : MonoBehaviour {
 	Spine.Bone arm;
 	Item holding;
 	TapInfo crouchTap;
-	//ItemEnity item;
+	//ItemEntity item;
 	//Class Reference to Item Entity Here!
 
 	void Start () {

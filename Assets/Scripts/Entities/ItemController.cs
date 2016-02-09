@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ItemController : MonoBehaviour {
+public class ItemController : RaycastController {
 
 	Player wielder;
 	bool grabable = true;
@@ -10,10 +10,39 @@ public class ItemController : MonoBehaviour {
 	public int ammo;
 	public float firerate;
 	public GameObject projectile;//Move Weapon specific variable into a weapon script thet extends item!
+	public Transform shotSpawn;
 	public float pStartX;
 	public float pStartY;
 	public float damage;
 	public float projectileSpeed;
+
+	float nextfire;
+
+	void Awake()
+	{
+		shotSpawn = transform.FindChild ("ShotSpawn");
+		if (shotSpawn == null) 
+		{
+			Debug.LogError ("No shot spawn");
+		}
+	}
+
+	void Update ()
+	{
+		if (firerate == 0) 
+		{
+			if (Input.GetKeyDown ("Fire_")) 
+			{
+				Fire ();
+			}
+		} else {
+			if (Input.GetButton ("Fire_") && Time.time > nextfire) 
+			{
+				nextfire = Time.time + firerate;
+				Fire ();
+			}
+		}
+	}
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
@@ -27,7 +56,6 @@ public class ItemController : MonoBehaviour {
 
 	void Fire()
 	{
-		//Vector3 spawnPosition = new Vector3(transform.position.x, transform.position.y + spawnHeight, transform.position.z);
-		//Instantiate (projectile, spawnPosition, Quaternion.identity);
+		// Instantiate (projectile, shotSpawn.position, shotSpawn.rotation);
 	}
 }
