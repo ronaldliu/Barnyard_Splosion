@@ -15,6 +15,7 @@ public class ItemController : RaycastController {
 	public float pStartY;
 	public float damage;
 	public float projectileSpeed;
+	public LayerMask CanHit;
 
 	float nextfire;
 
@@ -31,12 +32,12 @@ public class ItemController : RaycastController {
 	{
 		if (firerate == 0) 
 		{
-			if (Input.GetKeyDown ("Fire_")) 
+			if (Input.GetKeyDown ("Fire_P1")) 
 			{
 				Fire ();
 			}
 		} else {
-			if (Input.GetButton ("Fire_") && Time.time > nextfire) 
+			if (Input.GetButton ("Fire_P1") && Time.time > nextfire) 
 			{
 				nextfire = Time.time + firerate;
 				Fire ();
@@ -57,5 +58,9 @@ public class ItemController : RaycastController {
 	void Fire()
 	{
 		// Instantiate (projectile, shotSpawn.position, shotSpawn.rotation);
+		Vector2 mousePos = new Vector2 (Camera.main.ScreenToWorldPoint (Input.mousePosition).x, Camera.main.ScreenToWorldPoint (Input.mousePosition).y);
+		Vector2 shotSpawnPos = new Vector2 (shotSpawn.position.x, shotSpawn.position.y);
+		RaycastHit2D hit = Physics2D.Raycast (shotSpawnPos, mousePos - shotSpawnPos, 100, CanHit);
+		Debug.DrawLine (shotSpawnPos, (mousePos - shotSpawnPos) * 100, Color.green);
 	}
 }
