@@ -16,6 +16,7 @@ public class Player : MonoBehaviour {
 	public string player = "P1";  	//This is for Multiplayer Support
 	public float health = 100;
 	public bool dead = false;
+	public Sprite image;
 
 	public float facing = 1;
 	float gravity;
@@ -32,8 +33,12 @@ public class Player : MonoBehaviour {
 	Spine.SkeletonData skeletonData;
 	Spine.Skeleton skeleton;
 	Spine.Bone arm;
+	Spine.Bone backArm;
+	Spine.Bone weap;
+	SkeletonRenderer skelRend;
 	Item holding;
 	TapInfo crouchTap;
+
 	//ItemEntity item;
 	//Class Reference to Item Entity Here!
 
@@ -44,6 +49,16 @@ public class Player : MonoBehaviour {
 		anim = GetComponent<SkeletonAnimation> ();
 		skeleton = anim.skeleton;
 		arm = skeleton.FindBone ("RShoulder");
+		backArm = skeleton.FindBone ("LShoulder");
+
+		weap = skeleton.FindBone ("Rifle Weapon");
+
+		skelRend = GetComponent<SkeletonRenderer> ();
+	//	skelRend.skeleton.AttachUnitySprite ("Art/Weapons/AssaultRifle", image);
+
+		skelRend.skeleton.AttachUnitySprite ("Art/Weapons/LMG", image);
+		weap.scaleX = 100;
+		weap.ScaleY = 100;
 		anim.state.ClearTrack(1);
 		controller.CatchPlayer (this);
 		crouchTap = new TapInfo (.6f, 3);
@@ -84,6 +99,10 @@ public class Player : MonoBehaviour {
 				facing = Mathf.Sign (input.x);
 			}
 			arm.rotation = Mathf.Rad2Deg * (aimAngle) - 150; 
+			backArm.rotation = Mathf.Rad2Deg * (aimAngle) - 150; 
+
+			weap.rotation = Mathf.Rad2Deg * (aimAngle)-90; 
+
 			character.transform.localScale = new Vector3 (facing * .05f, .05f, 0);
 
 			Debug.DrawRay(character.transform.position,new Vector3(aimAngle == 90 || aimAngle == 270 ? 0  : (Mathf.Abs(Mathf.Cos(aimAngle))*facing),Mathf.Sin(aimAngle) , 0)* 5,Color.cyan);
