@@ -15,13 +15,12 @@ public class ItemController : RaycastController {
 	public float pStartY;
 	public float damage;
 	public float projectileSpeed;
-	public LayerMask CanHit;
 
 	float nextfire;
 
 	void Awake()
 	{
-		shotSpawn = transform.FindChild ("ShotSpawn");
+		shotSpawn = transform.FindChild ("shotspawn");
 		if (shotSpawn == null) 
 		{
 			Debug.LogError ("No shot spawn");
@@ -32,12 +31,12 @@ public class ItemController : RaycastController {
 	{
 		if (firerate == 0) 
 		{
-			if (Input.GetKeyDown ("Fire_P1")) 
+			if (Input.GetButtonDown ("Fire_P1")) 
 			{
 				Fire ();
 			}
 		} else {
-			if (Input.GetButton ("Fire_P1") && Time.time > nextfire) 
+			if (Input.GetButton ("Fire_P2") && Time.time > nextfire) 
 			{
 				nextfire = Time.time + firerate;
 				Fire ();
@@ -49,7 +48,7 @@ public class ItemController : RaycastController {
 	{
 		if (other.tag == "Player") 
 		{
-			//wielder = other.gameObject;
+			Debug.Log ("I collided with Player");
 			active = true;
 			grabable = false;
 		}
@@ -60,7 +59,12 @@ public class ItemController : RaycastController {
 		// Instantiate (projectile, shotSpawn.position, shotSpawn.rotation);
 		Vector2 mousePos = new Vector2 (Camera.main.ScreenToWorldPoint (Input.mousePosition).x, Camera.main.ScreenToWorldPoint (Input.mousePosition).y);
 		Vector2 shotSpawnPos = new Vector2 (shotSpawn.position.x, shotSpawn.position.y);
-		RaycastHit2D hit = Physics2D.Raycast (shotSpawnPos, mousePos - shotSpawnPos, 100, CanHit);
+		RaycastHit2D hit = Physics2D.Raycast (shotSpawnPos, mousePos - shotSpawnPos, 100, collisionMask);
 		Debug.DrawLine (shotSpawnPos, (mousePos - shotSpawnPos) * 100, Color.green);
+
+		if (hit) {
+			Player enemy = hit.transform.GetComponent<Player>(); //Create Player Dictionary
+			enemy.health -= damage;
+		}
 	}
 }
