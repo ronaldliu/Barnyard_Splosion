@@ -397,7 +397,7 @@ Prefab:
     - target: {fileID: 11430036, guid: 52b3c2cbf0c0d894288c34fabe067399, type: 2}
       propertyPath: image
       value: 
-      objectReference: {fileID: 21300000, guid: affec4bb51118874bb7fc30a0673548f,
+      objectReference: {fileID: 21300000, guid: d5cfbba3908793e4bb118bfc7116fdc5,
         type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 52b3c2cbf0c0d894288c34fabe067399, type: 2}

@@ -53,12 +53,12 @@ public class Player : MonoBehaviour {
 
 		weap = skeleton.FindBone ("Rifle Weapon");
 
-	//	skelRend = GetComponent<SkeletonRenderer> ();
+		skelRend = GetComponent<SkeletonRenderer> ();
 	//	skelRend.skeleton.AttachUnitySprite ("Art/Weapons/AssaultRifle", image);
 
-		//skelRend.skeleton.AttachUnitySprite ("Art/Weapons/LMG", image);
-	//	weap.scaleX = 100;
-	//	weap.ScaleY = 100;
+		skelRend.skeleton.AttachUnitySprite ("Art/Weapons/LMG", image);
+		weap.scaleX = 100;
+		weap.ScaleY = 100;
 		anim.state.ClearTrack(1);
 		controller.CatchPlayer (this);
 		crouchTap = new TapInfo (.6f, 3);
