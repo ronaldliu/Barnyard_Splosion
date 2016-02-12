@@ -127,16 +127,12 @@ public class Player : MonoBehaviour {
                 anim.state.SetAnimation(2, "Jump", false);
             }
 			//Hit/Fire Weapon
-			if (Input.GetButtonDown ("Fire_" + player)) {
+			if (Input.GetButtonDown ("Fire_" + player) && holding == null) {
 				//Add Weapon Fire Support Here
-				if (holding != null) {
-					Object prefab = UnityEditor.AssetDatabase.LoadAssetAtPath("Assets/Prefab/bullet.prefab", typeof(GameObject)); 
-					GameObject clone = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject; 
-					clone.transform.position = transform.position;
-				} else {
-					anim.state.SetAnimation (3, "Poke", false);
-					controller.Punch (facing);
-				}
+		
+				anim.state.SetAnimation (3, "Poke", false);
+				controller.Punch (facing);
+
 			}
 			//Horizontal Velocity Smoothing
 

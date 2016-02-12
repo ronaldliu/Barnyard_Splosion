@@ -257,6 +257,7 @@ public class Controller2D : RaycastController{
 				print("h");
 				Item item = hit.transform.GetComponent<Item>();
 				me.PickUpItem (item);
+				item.CatchPlayer (me);
 				//item.grabbable = false;
 			}
 		}

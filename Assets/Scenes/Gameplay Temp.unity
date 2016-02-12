@@ -770,11 +770,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 452014, guid: e653ab81cbb07bc4a9060e7744da50e8, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -2.7
+      value: -4.39
       objectReference: {fileID: 0}
     - target: {fileID: 452014, guid: e653ab81cbb07bc4a9060e7744da50e8, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.11
+      value: -0.78
       objectReference: {fileID: 0}
     - target: {fileID: 452014, guid: e653ab81cbb07bc4a9060e7744da50e8, type: 2}
       propertyPath: m_LocalPosition.z
@@ -790,11 +790,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 452014, guid: e653ab81cbb07bc4a9060e7744da50e8, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.3687736
+      value: 0.0075048464
       objectReference: {fileID: 0}
     - target: {fileID: 452014, guid: e653ab81cbb07bc4a9060e7744da50e8, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.9295193
+      value: 0.99997187
       objectReference: {fileID: 0}
     - target: {fileID: 452014, guid: e653ab81cbb07bc4a9060e7744da50e8, type: 2}
       propertyPath: m_RootOrder
@@ -811,6 +811,30 @@ Prefab:
     - target: {fileID: 21293112, guid: e653ab81cbb07bc4a9060e7744da50e8, type: 2}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 195606, guid: e653ab81cbb07bc4a9060e7744da50e8, type: 2}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 147266, guid: e653ab81cbb07bc4a9060e7744da50e8, type: 2}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 6185882, guid: e653ab81cbb07bc4a9060e7744da50e8, type: 2}
+      propertyPath: m_Offset.x
+      value: 0.005193243
+      objectReference: {fileID: 0}
+    - target: {fileID: 6185882, guid: e653ab81cbb07bc4a9060e7744da50e8, type: 2}
+      propertyPath: m_Offset.y
+      value: -0.0014081865
+      objectReference: {fileID: 0}
+    - target: {fileID: 6185882, guid: e653ab81cbb07bc4a9060e7744da50e8, type: 2}
+      propertyPath: m_Size.y
+      value: 0.1265859
+      objectReference: {fileID: 0}
+    - target: {fileID: 6185882, guid: e653ab81cbb07bc4a9060e7744da50e8, type: 2}
+      propertyPath: m_Size.x
+      value: 0.379407
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e653ab81cbb07bc4a9060e7744da50e8, type: 2}
