@@ -40,7 +40,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 195606}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.1973, y: 0.030000014, z: 0}
+  m_LocalPosition: {x: 0.1944, y: 0.030000014, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 452014}
@@ -52,7 +52,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 147266}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.16, y: 0.88, z: 0}
+  m_LocalPosition: {x: -11.16, y: -0.58, z: 0}
   m_LocalScale: {x: 4.25, y: 4.25, z: 1}
   m_Children:
   - {fileID: 418840}
@@ -93,14 +93,13 @@ MonoBehaviour:
   verticalRaySpacing: 0
   pickUpRaySpacing: 0
   collider: {fileID: 0}
-  ammo: 0
-  firerate: 0.1
+  ammo: 30
+  firerate: 60
   projectile: {fileID: 115090, guid: 6bbab5091c34768469050f1ccb4a1482, type: 2}
   shotSpawn: {fileID: 418840}
-  pStartX: 0
-  pStartY: 0
   damage: 10
   projectileSpeed: 0
+  variance: 10
 --- !u!212 &21293112
 SpriteRenderer:
   m_ObjectHideFlags: 1
