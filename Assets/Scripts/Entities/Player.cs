@@ -2,7 +2,7 @@
 using System.Collections;
 
 [RequireComponent (typeof (Controller2D))]
-//[RequireComponent (typeof (SkeletonAnimation))]
+[RequireComponent (typeof (SkeletonAnimation))]
 public class Player : MonoBehaviour {
     //Temporary fix for the animation
 	private bool animReset = true;
@@ -53,10 +53,9 @@ public class Player : MonoBehaviour {
 		backArm = skeleton.FindBone ("LShoulder");
 
 		weap = skeleton.FindBone ("Rifle Weapon");
-
+		 
 		skelRend = GetComponent<SkeletonRenderer> ();
-	//	skelRend.skeleton.AttachUnitySprite ("Art/Weapons/AssaultRifle", image);
-
+		//skelRend.skeleton.AttachUnitySprite ("Art/Weapons/AssaultRifle", image);
 		skelRend.skeleton.AttachUnitySprite ("Art/Weapons/LMG", image);
 		weap.scaleX = 100;
 		weap.ScaleY = 100;

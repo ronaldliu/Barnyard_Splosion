@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Item : ItemController {
-
-	// Use this for initialization
+[RequireComponent (typeof (WeaponController))]
+public class Item : MonoBehaviour {
+	Vector3 position;
 	void Start () {
-	
+		
+	}
+	void Update(){
+
 	}
 }
