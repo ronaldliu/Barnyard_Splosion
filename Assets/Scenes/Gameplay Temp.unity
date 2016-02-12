@@ -399,6 +399,10 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: d5cfbba3908793e4bb118bfc7116fdc5,
         type: 3}
+    - target: {fileID: 11430036, guid: 52b3c2cbf0c0d894288c34fabe067399, type: 2}
+      propertyPath: timeToJumpApex
+      value: 0.4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 52b3c2cbf0c0d894288c34fabe067399, type: 2}
   m_IsPrefabParent: 0
@@ -577,6 +581,10 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: d5cfbba3908793e4bb118bfc7116fdc5,
         type: 3}
+    - target: {fileID: 11489914, guid: e733285b4384a474981da780204c176a, type: 2}
+      propertyPath: timeToJumpApex
+      value: 0.4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e733285b4384a474981da780204c176a, type: 2}
   m_IsPrefabParent: 0

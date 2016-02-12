@@ -160,7 +160,7 @@ public class Controller2D : RaycastController{
 				}
 				if (collisions.below  && (fightingMask.value & 1 << collisionLayer) != 0) {		//Jumped/Bounced on Player - Inflict Damage?
 					if ((me.transform.position.y - hit.transform.GetComponent<Player> ().transform.position.y) > 2.1f) {
-						me.velocity.y = 20;
+						me.velocity.y = me.jumpVelocity;
 						hit.transform.GetComponent<Player> ().velocity.y = -10; 	//Add implementation of Dictionary Here
 						hit.transform.GetComponent<Player> ().health -= 20;
 						Move (me.velocity * Time.deltaTime);
