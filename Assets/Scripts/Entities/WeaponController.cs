@@ -24,6 +24,7 @@ public class WeaponController : RaycastController {
 
 	void Awake()
 	{
+		collider = GetComponent<BoxCollider2D> ();
 		shotSpawn = transform.FindChild ("shotspawn");
 		if (shotSpawn == null) 
 		{
@@ -63,12 +64,12 @@ public class WeaponController : RaycastController {
 	void Fire()
 	{
 		Instantiate (projectile, shotSpawn.position, shotSpawn.rotation);
-		 Vector2 mousePos = new Vector2 (Camera.main.ScreenToWorldPoint (Input.mousePosition).x, Camera.main.ScreenToWorldPoint (Input.mousePosition).y);
+		Vector2 mousePos = new Vector2 (Camera.main.ScreenToWorldPoint (Input.mousePosition).x, Camera.main.ScreenToWorldPoint (Input.mousePosition).y);
 		Vector2 shotSpawnPos = new Vector2 (shotSpawn.position.x, shotSpawn.position.y);
 		Vector2 shotForward = new Vector2 (shotSpawn.right.x, shotSpawn.right.y + Random.Range (-variance/100, variance/100));
-		RaycastHit2D hit = Physics2D.Raycast (shotSpawnPos, shotForward, 100, collisionMask);
+		RaycastHit2D hit = Physics2D.Raycast (shotSpawnPos, shotForward, 3, collisionMask);
 
-		Debug.DrawLine (shotSpawnPos, shotForward * 100, Color.cyan);
+		Debug.DrawLine (shotSpawnPos, shotForward * 3, Color.cyan);
 
 		if (hit) {
 			
