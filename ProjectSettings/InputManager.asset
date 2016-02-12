@@ -240,8 +240,8 @@ InputManager:
     gravity: 1000
     dead: 0.001
     sensitivity: 1000
-    snap: 0
-    invert: 1
+    snap: 1
+    invert: 0
     type: 0
     axis: 0
     joyNum: 2
@@ -256,8 +256,8 @@ InputManager:
     gravity: 1000
     dead: 0.001
     sensitivity: 1000
-    snap: 0
-    invert: 1
+    snap: 1
+    invert: 0
     type: 0
     axis: 0
     joyNum: 2
@@ -272,8 +272,8 @@ InputManager:
     gravity: 1000
     dead: 0.001
     sensitivity: 1000
-    snap: 0
-    invert: 1
+    snap: 1
+    invert: 0
     type: 0
     axis: 0
     joyNum: 3
@@ -289,7 +289,7 @@ InputManager:
     dead: 0.2
     sensitivity: 1
     snap: 1
-    invert: 1
+    invert: 0
     type: 2
     axis: 0
     joyNum: 3
@@ -305,7 +305,7 @@ InputManager:
     dead: 0.2
     sensitivity: 1
     snap: 1
-    invert: 1
+    invert: 0
     type: 2
     axis: 3
     joyNum: 3
@@ -336,8 +336,8 @@ InputManager:
     gravity: 1000
     dead: 0.001
     sensitivity: 1000
-    snap: 0
-    invert: 1
+    snap: 1
+    invert: 0
     type: 0
     axis: 0
     joyNum: 3
@@ -368,8 +368,8 @@ InputManager:
     gravity: 1000
     dead: 0.001
     sensitivity: 1000
-    snap: 0
-    invert: 1
+    snap: 1
+    invert: 0
     type: 0
     axis: 0
     joyNum: 3
@@ -384,8 +384,8 @@ InputManager:
     gravity: 1000
     dead: 0.001
     sensitivity: 1000
-    snap: 0
-    invert: 1
+    snap: 1
+    invert: 0
     type: 0
     axis: 0
     joyNum: 3

@@ -19,8 +19,9 @@ public class Player : MonoBehaviour {
 	public Sprite image;
 
 	public float facing = 1;
-	float gravity;
-	float jumpVelocity;
+	public float gravity;
+	[HideInInspector]
+	public float jumpVelocity;
 	public Vector3 velocity;
 	float velocityXSmoothing;
 	[HideInInspector]
