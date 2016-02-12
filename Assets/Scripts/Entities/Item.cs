@@ -7,6 +7,7 @@ public class Item : MonoBehaviour {
 	Vector3 rotation;
 	bool held;
 	Player holdingMe;
+
 	void Start () {
 	
 	}
@@ -16,6 +17,9 @@ public class Item : MonoBehaviour {
 		} else {
 
 		}
+	}
+	public void Fire(){
+
 	}
 	public void CatchPlayer(Player me){
 		holdingMe = me;
