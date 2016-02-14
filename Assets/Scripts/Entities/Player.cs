@@ -17,6 +17,7 @@ public class Player : MonoBehaviour {
 	public float health = 100;
 	public bool dead = false;
 	public Sprite image;
+	public float aimAngle;
 
 	public float facing = 1;
 	public float gravity;
@@ -78,7 +79,7 @@ public class Player : MonoBehaviour {
 		}
 
 		if (!IsDead ()) {
-			float aimAngle = 0;
+			aimAngle = 0;
 			if (!aimer.Equals (Vector2.zero)) {
 				if (Mathf.Abs(aimer.x) < 0.1f) {
 					if (Mathf.Sign (aimer.y) == -1) {
@@ -129,11 +130,11 @@ public class Player : MonoBehaviour {
 			//Hit/Fire Weapon
 			if (Input.GetButtonDown ("Fire_" + player) && holding == null) {
 				//Add Weapon Fire Support Here
-		
 				anim.state.SetAnimation (3, "Poke", false);
 				controller.Punch (facing);
-
-			}
+			} else if (Input.GetButton("Fire_" + player) && holding != null) {
+				holding.Fire ();
+			} 
 			//Horizontal Velocity Smoothing
 
 			float targetVelocityX = input.x * moveSpeed;
