@@ -1,117 +1,89 @@
 
 skeleton.png
-size: 256,32
+size: 128,32
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 Art/Weapons/AssaultRifle
   rotate: false
-  xy: 139, 19
+  xy: 2, 18
   size: 36, 11
   orig: 36, 11
   offset: 0, 0
   index: -1
-Art/Weapons/LMG
-  rotate: false
-  xy: 49, 19
-  size: 46, 11
-  orig: 46, 11
-  offset: 0, 0
-  index: -1
-Art/Weapons/Sawn-Off
-  rotate: false
-  xy: 225, 21
-  size: 20, 9
-  orig: 20, 9
-  offset: 0, 0
-  index: -1
-Art/Weapons/Shotgun
-  rotate: false
-  xy: 97, 21
-  size: 40, 9
-  orig: 40, 9
-  offset: 0, 0
-  index: -1
-Art/Weapons/Sniper
-  rotate: false
-  xy: 2, 16
-  size: 45, 14
-  orig: 45, 14
-  offset: 0, 0
-  index: -1
 Cow Components/CowBiceps
-  rotate: true
-  xy: 22, 2
+  rotate: false
+  xy: 82, 18
   size: 12, 11
   orig: 12, 11
   offset: 0, 0
   index: -1
 Cow Components/CowForearm
   rotate: false
-  xy: 51, 9
+  xy: 114, 21
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 Cow Components/CowHand
   rotate: false
-  xy: 83, 13
+  xy: 107, 16
   size: 4, 4
   orig: 4, 4
   offset: 0, 0
   index: -1
 Cow Components/CowHead
   rotate: false
-  xy: 203, 17
+  xy: 40, 16
   size: 20, 13
   orig: 20, 13
   offset: 0, 0
   index: -1
 Cow Components/CowHoof
   rotate: true
-  xy: 35, 2
+  xy: 35, 11
   size: 5, 3
   orig: 5, 3
   offset: 0, 0
   index: -1
 Cow Components/CowJaw
-  rotate: false
-  xy: 35, 9
+  rotate: true
+  xy: 28, 2
   size: 14, 5
   orig: 14, 5
   offset: 0, 0
   index: -1
 Cow Components/CowLowerLeg
   rotate: true
-  xy: 61, 11
+  xy: 96, 14
   size: 6, 9
   orig: 6, 9
   offset: 0, 0
   index: -1
 Cow Components/CowNeck
   rotate: false
-  xy: 72, 11
+  xy: 40, 8
   size: 9, 6
   orig: 9, 6
   offset: 0, 0
   index: -1
 Cow Components/CowTail
-  rotate: false
-  xy: 247, 14
+  rotate: true
+  xy: 96, 22
   size: 7, 16
   orig: 7, 16
   offset: 0, 0
   index: -1
 Cow Components/CowThigh
   rotate: true
-  xy: 2, 2
+  xy: 62, 17
   size: 12, 18
   orig: 12, 18
   offset: 0, 0
   index: -1
 Cow Components/CowTorsoUdder
   rotate: true
-  xy: 177, 16
+  xy: 2, 2
   size: 14, 24
   orig: 14, 24
   offset: 0, 0

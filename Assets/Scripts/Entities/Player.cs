@@ -52,7 +52,7 @@ public class Player : MonoBehaviour {
 		arm = skeleton.FindBone ("RShoulder");
 		backArm = skeleton.FindBone ("LShoulder");
 
-		weap = skeleton.FindBone ("Rifle Weapon");
+		weap = skeleton.FindBone ("Weapon");
 		 
 		skelRend = GetComponent<SkeletonRenderer> ();
 		//skelRend.skeleton.AttachUnitySprite ("Art/Weapons/AssaultRifle", image);

@@ -1,15 +1,14 @@
 {
-"skeleton": { "hash": "Y/I2ZVwNjSPbEFl6CLdk2PcgKrM", "spine": "3.0.08", "width": 24.5, "height": 54.99, "images": "" },
+"skeleton": { "hash": "3NmH4SU+ySdbLR5NHJqfgW+q04Y", "spine": "3.0.08", "width": 42.97, "height": 54.99, "images": "" },
 "bones": [
 	{ "name": "root" },
 	{ "name": "Hip", "parent": "root", "x": -2.96, "y": -3.59 },
 	{ "name": "Spine", "parent": "Hip", "length": 15.75, "x": -0.62, "y": 0.85, "rotation": 90.28 },
 	{ "name": "Tail", "parent": "Spine", "length": 13.08, "x": 0.35, "y": 2.11, "rotation": 152.94 },
-	{ "name": "Rifle Weapon", "parent": "Spine", "length": 23.35, "x": 15.04, "y": 0.68, "rotation": -89.34 },
 	{ "name": "RShoulder", "parent": "Spine", "length": 9, "x": 15.24, "y": 1.33, "rotation": 222.43 },
 	{ "name": "RForearm", "parent": "RShoulder", "length": 7.5, "x": 8.84, "rotation": 98.05 },
 	{ "name": "RHand", "parent": "RForearm", "length": 2.7, "x": 7.8, "y": -0.07, "rotation": 16.15 },
-	{ "name": "HandHeld", "parent": "RHand", "length": 0.6, "x": 0.94, "y": 0.64, "rotation": 65.02 },
+	{ "name": "Weapon", "parent": "RHand", "length": 0.6, "x": -1.38, "y": -0.34, "rotation": 65.02 },
 	{ "name": "Neck", "parent": "Spine", "length": 4.85, "x": 16.61, "y": 0.09, "rotation": 0.89 },
 	{ "name": "Skull", "parent": "Neck", "length": 5.54, "x": 6.43, "y": 0.16, "rotation": -2.18 },
 	{ "name": "Jaw", "parent": "Skull", "length": 7.03, "x": -2.2, "y": -4.39, "rotation": -91.41 },
@@ -39,23 +38,13 @@
 	{ "name": "RShin", "bone": "RShin", "attachment": "Cow Components/CowLowerLeg" },
 	{ "name": "RFoot", "bone": "RFoot", "attachment": "Cow Components/CowHoof" },
 	{ "name": "RThigh", "bone": "RLeg", "attachment": "Cow Components/CowThigh" },
-	{ "name": "Art/Weapons/LMG", "bone": "Rifle Weapon", "attachment": "Art/Weapons/LMG" },
-	{ "name": "Art/Weapons/AssaultRifle", "bone": "Rifle Weapon" },
+	{ "name": "WeaponImage", "bone": "Weapon", "attachment": "Art/Weapons/AssaultRifle" },
 	{ "name": "RArm", "bone": "RForearm", "attachment": "Cow Components/CowForearm" },
 	{ "name": "RHand", "bone": "RHand", "attachment": "Cow Components/CowHand" },
 	{ "name": "RBicep", "bone": "RShoulder", "attachment": "Cow Components/CowBiceps" }
 ],
 "skins": {
 	"default": {
-		"Art/Weapons/AssaultRifle": {
-			"Art/Weapons/AssaultRifle": { "x": 15.35, "y": -2.46, "rotation": -0.93, "width": 36, "height": 11 },
-			"Art/Weapons/Sawn-Off": { "x": 18.53, "y": -1.62, "rotation": -0.93, "width": 20, "height": 9 },
-			"Art/Weapons/Shotgun": { "x": 20.13, "y": -0.66, "rotation": -0.93, "width": 40, "height": 9 },
-			"Art/Weapons/Sniper": { "x": 20.13, "y": -0.66, "rotation": -0.93, "width": 45, "height": 14 }
-		},
-		"Art/Weapons/LMG": {
-			"Art/Weapons/LMG": { "x": 18.51, "y": -2.51, "rotation": -0.93, "width": 46, "height": 11 }
-		},
 		"Head": {
 			"Cow Components/CowHead": { "x": 0.75, "y": -4.04, "rotation": 270.99, "width": 20, "height": 13 }
 		},
@@ -106,6 +95,9 @@
 		},
 		"TorsoUdder": {
 			"Cow Components/CowTorsoUdder": { "x": 6.22, "y": -2.11, "rotation": -91.17, "width": 14, "height": 24 }
+		},
+		"WeaponImage": {
+			"Art/Weapons/AssaultRifle": { "x": -3.8, "y": -4.22, "rotation": -131.95, "width": 36, "height": 11 }
 		}
 	}
 },
@@ -239,7 +231,7 @@
 		"bones": {
 			"LShoulder": {
 				"rotate": [
-					{ "time": 0, "angle": -325.84 }
+					{ "time": 0, "angle": -331.35 }
 				]
 			},
 			"LForearm": {
@@ -254,7 +246,15 @@
 			},
 			"RForearm": {
 				"rotate": [
-					{ "time": 0, "angle": -16.77 }
+					{ "time": 0, "angle": -30.88 }
+				]
+			},
+			"Weapon": {
+				"rotate": [
+					{ "time": 0, "angle": 35.68 }
+				],
+				"translate": [
+					{ "time": 0, "x": 2.07, "y": 2.4 }
 				]
 			}
 		}
