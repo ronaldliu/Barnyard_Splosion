@@ -36,7 +36,7 @@ public class Player : MonoBehaviour {
 	Spine.Skeleton skeleton;
 	Spine.Bone arm;
 	Spine.Bone backArm;
-	Spine.Bone weap;
+	public Spine.Bone weap;
 	SkeletonRenderer skelRend;
 	Item holding;
 	TapInfo crouchTap;
@@ -58,8 +58,6 @@ public class Player : MonoBehaviour {
 		skelRend = GetComponent<SkeletonRenderer> ();
 		//skelRend.skeleton.AttachUnitySprite ("Art/Weapons/AssaultRifle", image);
 		skelRend.skeleton.AttachUnitySprite ("Art/Weapons/LMG", image);
-		weap.scaleX = 100;
-		weap.ScaleY = 100;
 		anim.state.ClearTrack(1);
 		controller.CatchPlayer (this);
 		crouchTap = new TapInfo (.6f, 3);
@@ -104,7 +102,7 @@ public class Player : MonoBehaviour {
 
 			weap.rotation = Mathf.Rad2Deg * (aimAngle)-90; 
 
-			character.transform.localScale = new Vector3 (facing * .05f, .05f, 0);
+			character.transform.localScale = new Vector3 (facing , 1, 0);
 
 			Debug.DrawRay(character.transform.position,new Vector3(aimAngle == 90 || aimAngle == 270 ? 0  : (Mathf.Abs(Mathf.Cos(aimAngle))*facing),Mathf.Sin(aimAngle) , 0)* 5,Color.cyan);
 			

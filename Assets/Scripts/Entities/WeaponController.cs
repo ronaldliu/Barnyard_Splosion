@@ -2,7 +2,7 @@
 using System.Collections;
 
 
-public class WeaponController : RaycastController {
+public class WeaponController : Item {
 	
 	public int ammo;
 	// Higher the number the faster the gun shoots
