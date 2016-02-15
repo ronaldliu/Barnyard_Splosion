@@ -8,11 +8,11 @@ public class Player : MonoBehaviour {
 	private bool animReset = true;
 
 	//Editor Customizable
-	public float jumpHeight = 4;
+	public float jumpHeight = 4/4.25f;
 	public float timeToJumpApex = .4f;
-	public float moveSpeed = 6;
-	public float accelerationTimeAirborne = .2f;
-	public float accelerationTimeGrounded = .1f;
+	public float moveSpeed = 6/4;
+	public float accelerationTimeAirborne = .2f/4;
+	public float accelerationTimeGrounded = .1f/4;
 	public string player = "P1";  	//This is for Multiplayer Support
 	public float health = 100;
 	public bool dead = false;
@@ -57,7 +57,7 @@ public class Player : MonoBehaviour {
 		 
 		skelRend = GetComponent<SkeletonRenderer> ();
 		//skelRend.skeleton.AttachUnitySprite ("Art/Weapons/AssaultRifle", image);
-		skelRend.skeleton.AttachUnitySprite ("Art/Weapons/LMG", image);
+		//skelRend.skeleton.AttachUnitySprite ("Art/Weapons/LMG", image);
 		anim.state.ClearTrack(1);
 		controller.CatchPlayer (this);
 		crouchTap = new TapInfo (.6f, 3);
