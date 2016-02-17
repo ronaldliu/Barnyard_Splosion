@@ -73,6 +73,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4b004c2c3b3eb345a771e7e680990fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  horizontalRayCount: 4
+  verticalRayCount: 4
+  pickUpRayCount: 3
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 0
+  horizontalRaySpacing: 0
+  verticalRaySpacing: 0
+  pickUpRaySpacing: 0
+  collider: {fileID: 0}
 --- !u!212 &21237806
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -112,6 +122,10 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

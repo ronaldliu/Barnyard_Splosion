@@ -51,7 +51,7 @@ TextureImporter:
   spriteSheet:
     sprites: []
     outline: []
-  spritePackingTag: Items
+  spritePackingTag: item
   userData: 
   assetBundleName: 
   assetBundleVariant: 

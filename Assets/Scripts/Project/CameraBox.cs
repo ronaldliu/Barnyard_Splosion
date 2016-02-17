@@ -63,19 +63,19 @@ public class CameraBox : MonoBehaviour {
 		if (heightControlled) {
 			if (focusAreaSize.y / height > .85f) {
 				increasing = true;
-				cam.orthographicSize += .03f;
+				cam.orthographicSize += .03f/4.25f;
 			} else if ((focusAreaSize.y / height < .65f) && !increasing) {
-				if (width > 17) {
-					cam.orthographicSize -= .03f;
+				if (width > 17/4.25f) {
+					cam.orthographicSize -= .03f/4.25f;
 				}
 			} 
 		} else {
 			if (focusAreaSize.x / width > .85f) {
 				increasing = true;
-				cam.orthographicSize += .03f;
+				cam.orthographicSize += .03f/4.25f;
 			} else if ((focusAreaSize.x / width < .65f) && !increasing) {
-				if (width > 17) {
-					cam.orthographicSize -= .03f;
+				if (width > 17/4.25f) {
+					cam.orthographicSize -= .03f/4.25f;
 				}
 			} 
 		}

@@ -65,14 +65,14 @@ public class Controller2D : RaycastController{
 			rayOrigin += Vector2.up * (horizontalRaySpacing * i);
 
 			//Raycast Detection of Collisions with only collisionMask Layer being considered
-			RaycastHit2D hit = Physics2D.Raycast (rayOrigin, Vector2.right * directionX, rayLength, collisionMask + fightingMask); 
+			RaycastHit2D hit = Physics2D.Raycast (rayOrigin, Vector2.right * directionX, rayLength, collisionMask+fightingMask); 
 
 			Debug.DrawRay (rayOrigin, Vector2.right * directionX * rayLength, Color.red); //Draw Red Lines in Scene for Debuging Purposes
 
 			if (hit) { //Case Ray Hits Considered Target
 				int collisionLayer = hit.transform.gameObject.layer;
-				if(hit.distance == 0 && collisionLayer == LayerMask.NameToLayer ("Obsticle")){
-					me.velocity.x = 10 * me.facing;
+				if(hit.distance == 0 && collisionLayer == LayerMask.NameToLayer ("Obsticle") ){
+					me.velocity.x = 10/4.25f * me.facing;
 				}
 				if (hit.distance == 0 || (LayerMask.NameToLayer("Platforms") == collisionLayer)) { //if inside of object allow player to move freely
 					continue;
@@ -128,9 +128,7 @@ public class Controller2D : RaycastController{
 
 			if (hit) {
 				int collisionLayer = hit.transform.gameObject.layer;
-				if(hit.distance == 0 && collisionLayer == LayerMask.NameToLayer ("Obsticle")){
-					me.velocity.x = 10 * me.facing;
-				}
+
 				if ((hit.distance == 0 && (fightingMask.value & 1 << collisionLayer) == 0)){ //if inside of object allow player to move freely
 					continue;
 				}
@@ -159,7 +157,7 @@ public class Controller2D : RaycastController{
 					continue;
 				}
 				if (collisions.below  && (fightingMask.value & 1 << collisionLayer) != 0) {		//Jumped/Bounced on Player - Inflict Damage?
-					if ((me.transform.position.y - hit.transform.GetComponent<Player> ().transform.position.y) > 2.1f) {
+					if ((me.transform.position.y - hit.transform.GetComponent<Player> ().transform.position.y) > 2.1f/4.75f) {
 						me.velocity.y = me.jumpVelocity;
 						hit.transform.GetComponent<Player> ().velocity.y = -10; 	//Add implementation of Dictionary Here
 						hit.transform.GetComponent<Player> ().health -= 20;
@@ -230,7 +228,7 @@ public class Controller2D : RaycastController{
 
 	//This is How to Inflict Damage and Affect Other players with a punch
 	public void Punch(float directionX){ 
-		float rayLength = punchLength / 10;
+		float rayLength = punchLength / 45;
 		Vector2 rayOrigin = ((directionX == -1) ? raycastOrigins.fistLeft : raycastOrigins.fistRight);
 		RaycastHit2D hit = Physics2D.Raycast (rayOrigin, Vector2.right * directionX, rayLength, fightingMask);
 
@@ -239,7 +237,7 @@ public class Controller2D : RaycastController{
 		//This is used to obtain
 		if (hit) {
 			Player enemy = hit.transform.GetComponent<Player>(); //Create Player Dictionary
-			enemy.velocity = (new Vector3(punchForce * directionX, 15));	
+			enemy.velocity = (new Vector3(punchForce/4.25f * directionX, 0));	
 			enemy.health -= 10;
 		}
 
@@ -265,7 +263,7 @@ public class Controller2D : RaycastController{
 
 	public void FallThrough(){
 		if (collisions.droppable) {
-			transform.Translate (new Vector3 (0, -.5f, 0));
+			transform.Translate (new Vector3 (0, -.5f/4.25f, 0));
 		}
 	}
 	public struct CollisionInfo{

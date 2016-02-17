@@ -8,11 +8,11 @@ public class Player : MonoBehaviour {
 	private bool animReset = true;
 
 	//Editor Customizable
-	public float jumpHeight = 4/4.25f;
-	public float timeToJumpApex = .4f;
-	public float moveSpeed = 6/4;
-	public float accelerationTimeAirborne = .2f/4;
-	public float accelerationTimeGrounded = .1f/4;
+	public float jumpHeight = 6/4.75f;
+	public float timeToJumpApex = .45f;
+	public float moveSpeed = 6/4.75f;
+	public float accelerationTimeAirborne = .2f;
+	public float accelerationTimeGrounded = .1f;
 	public string player = "P1";  	//This is for Multiplayer Support
 	public float health = 100;
 	public bool dead = false;
@@ -33,11 +33,11 @@ public class Player : MonoBehaviour {
 	MeshRenderer character;
 	Controller2D controller;
 	Spine.SkeletonData skeletonData;
-	Spine.Skeleton skeleton;
-	Spine.Bone arm;
+	public Spine.Skeleton skeleton;
+	public Spine.Bone arm;
 	Spine.Bone backArm;
 	public Spine.Bone weap;
-	SkeletonRenderer skelRend;
+	public SkeletonRenderer skelRend;
 	Item holding;
 	TapInfo crouchTap;
 
@@ -54,9 +54,11 @@ public class Player : MonoBehaviour {
 		backArm = skeleton.FindBone ("LShoulder");
 
 		weap = skeleton.FindBone ("Weapon");
-		 
 		skelRend = GetComponent<SkeletonRenderer> ();
-		//skelRend.skeleton.AttachUnitySprite ("Art/Weapons/AssaultRifle", image);
+		skeleton.FindSlot ("WeaponImage").Attachment = null;
+
+		//skeleton.FindSlot ("WeaponImage").A = 0;
+		//skelRend.skeleton.AttachUnitySprite ("WeaponImage", image);
 		//skelRend.skeleton.AttachUnitySprite ("Art/Weapons/LMG", image);
 		anim.state.ClearTrack(1);
 		controller.CatchPlayer (this);
@@ -100,9 +102,10 @@ public class Player : MonoBehaviour {
 			arm.rotation = Mathf.Rad2Deg * (aimAngle) - 150; 
 			backArm.rotation = Mathf.Rad2Deg * (aimAngle) - 150; 
 
-			weap.rotation = Mathf.Rad2Deg * (aimAngle)-90; 
-
-			character.transform.localScale = new Vector3 (facing , 1, 0);
+			weap.rotation = -55; 
+			//character.transform.localScale = new Vector3 (facing  , 1, 0);
+			skeleton.flipX = facing<0;
+			//character.transform.localScale = new Vector3 (facing * 4.75f , 4.75f, 0);
 
 			Debug.DrawRay(character.transform.position,new Vector3(aimAngle == 90 || aimAngle == 270 ? 0  : (Mathf.Abs(Mathf.Cos(aimAngle))*facing),Mathf.Sin(aimAngle) , 0)* 5,Color.cyan);
 			
@@ -132,6 +135,7 @@ public class Player : MonoBehaviour {
 				controller.Punch (facing);
 			} else if (Input.GetButton("Fire_" + player) && holding != null) {
 				holding.Fire ();
+				print ("Pow");
 			} 
 			//Horizontal Velocity Smoothing
 
@@ -159,7 +163,6 @@ public class Player : MonoBehaviour {
 				Death ();
 			}
 			velocity.x = Mathf.SmoothDamp (velocity.x, 0, ref velocityXSmoothing, 0.05f);
-
 		}
 
 		//Gravity and Move Player for Input
@@ -176,14 +179,17 @@ public class Player : MonoBehaviour {
 		print (player);
 		anim.state.ClearTracks ();
 		anim.state.SetAnimation (1, "Death", false);
-		boxCollider.size = new Vector2 (55, 22);
-		boxCollider.offset = new Vector2 (-6, -16.4f);
+		boxCollider.size = new Vector2 (.55f, .22f);
+		boxCollider.offset = new Vector2 (-.06f, -.164f);
 		gameObject.layer = 14;
+		controller.FallThrough ();
 		dead = true;
 	}
 
 	public void PickUpItem(Item item){
 		holding = item;
+		image = item.GetComponent<SpriteRenderer> ().sprite;
+		skelRend.skeleton.AttachUnitySprite ("WeaponImage", image,"Sprites/Default");
 		print ("Pick Up Successful");
 		//Add to skeleton here
 	}
