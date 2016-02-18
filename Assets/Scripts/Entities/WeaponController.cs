@@ -8,7 +8,7 @@ public class WeaponController : Item {
 	// Higher the number the faster the gun shoots
 	public float firerate;
 	// The Bullet trail
-	public GameObject projectile;
+	public Projectile projectile;
 	public Transform shotSpawn;
 	public float damage;
 	public float projectileSpeed;
@@ -24,6 +24,7 @@ public class WeaponController : Item {
 		collider = GetComponent<BoxCollider2D> ();
 		shotSpawn = transform.FindChild ("shotspawn");
 		item = GetComponent<Item> ();
+		projectile.AttachedTo = this;
 		if (shotSpawn == null) 
 		{
 			Debug.LogError ("No shot spawn");

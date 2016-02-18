@@ -65,8 +65,9 @@ MonoBehaviour:
   verticalRaySpacing: 0
   pickUpRaySpacing: 0
   collider: {fileID: 0}
+  AttachedTo: {fileID: 0}
   speed: 2
-  gravity: 1
+  gravity: 0
 --- !u!212 &21237806
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -118,7 +119,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: gravity
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
