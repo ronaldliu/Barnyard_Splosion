@@ -1047,7 +1047,7 @@ Prefab:
       objectReference: {fileID: 846941810}
     - target: {fileID: 11411506, guid: 3cd35c280b9e90e459b1e1c2d7c165af, type: 2}
       propertyPath: projectileSpeed
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11411506, guid: 3cd35c280b9e90e459b1e1c2d7c165af, type: 2}
       propertyPath: firerate

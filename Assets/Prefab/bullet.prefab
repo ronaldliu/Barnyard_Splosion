@@ -9,7 +9,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 482714}
   - 212: {fileID: 21237806}
-  - 50: {fileID: 5026518}
   - 61: {fileID: 6133968}
   - 114: {fileID: 11418668}
   m_Layer: 0
@@ -31,23 +30,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!50 &5026518
-Rigidbody2D:
-  serializedVersion: 2
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 115090}
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!61 &6133968
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -83,6 +65,8 @@ MonoBehaviour:
   verticalRaySpacing: 0
   pickUpRaySpacing: 0
   collider: {fileID: 0}
+  speed: 2
+  gravity: 1
 --- !u!212 &21237806
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -127,6 +111,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: gravity
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

@@ -36,7 +36,12 @@ public class WeaponController : Item {
 		{
 			nextfire += 1 / firerate;
 			ammo--;
-			Instantiate (projectile, shotSpawn.position, shotSpawn.rotation);
+			if (holdingMe.facing == 1) {
+				Instantiate (projectile, shotSpawn.position, shotSpawn.rotation);
+			} else {
+				// Do something with the rotation
+				Instantiate (projectile, shotSpawn.position, shotSpawn.rotation);
+			}
 		}
 	}
 }

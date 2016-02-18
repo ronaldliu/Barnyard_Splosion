@@ -129,6 +129,7 @@ public class Player : MonoBehaviour {
                 anim.state.SetAnimation(2, "Jump", false);
             }
 			//Hit/Fire Weapon
+		
 			if (Input.GetButtonDown ("Fire_" + player) && holding == null) {
 				//Add Weapon Fire Support Here
 				anim.state.SetAnimation (3, "Poke", false);
