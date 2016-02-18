@@ -62,16 +62,16 @@ Material:
         second: 0
       data:
         first:
+          name: _TextureFade
+        second: 0
+      data:
+        first:
           name: _InvFade
         second: 1
       data:
         first:
           name: _Cull
         second: 2
-      data:
-        first:
-          name: _TextureFade
-        second: 0
     m_Colors:
       data:
         first:

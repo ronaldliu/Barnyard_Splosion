@@ -1040,14 +1040,15 @@ Prefab:
     - target: {fileID: 11411506, guid: 3cd35c280b9e90e459b1e1c2d7c165af, type: 2}
       propertyPath: projectile
       value: 
-      objectReference: {fileID: 115090, guid: 6bbab5091c34768469050f1ccb4a1482, type: 2}
+      objectReference: {fileID: 11418668, guid: 6bbab5091c34768469050f1ccb4a1482,
+        type: 2}
     - target: {fileID: 11411506, guid: 3cd35c280b9e90e459b1e1c2d7c165af, type: 2}
       propertyPath: shotSpawn
       value: 
       objectReference: {fileID: 846941810}
     - target: {fileID: 11411506, guid: 3cd35c280b9e90e459b1e1c2d7c165af, type: 2}
       propertyPath: projectileSpeed
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11411506, guid: 3cd35c280b9e90e459b1e1c2d7c165af, type: 2}
       propertyPath: firerate
@@ -1080,11 +1081,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 425506, guid: 3cd35c280b9e90e459b1e1c2d7c165af, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.205
+      value: 0.335
       objectReference: {fileID: 0}
     - target: {fileID: 425506, guid: 3cd35c280b9e90e459b1e1c2d7c165af, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.038
+      value: 0.034
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3cd35c280b9e90e459b1e1c2d7c165af, type: 2}

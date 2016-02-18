@@ -7,16 +7,14 @@ public class Item : RaycastController {
 	Vector3 rotation;
 	bool held;
 	public Player holdingMe;
-	WeaponController weapon;
+	public WeaponController weapon;
 	Vector2 aim;
 	void Start () {
 		weapon = GetComponent<WeaponController> ();
 	}
 	void Update(){
 		if (held) {
-			// Get weapon bone position and Always update weapon based on that
 			AlignItem();
-
 			print ("Held");
 		} else {
 			// Gravity, Physics, Things of that nature
