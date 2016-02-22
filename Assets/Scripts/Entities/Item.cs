@@ -15,7 +15,7 @@ public class Item : RaycastController {
 	void Update(){
 		if (held) {
 			AlignItem();
-			print ("Held");
+			// print ("Held");
 		} else {
 			// Gravity, Physics, Things of that nature
 		}

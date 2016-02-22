@@ -11,7 +11,7 @@ GameObject:
   - 212: {fileID: 21237806}
   - 61: {fileID: 6133968}
   - 114: {fileID: 11418668}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,13 +60,12 @@ MonoBehaviour:
   pickUpRayCount: 3
   collisionMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   horizontalRaySpacing: 0
   verticalRaySpacing: 0
   pickUpRaySpacing: 0
   collider: {fileID: 0}
   AttachedTo: {fileID: 0}
-  speed: 2
   gravity: 0
 --- !u!212 &21237806
 SpriteRenderer:
@@ -111,7 +110,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Layer
-      value: 0
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: speed
@@ -120,6 +119,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: gravity
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: collisionMask.m_Bits
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

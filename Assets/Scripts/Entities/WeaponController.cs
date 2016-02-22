@@ -17,7 +17,7 @@ public class WeaponController : Item {
 	// Higher the number the more variance
 	public float variance;
 
-	float nextfire;
+	float nextfire = 0;
 
 	void Awake()
 	{
@@ -25,6 +25,7 @@ public class WeaponController : Item {
 		shotSpawn = transform.FindChild ("shotspawn");
 		item = GetComponent<Item> ();
 		projectile.AttachedTo = this;
+
 		if (shotSpawn == null) 
 		{
 			Debug.LogError ("No shot spawn");
@@ -35,14 +36,10 @@ public class WeaponController : Item {
 	{
 		if (Time.time > nextfire && ammo != 0) 
 		{
-			nextfire += 1 / firerate;
+			nextfire = Time.time + 1 / firerate;
 			ammo--;
-			if (holdingMe.facing == 1) {
-				Instantiate (projectile, shotSpawn.position, shotSpawn.rotation);
-			} else {
-				// Do something with the rotation
-				Instantiate (projectile, shotSpawn.position, shotSpawn.rotation);
-			}
+
+			Instantiate (projectile, shotSpawn.position, shotSpawn.rotation);
 		}
 	}
 }

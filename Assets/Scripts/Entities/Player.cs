@@ -64,7 +64,6 @@ public class Player : MonoBehaviour {
 		controller.CatchPlayer (this);
 		crouchTap = new TapInfo (.6f, 3);
 		UpdateGravity ();
-
 	}
 
 	void Update(){
@@ -136,7 +135,7 @@ public class Player : MonoBehaviour {
 				controller.Punch (facing);
 			} else if (Input.GetButton("Fire_" + player) && holding != null) {
 				holding.Fire ();
-				print ("Pow");
+				// print ("Pow");
 			} 
 			//Horizontal Velocity Smoothing
 
