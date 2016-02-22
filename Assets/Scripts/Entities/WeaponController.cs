@@ -24,7 +24,6 @@ public class WeaponController : Item {
 		collider = GetComponent<BoxCollider2D> ();
 		shotSpawn = transform.FindChild ("shotspawn");
 		item = GetComponent<Item> ();
-		projectile.AttachedTo = this;
 
 		if (shotSpawn == null) 
 		{
@@ -38,6 +37,7 @@ public class WeaponController : Item {
 		{
 			nextfire = Time.time + 1 / firerate;
 			ammo--;
+			projectile.AttachedTo = this;
 
 			Instantiate (projectile, shotSpawn.position, shotSpawn.rotation);
 		}

@@ -853,11 +853,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 457082, guid: 3cd35c280b9e90e459b1e1c2d7c165af, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 2.945
+      value: 2.62
       objectReference: {fileID: 0}
     - target: {fileID: 457082, guid: 3cd35c280b9e90e459b1e1c2d7c165af, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.739
+      value: 0.652
       objectReference: {fileID: 0}
     - target: {fileID: 457082, guid: 3cd35c280b9e90e459b1e1c2d7c165af, type: 2}
       propertyPath: m_LocalPosition.z
@@ -898,7 +898,8 @@ Prefab:
     - target: {fileID: 11411506, guid: 3cd35c280b9e90e459b1e1c2d7c165af, type: 2}
       propertyPath: projectile
       value: 
-      objectReference: {fileID: 115090, guid: 6bbab5091c34768469050f1ccb4a1482, type: 2}
+      objectReference: {fileID: 11418668, guid: 6bbab5091c34768469050f1ccb4a1482,
+        type: 2}
     - target: {fileID: 11411506, guid: 3cd35c280b9e90e459b1e1c2d7c165af, type: 2}
       propertyPath: shotSpawn
       value: 
@@ -1149,6 +1150,10 @@ Prefab:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1705668296}
+    - target: {fileID: 2011214, guid: fc27506c04071304a8b2033341085473, type: 2}
+      propertyPath: orthographic size
+      value: 2.66
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fc27506c04071304a8b2033341085473, type: 2}
   m_IsPrefabParent: 0
