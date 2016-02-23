@@ -9,7 +9,7 @@ public class Projectile : RaycastController {
 	void Start()
 	{
 		shootdir = transform.right * AttachedTo.holdingMe.facing;
-		shootdir.y = Random.Range (-AttachedTo.variance/20, AttachedTo.variance/20);
+		shootdir.y += Random.Range (-AttachedTo.variance/20, AttachedTo.variance/20);
 	}
 
 	void Update()
