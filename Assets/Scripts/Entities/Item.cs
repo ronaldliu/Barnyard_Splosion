@@ -5,9 +5,10 @@ using System.Collections;
 public class Item : RaycastController {
 	Vector3 position;
 	Vector3 rotation;
-	bool held;
+	public bool held;
 	public Player holdingMe;
 	public WeaponController weapon;
+
 	Vector2 aim;
 	void Start () {
 		weapon = GetComponent<WeaponController> ();
@@ -17,6 +18,11 @@ public class Item : RaycastController {
 			AlignItem();
 			// print ("Held");
 		} else {
+			//transform.Rotate (new Vector3 (0, 0, 5));
+
+			print (transform.eulerAngles.z);
+			Debug.DrawRay (transform.position,-transform.up - new Vector3 (Mathf.Sin (Mathf.Deg2Rad * transform.eulerAngles.z),Mathf.Cos (Mathf.Deg2Rad * transform.eulerAngles.z)));
+			//transform.Translate (new Vector3();
 			// Gravity, Physics, Things of that nature
 		}
 	}

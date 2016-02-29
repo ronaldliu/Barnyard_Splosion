@@ -18,6 +18,8 @@ public class Player : MonoBehaviour {
 	public bool dead = false;
 	public Sprite image;
 	public float aimAngle;
+	[HideInInspector]
+	public bool weaponInHand = false;
 
 	public float facing = 1;
 	public float gravity;
@@ -106,9 +108,10 @@ public class Player : MonoBehaviour {
 			skeleton.flipX = facing<0;
 			//character.transform.localScale = new Vector3 (facing * 4.75f , 4.75f, 0);
 
-			Debug.DrawRay(character.transform.position,new Vector3(aimAngle == 90 || aimAngle == 270 ? 0  : (Mathf.Abs(Mathf.Cos(aimAngle))*facing),Mathf.Sin(aimAngle) , 0)* 5,Color.cyan);
+			Debug.DrawRay(character.transform.position,new Vector3(aimAngle == 90 || aimAngle == 270 ? 0  : (Mathf.Abs(Mathf.Cos(aimAngle))*facing),Mathf.Sin(aimAngle), 0) * .5f,Color.cyan);
 			
 			if (input.y < -0.5f && Mathf.Abs (input.x) < 0.05f) {
+				//anim.state.SetAnimation(2, "Crouch", false);
 				if (crouchTap.TapCheck () && !crouchTap.activeDTap) {
 					controller.FallThrough ();
 					crouchTap.activeDTap = true;
@@ -190,6 +193,7 @@ public class Player : MonoBehaviour {
 		holding = item;
 		image = item.GetComponent<SpriteRenderer> ().sprite;
 		skelRend.skeleton.AttachUnitySprite ("WeaponImage", image,"Sprites/Default");
+		weaponInHand = true;
 		print ("Pick Up Successful");
 		//Add to skeleton here
 	}

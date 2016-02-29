@@ -282,9 +282,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d8f97d4204fb0b43ae806996cba7a38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: []
+  weapon:
+  - {fileID: 1637201593}
+  - {fileID: 886548997}
   spawnHeight: 1
-  random: 0
+  random: 1
   choice: 0
 --- !u!61 &370017281
 BoxCollider2D:
@@ -538,6 +540,10 @@ SpriteRenderer:
 Transform:
   m_PrefabParentObject: {fileID: 425506, guid: 3cd35c280b9e90e459b1e1c2d7c165af, type: 2}
   m_PrefabInternal: {fileID: 1637932245}
+--- !u!1 &886548997 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 154428, guid: 3cd35c280b9e90e459b1e1c2d7c165af, type: 2}
+  m_PrefabInternal: {fileID: 1637932245}
 --- !u!1 &905582666
 GameObject:
   m_ObjectHideFlags: 0
@@ -717,6 +723,14 @@ Prefab:
       propertyPath: moveSpeed
       value: 1.2631578
       objectReference: {fileID: 0}
+    - target: {fileID: 11496254, guid: e733285b4384a474981da780204c176a, type: 2}
+      propertyPath: _animationName
+      value: Standing
+      objectReference: {fileID: 0}
+    - target: {fileID: 11496254, guid: e733285b4384a474981da780204c176a, type: 2}
+      propertyPath: loop
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e733285b4384a474981da780204c176a, type: 2}
   m_IsPrefabParent: 0
@@ -853,11 +867,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 457082, guid: 3cd35c280b9e90e459b1e1c2d7c165af, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 2.62
+      value: 1.174
       objectReference: {fileID: 0}
     - target: {fileID: 457082, guid: 3cd35c280b9e90e459b1e1c2d7c165af, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.652
+      value: 0.183
       objectReference: {fileID: 0}
     - target: {fileID: 457082, guid: 3cd35c280b9e90e459b1e1c2d7c165af, type: 2}
       propertyPath: m_LocalPosition.z
@@ -987,6 +1001,10 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 554760819}
   m_Script: {fileID: 11500000, guid: 507ac11b27149834d889560d51a6c67b, type: 3}
+--- !u!1 &1637201593 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 154428, guid: 3cd35c280b9e90e459b1e1c2d7c165af, type: 2}
+  m_PrefabInternal: {fileID: 1407582976}
 --- !u!1001 &1637932245
 Prefab:
   m_ObjectHideFlags: 0
@@ -996,11 +1014,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 457082, guid: 3cd35c280b9e90e459b1e1c2d7c165af, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 1.16
+      value: 2.637
       objectReference: {fileID: 0}
     - target: {fileID: 457082, guid: 3cd35c280b9e90e459b1e1c2d7c165af, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.176
+      value: 0.774
       objectReference: {fileID: 0}
     - target: {fileID: 457082, guid: 3cd35c280b9e90e459b1e1c2d7c165af, type: 2}
       propertyPath: m_LocalPosition.z

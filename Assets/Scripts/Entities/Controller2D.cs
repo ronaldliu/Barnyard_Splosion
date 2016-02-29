@@ -254,9 +254,10 @@ public class Controller2D : RaycastController{
 			if (hit) { //Case Ray Hits Considered Target
 				print("h");
 				Item item = hit.transform.GetComponent<Item>();
-				me.PickUpItem (item);
-				item.CatchPlayer (me);
-				//item.grabbable = false;
+				if (!item.held && !me.weaponInHand) {
+					me.PickUpItem (item);
+					item.CatchPlayer (me);
+				}
 			}
 		}
 	}
