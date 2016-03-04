@@ -33,7 +33,7 @@ public class Player : MonoBehaviour {
 	//Class References
 	SkeletonAnimation anim;
 	MeshRenderer character;
-	Controller2D controller;
+	public Controller2D controller;
 	Spine.SkeletonData skeletonData;
 	public Spine.Skeleton skeleton;
 	public Spine.Bone arm;

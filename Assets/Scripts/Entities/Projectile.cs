@@ -2,38 +2,61 @@
 using System.Collections;
 
 public class Projectile : RaycastController {
-	public WeaponController AttachedTo;
-	public bool gravity;
+	WeaponController AttachedTo;
+	bool gravity;
+	float speed;
+	float damage;
+	LayerMask fightingMask;
+	float birthTime;
+	int facing;
 	Vector3 shootdir;
+
 	// Use this for initialization
 	void Start()
 	{
-		shootdir = transform.right * AttachedTo.holdingMe.facing;
+		birthTime = Time.time;
+		gameObject.layer = LayerMask.NameToLayer ("Item");
+
+	}
+		
+	public void SetupProjectile(LayerMask collisionMask,LayerMask fightingMask, WeaponController AttachedTo,float speed,float damage,int facing, bool gravity){
+		this.collisionMask = collisionMask;
+		this.fightingMask = fightingMask;
+		this.AttachedTo = AttachedTo;
+		this.speed = speed;
+		this.damage = damage;
+		this.gravity = gravity;
+		this.facing = facing;
+		shootdir = transform.right * facing;
 		shootdir.y += Random.Range (-AttachedTo.variance/20, AttachedTo.variance/20);
+		print ("S " + speed);
+
 	}
 
 	void Update()
 	{
-		if (!gravity) {
-			transform.Translate (shootdir * Time.deltaTime * AttachedTo.projectileSpeed);
-			Destroy (gameObject, 1);
+		if (!gravity) {//Finish gravity calcs
+			transform.Translate (shootdir * Time.deltaTime * speed);
 		} else {
 			// For use with gravity
-			transform.Translate (shootdir * Time.deltaTime * AttachedTo.projectileSpeed);
-			Destroy (gameObject, 2);
+			transform.Translate (shootdir * Time.deltaTime * speed);
 		}
 
-		float rayLength = (float) 0.06;
-		Vector2 rayOrigin = ((AttachedTo.holdingMe.facing == -1) ? raycastOrigins.fistLeft : raycastOrigins.fistRight);
-		RaycastHit2D hit = Physics2D.Raycast (transform.position, Vector2.right * AttachedTo.holdingMe.facing , rayLength, collisionMask);
+		float rayLength = 0.06f;
+		Vector2 rayOrigin = ((facing == -1) ? raycastOrigins.fistLeft : raycastOrigins.fistRight);
+		RaycastHit2D hit = Physics2D.Raycast (transform.position, Vector2.right * facing , rayLength, collisionMask + fightingMask);
 
-		Debug.DrawRay (transform.position, Vector2.right * AttachedTo.holdingMe.facing * rayLength, Color.magenta);
+		Debug.DrawRay (transform.position, Vector2.right * facing * rayLength, Color.magenta);
 
 		if (hit)
 		{
-			// print ("I Hit A thing");
-			Player enemy = hit.transform.GetComponent<Player>(); //Create Player Dictionary
-			enemy.health -= 10;
+			int collisionLayer = hit.transform.gameObject.layer;
+			if ((fightingMask.value & 1 << collisionLayer) != 0) {
+				Player enemy = hit.transform.GetComponent<Player> (); //Create Player Dictionary
+				enemy.health -= 10;
+			} else if ((collisionMask.value & 1 << collisionLayer) == 0) {
+				//Ricochette? 
+			}
 			Destroy (gameObject);
 		}
 	}

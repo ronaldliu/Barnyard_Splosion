@@ -5,7 +5,7 @@ using System.Collections;
 public class RaycastController : MonoBehaviour {
 
 	//Editor Customizable
-	public const float skinWidth = 0.025f/4.75f;
+	public const float skinWidth = 0.00525f;
 	public int horizontalRayCount = 4;
 	public int verticalRayCount = 4;
 	public int pickUpRayCount = 3;

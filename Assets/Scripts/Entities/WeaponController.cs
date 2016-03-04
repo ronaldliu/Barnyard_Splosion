@@ -8,22 +8,24 @@ public class WeaponController : Item {
 	// Higher the number the faster the gun shoots
 	public float firerate;
 	// The Bullet trail
-	public Projectile projectile;
+	public GameObject projectile;
 	public Transform shotSpawn;
 	public float damage;
 	public float projectileSpeed;
-	Item item;
 	// Used for bullet spread so it isnt just straight
 	// Higher the number the more variance
 	public float variance;
 
 	float nextfire = 0;
 
+	public override void AlignItem(){
+		base.AlignItem ();
+		Debug.DrawRay(shotSpawn.position,shotSpawn.right * facing,Color.green);
+	}
 	void Awake()
 	{
 		collider = GetComponent<BoxCollider2D> ();
 		shotSpawn = transform.FindChild ("shotspawn");
-		item = GetComponent<Item> ();
 
 		if (shotSpawn == null) 
 		{
@@ -31,15 +33,16 @@ public class WeaponController : Item {
 		}
 	}
 
-	public void Fire()
+	public override void Fire()
 	{
 		if (Time.time > nextfire && ammo != 0) 
 		{
 			nextfire = Time.time + 1 / firerate;
 			ammo--;
-			projectile.AttachedTo = this;
 
-			Instantiate (projectile, shotSpawn.position, shotSpawn.rotation);
+			GameObject shot = (GameObject) Instantiate (projectile, shotSpawn.position, shotSpawn.rotation);
+			shot.GetComponent<Projectile>().SetupProjectile (collisionMask, fightingMask, this, projectileSpeed, damage,facing, false);
+			shot.transform.SetParent (GameObject.Find ("Projectiles").transform);
 		}
 	}
 }
