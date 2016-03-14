@@ -58,10 +58,6 @@ public class Player : MonoBehaviour {
 		weap = skeleton.FindBone ("Weapon");
 		skelRend = GetComponent<SkeletonRenderer> ();
 		skeleton.FindSlot ("WeaponImage").Attachment = null;
-
-		//skeleton.FindSlot ("WeaponImage").A = 0;
-		//skelRend.skeleton.AttachUnitySprite ("WeaponImage", image);
-		//skelRend.skeleton.AttachUnitySprite ("Art/Weapons/LMG", image);
 		anim.state.ClearTrack(1);
 		controller.CatchPlayer (this);
 		crouchTap = new TapInfo (.6f, 3);
@@ -105,7 +101,7 @@ public class Player : MonoBehaviour {
 
 			weap.rotation = -55; 
 			//character.transform.localScale = new Vector3 (facing  , 1, 0);
-			skeleton.flipX = facing<0;
+			skeleton.flipX = facing < 0;
 			//character.transform.localScale = new Vector3 (facing * 4.75f , 4.75f, 0);
 
 			Debug.DrawRay(character.transform.position,new Vector3(aimAngle == 90 || aimAngle == 270 ? 0  : (Mathf.Abs(Mathf.Cos(aimAngle))*facing),Mathf.Sin(aimAngle), 0) * .5f,Color.cyan);

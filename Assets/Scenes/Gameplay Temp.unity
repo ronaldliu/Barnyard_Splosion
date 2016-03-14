@@ -981,7 +981,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11411506, guid: 3cd35c280b9e90e459b1e1c2d7c165af, type: 2}
       propertyPath: variance
-      value: 10
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 11411506, guid: 3cd35c280b9e90e459b1e1c2d7c165af, type: 2}
       propertyPath: damage
@@ -1169,7 +1169,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11411506, guid: 3cd35c280b9e90e459b1e1c2d7c165af, type: 2}
       propertyPath: collisionMask.m_Bits
-      value: 33024
+      value: 256
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11416790, guid: 3cd35c280b9e90e459b1e1c2d7c165af, type: 2}
@@ -1246,12 +1246,6 @@ Camera:
   m_PrefabParentObject: {fileID: 2011214, guid: fc27506c04071304a8b2033341085473,
     type: 2}
   m_PrefabInternal: {fileID: 1705668295}
---- !u!114 &1705668297 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11490588, guid: fc27506c04071304a8b2033341085473,
-    type: 2}
-  m_PrefabInternal: {fileID: 1705668295}
-  m_Script: {fileID: 11500000, guid: e33567efedca72449b2f64f2f51af8ca, type: 3}
 --- !u!1 &1735972260
 GameObject:
   m_ObjectHideFlags: 0
@@ -1279,8 +1273,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c6ccbf81d26f904cae7a29de47bb40b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yes: {fileID: 0}
-  cam: {fileID: 1705668297}
 --- !u!4 &1735972262
 Transform:
   m_ObjectHideFlags: 0

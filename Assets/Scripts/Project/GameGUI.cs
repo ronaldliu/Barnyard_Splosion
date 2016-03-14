@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GameGUI : MonoBehaviour {
+public class GameHandler: MonoBehaviour {
 	public GameObject yes;
 	public CameraBox cam;
 	// Use this for initialization
@@ -11,7 +11,6 @@ public class GameGUI : MonoBehaviour {
 		//cam.targets.Add(yes.GetComponent<GameOptions> ().p1.GetComponent<Player>());
 	}
 	
-	// Update is called once per frame
 	void Update () {
 	
 	}

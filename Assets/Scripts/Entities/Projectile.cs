@@ -29,7 +29,7 @@ public class Projectile : RaycastController {
 		this.facing = facing;
 		shootdir = transform.right * facing;
 		shootdir.y += Random.Range (-AttachedTo.variance/20, AttachedTo.variance/20);
-		print ("S " + speed);
+		//print ("S " + speed);
 
 	}
 
@@ -54,10 +54,13 @@ public class Projectile : RaycastController {
 			if ((fightingMask.value & 1 << collisionLayer) != 0) {
 				Player enemy = hit.transform.GetComponent<Player> (); //Create Player Dictionary
 				enemy.health -= 10;
+				enemy.velocity = shootdir;
+				Destroy (gameObject);
 			} else if ((collisionMask.value & 1 << collisionLayer) == 0) {
 				//Ricochette? 
+				print("x " + shootdir.x +"y " + shootdir.y +"z " + shootdir.z );
+				shootdir = Vector3.Reflect(shootdir,Vector3.back);
 			}
-			Destroy (gameObject);
 		}
 	}
 }
