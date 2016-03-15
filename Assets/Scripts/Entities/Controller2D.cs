@@ -145,6 +145,7 @@ public class Controller2D : RaycastController{
 				if (collisionLayer == LayerMask.NameToLayer ("Platforms") || directionY == -1) {
 					velocity.y = (hit.distance - skinWidth) * directionY;
 					rayLength = hit.distance;
+					print ("Hit " + LayerMask.LayerToName(collisionLayer));
 				}
 				if (collisions.climbingSlope) {
 					velocity.x = velocity.y / Mathf.Tan (collisions.slopeAngle * Mathf.Deg2Rad) * Mathf.Sign (velocity.x);
