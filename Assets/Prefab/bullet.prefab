@@ -1,55 +1,55 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &115090
+--- !u!1 &102402
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 482714}
-  - 212: {fileID: 21237806}
-  - 61: {fileID: 6133968}
-  - 114: {fileID: 11418668}
-  m_Layer: 15
+  - 4: {fileID: 405230}
+  - 212: {fileID: 21257738}
+  - 61: {fileID: 6175992}
+  - 114: {fileID: 11412628}
+  m_Layer: 16
   m_Name: bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &482714
+--- !u!4 &405230
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 115090}
+  m_GameObject: {fileID: 102402}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.8960457, y: 5.117222, z: 0}
+  m_LocalPosition: {x: 2.6825097, y: -2.088887, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!61 &6133968
+--- !u!61 &6175992
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 115090}
+  m_GameObject: {fileID: 102402}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: -0.00000047683716}
+  m_Offset: {x: -0.0005617142, y: -0.0011246204}
   serializedVersion: 2
-  m_Size: {x: 0.073949315, y: 0.079958424}
---- !u!114 &11418668
+  m_Size: {x: 0.111040376, y: 0.10918207}
+--- !u!114 &11412628
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 115090}
+  m_GameObject: {fileID: 102402}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b4b004c2c3b3eb345a771e7e680990fc, type: 3}
@@ -64,15 +64,13 @@ MonoBehaviour:
   horizontalRaySpacing: 0
   verticalRaySpacing: 0
   pickUpRaySpacing: 0
-  collider: {fileID: 0}
-  AttachedTo: {fileID: 0}
-  gravity: 0
---- !u!212 &21237806
+  collider: {fileID: 6175992}
+--- !u!212 &21257738
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 115090}
+  m_GameObject: {fileID: 102402}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -103,28 +101,8 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 0}
-      propertyPath: m_GravityScale
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Layer
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: speed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: gravity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: collisionMask.m_Bits
-      value: 7680
-      objectReference: {fileID: 0}
+    m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 115090}
+  m_RootGameObject: {fileID: 102402}
   m_IsPrefabParent: 1

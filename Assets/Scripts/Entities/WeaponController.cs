@@ -12,6 +12,7 @@ public class WeaponController : Item {
 	public Transform shotSpawn;
 	public float damage;
 	public float projectileSpeed;
+	public bool bulletDrop = false;
 	// Used for bullet spread so it isnt just straight
 	// Higher the number the more variance
 	public float variance;
@@ -22,9 +23,8 @@ public class WeaponController : Item {
 		base.AlignItem ();
 		Debug.DrawRay(shotSpawn.position,shotSpawn.right * facing,Color.green);
 	}
-	void Awake()
+	void Start()
 	{
-		collider = GetComponent<BoxCollider2D> ();
 		shotSpawn = transform.FindChild ("shotspawn");
 
 		if (shotSpawn == null) 
@@ -40,8 +40,8 @@ public class WeaponController : Item {
 			nextfire = Time.time + 1 / firerate;
 			ammo--;
 
-			GameObject shot = (GameObject) Instantiate (projectile, shotSpawn.position, shotSpawn.rotation);
-			shot.GetComponent<Projectile>().SetupProjectile (collisionMask, fightingMask, this, projectileSpeed, damage,facing, false);
+			GameObject shot = (GameObject)Instantiate (projectile, shotSpawn.position, shotSpawn.rotation);
+			shot.GetComponent<Projectile>().SetupProjectile (collisionMask, fightingMask, this, projectileSpeed, damage,facing, bulletDrop);
 			shot.transform.SetParent (GameObject.Find ("Projectiles").transform);
 		}
 	}

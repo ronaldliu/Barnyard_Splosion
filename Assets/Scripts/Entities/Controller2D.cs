@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof (BoxCollider2D))]
 public class Controller2D : RaycastController{
 
 	//Editor Customizable
@@ -57,7 +58,7 @@ public class Controller2D : RaycastController{
 
 	void HorizonatalCollisions(ref Vector3 velocity){
 		float directionX = Mathf.Sign (velocity.x);
-		float rayLength = Mathf.Abs (velocity.x)+ skinWidth;
+		float rayLength = Mathf.Abs (velocity.x) + skinWidth;
 
 		//Loop For cycling through Cast Rays Up the Side of the Character
 		for (int i = 0; i <  horizontalRayCount; i++) {
@@ -65,22 +66,24 @@ public class Controller2D : RaycastController{
 			rayOrigin += Vector2.up * (horizontalRaySpacing * i);
 
 			//Raycast Detection of Collisions with only collisionMask Layer being considered
-			RaycastHit2D hit = Physics2D.Raycast (rayOrigin, Vector2.right * directionX, rayLength, collisionMask+fightingMask); 
+			RaycastHit2D hit = Physics2D.Raycast (rayOrigin, Vector2.right * directionX, rayLength, collisionMask); 
+			RaycastHit2D playerHit = Physics2D.Raycast (rayOrigin, Vector2.right * directionX, rayLength, fightingMask); 
 
 			Debug.DrawRay (rayOrigin, Vector2.right * directionX * rayLength, Color.red); //Draw Red Lines in Scene for Debuging Purposes
 
 			if (hit) { //Case Ray Hits Considered Target
 				int collisionLayer = hit.transform.gameObject.layer;
-				if(hit.distance == 0 && collisionLayer == LayerMask.NameToLayer ("Obsticle") ){
-					me.velocity.x = 10/4.25f * me.facing;
+
+				if (hit.distance == 0 && collisionLayer == LayerMask.NameToLayer ("Obsticle")) {
+					me.velocity.x = 10 / 4.25f * me.facing;
 				}
-				if (hit.distance == 0 || (LayerMask.NameToLayer("Platforms") == collisionLayer)) { //if inside of object allow player to move freely
+				if (hit.distance == 0 || (LayerMask.NameToLayer ("Platforms") == collisionLayer)) { //if inside of object allow player to move freely
 					continue;
 				}
 
 				float slopeAngle = Vector2.Angle (hit.normal, Vector2.up);
 
-				if (i == 0 && slopeAngle <= maxClimbAngle){//&& slopeAngle > 0) { //Slope Handling
+				if (i == 0 && slopeAngle <= maxClimbAngle) {//&& slopeAngle > 0) { //Slope Handling
 
 					if (collisions.descendingSlope) {
 						collisions.descendingSlope = false;
@@ -103,13 +106,32 @@ public class Controller2D : RaycastController{
 					velocity.x = (hit.distance - skinWidth) * directionX;
 					rayLength = hit.distance;
 
-					if(collisions.climbingSlope){
+					if (collisions.climbingSlope) {
 						velocity.y = Mathf.Tan (collisions.slopeAngle * Mathf.Deg2Rad) * Mathf.Abs (velocity.x);
 					}
 
 					collisions.left = directionX == -1;
 					collisions.right = directionX == 1;
 				}
+			} else if (playerHit) {
+				Player enemy = playerHit.transform.GetComponent<Player> ();
+				//velocity.x = (hit.distance - skinWidth) * directionX;
+				if (playerHit.distance == 0 && false) {
+					if ((me.transform.position.x - enemy.transform.position.y) > 0) {
+						me.velocity.x = 5 / 4.25f;
+					} else if ((me.transform.position.x - enemy.transform.position.y) <= 0) {
+						me.velocity.x = -5 / 4.25f;
+					}
+				}
+				rayLength = hit.distance;
+				collisions.left = directionX == -1;
+				collisions.right = directionX == 1;
+				if (Mathf.Abs(enemy.velocity.x) < Mathf.Abs(velocity.x) && !enemy.IsDead()) {
+					//enemy.controller.Move(new Vector3(velocity.x,0,0));
+					//break;
+				}
+
+
 			}
 		}
 	}
@@ -122,16 +144,14 @@ public class Controller2D : RaycastController{
 		for (int i = 0; i < verticalRayCount; i++) {
 			Vector2 rayOrigin = (directionY == -1) ? raycastOrigins.bottomLeft : raycastOrigins.topLeft;
 			rayOrigin += Vector2.right * (verticalRaySpacing * i + velocity.x);
-			RaycastHit2D hit = Physics2D.Raycast (rayOrigin, Vector2.up * directionY, rayLength, collisionMask + fightingMask);
-				
+			RaycastHit2D hit = Physics2D.Raycast (rayOrigin, Vector2.up * directionY, rayLength, collisionMask );
+			RaycastHit2D playerHit = Physics2D.Raycast (rayOrigin, Vector2.up * directionY, rayLength,fightingMask);
+
 			Debug.DrawRay (rayOrigin, Vector2.up * directionY * rayLength, Color.red);
 
 			if (hit) {
 				int collisionLayer = hit.transform.gameObject.layer;
 
-				if ((hit.distance == 0 && (fightingMask.value & 1 << collisionLayer) == 0)){ //if inside of object allow player to move freely
-					continue;
-				}
 				if (LayerMask.NameToLayer ("Platforms") == collisionLayer) {
 					collisions.droppable = true;
 				} else {
@@ -142,31 +162,40 @@ public class Controller2D : RaycastController{
 					continue;
 				}
 
-				if (collisionLayer == LayerMask.NameToLayer ("Platforms") || directionY == -1) {
+				if ((collisionMask.value & 1 << collisionLayer) != 0) {
 					velocity.y = (hit.distance - skinWidth) * directionY;
 					rayLength = hit.distance;
-					print ("Hit " + LayerMask.LayerToName(collisionLayer));
-				}
-				if (collisions.climbingSlope) {
-					velocity.x = velocity.y / Mathf.Tan (collisions.slopeAngle * Mathf.Deg2Rad) * Mathf.Sign (velocity.x);
+					collisions.below = directionY == -1;
+					collisions.above = directionY == 1;	
+					if (collisions.climbingSlope) {
+						velocity.x = velocity.y / Mathf.Tan (collisions.slopeAngle * Mathf.Deg2Rad) * Mathf.Sign (velocity.x);
+					}
 				}
 
-				collisions.below = directionY == -1;
-				collisions.above = directionY == 1;
+
+
 				if (me.IsDead ()) {
 					velocity.y = 0;
 					continue;
 				}
-				if (collisions.below  && (fightingMask.value & 1 << collisionLayer) != 0) {		//Jumped/Bounced on Player - Inflict Damage?
-					if ((me.transform.position.y - hit.transform.GetComponent<Player> ().transform.position.y) > 2.1f/4.75f) {
-						me.velocity.y = me.jumpVelocity;
-						hit.transform.GetComponent<Player> ().velocity.y = -10; 	//Add implementation of Dictionary Here
-						hit.transform.GetComponent<Player> ().health -= 20;
-						Move (me.velocity * Time.deltaTime);
-					} else {
-						velocity.y = 0;
-					}
+
+			} else if (playerHit) {
+				int collisionLayer = playerHit.transform.gameObject.layer;
+
+				if (playerHit.distance == 0 ) { //if inside of object allow player to move freely
+					continue;
 				}
+
+					//Jumped/Bounced on Player - Inflict Damage?
+				if ((me.transform.position.y - playerHit.transform.GetComponent<Player> ().transform.position.y) > .54f) {
+					me.velocity.y = me.jumpVelocity;
+					playerHit.transform.GetComponent<Player> ().velocity.y = -10; 	//Add implementation of Dictionary Here
+					playerHit.transform.GetComponent<Player> ().health -= 20;
+					Move (me.velocity * Time.deltaTime);
+				} else {
+					velocity.y = 0;
+				}
+
 			}
 		}
 
@@ -254,10 +283,11 @@ public class Controller2D : RaycastController{
 
 			if (hit) { //Case Ray Hits Considered Target
 				print("h");
-				Item item = hit.transform.GetComponent<Item>();
+				Item item = hit.transform.GetComponentInParent<Item>();
 				if (!item.held && !me.weaponInHand) {
 					me.PickUpItem (item);
 					item.CatchPlayer (me);
+					break;
 				}
 			}
 		}

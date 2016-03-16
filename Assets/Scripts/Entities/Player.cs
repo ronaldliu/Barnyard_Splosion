@@ -42,7 +42,7 @@ public class Player : MonoBehaviour {
 	public SkeletonRenderer skelRend;
 	Item holding;
 	TapInfo crouchTap;
-
+	bool shotLock = true;
 	//ItemEntity item;
 	//Class Reference to Item Entity Here!
 
@@ -103,8 +103,8 @@ public class Player : MonoBehaviour {
 			//character.transform.localScale = new Vector3 (facing  , 1, 0);
 			skeleton.flipX = facing < 0;
 			//character.transform.localScale = new Vector3 (facing * 4.75f , 4.75f, 0);
-
-			Debug.DrawRay(character.transform.position,new Vector3(aimAngle == 90 || aimAngle == 270 ? 0  : (Mathf.Abs(Mathf.Cos(aimAngle))*facing),Mathf.Sin(aimAngle), 0) * .5f,Color.cyan);
+			Debug.DrawRay(character.transform.position,new Vector3(aimAngle == 90 || aimAngle == 270 ? 0  :
+				(Mathf.Abs(Mathf.Cos(aimAngle))*facing),Mathf.Sin(aimAngle), 0) * .5f,Color.cyan);
 			
 			if (input.y < -0.5f && Mathf.Abs (input.x) < 0.05f) {
 				//anim.state.SetAnimation(2, "Crouch", false);
@@ -117,7 +117,7 @@ public class Player : MonoBehaviour {
 			}
 
 			//Jump Velocity
-			if (Input.GetButtonDown ("Jump_" + player) && controller.collisions.below) {
+			if ((Input.GetButtonDown ("Jump_" + player)|| Input.GetAxisRaw ("Vertical_" + player) > .85f)&& controller.collisions.below) {
 				velocity.y = jumpVelocity;
 			}
 
@@ -128,14 +128,19 @@ public class Player : MonoBehaviour {
             }
 			//Hit/Fire Weapon
 		
-			if (Input.GetButtonDown ("Fire_" + player) && holding == null) {
+			if (Input.GetButtonDown ("Fire_" + player) && !weaponInHand) {
 				//Add Weapon Fire Support Here
 				anim.state.SetAnimation (3, "Poke", false);
 				controller.Punch (facing);
-			} else if (Input.GetButton("Fire_" + player) && holding != null) {
+			} else if ((Input.GetButton ("Fire_" + player) || Input.GetAxisRaw ("Fire_" + player) > .25f) && weaponInHand && !shotLock) {
 				holding.Fire ();
-				// print ("Pow");
-			} 
+			} else if (Input.GetButtonUp ("Fire_" + player) && Input.GetAxisRaw ("Fire_" + player) < .25f) {
+				shotLock = false;
+			}
+			//Drop Weapon
+			if (Input.GetButtonDown ("Drop_" + player) && weaponInHand) {
+				DropItem();
+			}
 			//Horizontal Velocity Smoothing
 
 			float targetVelocityX = input.x * moveSpeed;
@@ -184,12 +189,27 @@ public class Player : MonoBehaviour {
 		controller.FallThrough ();
 		dead = true;
 	}
+	public void DropItem(){
+		if (! new Vector2 (Input.GetAxisRaw ("AimH_" + player), Input.GetAxisRaw ("AimV_" + player)).Equals(Vector2.zero)) {
+			holding.velocity += new Vector3 (aimAngle == 90 || aimAngle == 270 ? 0 :
+				(Mathf.Abs (Mathf.Cos (aimAngle)) * facing), Mathf.Sin (aimAngle), 0)*5;
+			print (holding.velocity);
+		}
+		boxCollider.size = new Vector2 (.23f, .55f);
 
+		skeleton.FindSlot ("WeaponImage").Attachment = null;
+		holding.PlayerDrop();
+		holding = null;
+		weaponInHand = false;
+	}
 	public void PickUpItem(Item item){
+		anim.state.ClearTrack (3);
+		boxCollider.size = new Vector2 (.45f, .55f);
 		holding = item;
-		image = item.GetComponent<SpriteRenderer> ().sprite;
+		image = item.childTransform.GetComponent<SpriteRenderer> ().sprite;
 		skelRend.skeleton.AttachUnitySprite ("WeaponImage", image,"Sprites/Default");
 		weaponInHand = true;
+		shotLock = true;
 		print ("Pick Up Successful");
 		//Add to skeleton here
 	}

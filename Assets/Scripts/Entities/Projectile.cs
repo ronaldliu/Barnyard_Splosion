@@ -10,6 +10,8 @@ public class Projectile : RaycastController {
 	float birthTime;
 	int facing;
 	Vector3 shootdir;
+	Vector3 velocity;
+	bool hitSomething = false;
 
 	// Use this for initialization
 	void Start()
@@ -27,40 +29,49 @@ public class Projectile : RaycastController {
 		this.damage = damage;
 		this.gravity = gravity;
 		this.facing = facing;
-		shootdir = transform.right * facing;
-		shootdir.y += Random.Range (-AttachedTo.variance/20, AttachedTo.variance/20);
+		shootdir = Vector3.right * facing;
+		velocity = shootdir * speed/50;
+		//shootdir.y += Random.Range (-AttachedTo.variance/20, AttachedTo.variance/20);
 		//print ("S " + speed);
 
 	}
 
 	void Update()
 	{
+
 		if (!gravity) {//Finish gravity calcs
-			transform.Translate (shootdir * Time.deltaTime * speed);
+			transform.Translate (velocity);
 		} else {
 			// For use with gravity
-			transform.Translate (shootdir * Time.deltaTime * speed);
+			velocity.y -= .005f;
+			transform.Translate (velocity);
 		}
 
-		float rayLength = 0.06f;
+		float rayLength = Mathf.Abs(velocity.magnitude) + skinWidth;
 		Vector2 rayOrigin = ((facing == -1) ? raycastOrigins.fistLeft : raycastOrigins.fistRight);
-		RaycastHit2D hit = Physics2D.Raycast (transform.position, Vector2.right * facing , rayLength, collisionMask + fightingMask);
+		RaycastHit2D hit = Physics2D.Raycast (transform.position, transform.right * facing , rayLength, collisionMask + fightingMask);
 
-		Debug.DrawRay (transform.position, Vector2.right * facing * rayLength, Color.magenta);
+		Debug.DrawRay (transform.position, transform.right * facing * rayLength, Color.magenta);
 
 		if (hit)
 		{
-			int collisionLayer = hit.transform.gameObject.layer;
-			if ((fightingMask.value & 1 << collisionLayer) != 0) {
-				Player enemy = hit.transform.GetComponent<Player> (); //Create Player Dictionary
-				enemy.health -= 10;
-				enemy.velocity = shootdir;
+
+			velocity.x = (hit.distance - skinWidth) * facing;
+			if (hitSomething) {
+				int collisionLayer = hit.transform.gameObject.layer;
+
+				if ((fightingMask.value & 1 << collisionLayer) != 0) {
+					Player enemy = hit.transform.GetComponent<Player> (); //Create Player Dictionary
+					enemy.health -= 10;
+					enemy.velocity = shootdir;
+				} else if ((collisionMask.value & 1 << collisionLayer) == 0) {
+					//Ricochette? 
+					print("x " + shootdir.x +"y " + shootdir.y +"z " + shootdir.z );
+					//shootdir = Vector3.Reflect(shootdir,Vector3.back);
+				}
 				Destroy (gameObject);
-			} else if ((collisionMask.value & 1 << collisionLayer) == 0) {
-				//Ricochette? 
-				print("x " + shootdir.x +"y " + shootdir.y +"z " + shootdir.z );
-				shootdir = Vector3.Reflect(shootdir,Vector3.back);
 			}
+			hitSomething = true;
 		}
 	}
 }
