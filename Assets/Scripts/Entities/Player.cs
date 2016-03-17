@@ -191,9 +191,9 @@ public class Player : MonoBehaviour {
 	}
 	public void DropItem(){
 		if (! new Vector2 (Input.GetAxisRaw ("AimH_" + player), Input.GetAxisRaw ("AimV_" + player)).Equals(Vector2.zero)) {
-			holding.velocity += new Vector3 (aimAngle == 90 || aimAngle == 270 ? 0 :
+			holding.velocity = new Vector3 (aimAngle == 90 || aimAngle == 270 ? 0 :
 				(Mathf.Abs (Mathf.Cos (aimAngle)) * facing), Mathf.Sin (aimAngle), 0)*5;
-			print (holding.velocity);
+			//print (holding.velocity);
 		}
 		boxCollider.size = new Vector2 (.23f, .55f);
 

@@ -42,6 +42,7 @@ public class Item : RaycastController {
 				
 			
 			velocity.y += (gravity  * Time.deltaTime);
+			velocity = velocity ;
 			Move (velocity * Time.deltaTime);
 			///new Vector3(Mathf.Cos(Mathf.Deg2Rad * (-90 - transform.localRotation.eulerAngles.z)),
 				//Mathf.Sin(Mathf.Deg2Rad * (-90 - transform.localRotation.eulerAngles.z)) )*.001f);			// Gravity, Physics, Things of that nature
@@ -69,9 +70,16 @@ public class Item : RaycastController {
 		//transform.localScale = new Vector3 (facing, 1);
 	}
 	public void Move(Vector3 velocity){
+		if (velocity.x != 0) {
+			HorizonatalCollisions (ref velocity);
+		}
+		UpdateItemRaycastOrigins ();
 
-		VerticalCollisions (ref velocity);
-		transform.Translate (velocity);
+		//Only Collide Vertically if Moving So
+		if (velocity.y != 0) {
+			VerticalCollisions (ref velocity);
+		}
+		transform.Translate (velocity );
 	}
 	void Rotation(){
 		float current = childTransform.localRotation.eulerAngles.z;
@@ -94,7 +102,63 @@ public class Item : RaycastController {
 		childTransform.rotation = Quaternion.Euler (new Vector3 (0, 0, (holdingMe.facing > 0 ) ? (holdingMe.arm.rotation + 150) : 360 - (holdingMe.arm.rotation + 150)));
 
 	}
+	void HorizonatalCollisions(ref Vector3 velocity){
+		float directionX = Mathf.Sign (velocity.x);
+		float rayLength = Mathf.Abs (velocity.x) + skinWidth;
 
+		//Loop For cycling through Cast Rays Up the Side of the Character
+		for (int i = 0; i < 2; i++) {
+			Vector2 rayOrigin = Vector2.zero;
+			switch (i) {
+			case 0:
+				rayOrigin = directionX == -1 ? raycastOrigins.bottomLeft : raycastOrigins.bottomRight;
+				break;
+			case 1:
+				rayOrigin = directionX == -1 ? raycastOrigins.topLeft : raycastOrigins.topRight;
+				break;
+			}
+			//Raycast Detection of Collisions with only collisionMask Layer being considered
+			RaycastHit2D hit = Physics2D.Raycast (rayOrigin, Vector2.right * directionX, rayLength, collisionMask); 
+			RaycastHit2D playerHit = Physics2D.Raycast (rayOrigin, Vector2.right * directionX, rayLength, fightingMask); 
+
+			Debug.DrawRay (rayOrigin, Vector2.right * directionX * rayLength, Color.white); //Draw Red Lines in Scene for Debuging Purposes
+
+			if (hit) { //Case Ray Hits Considered Target
+				int collisionLayer = hit.transform.gameObject.layer;
+
+				if ((LayerMask.NameToLayer ("Platforms") == collisionLayer)) { //if inside of object allow player to move freely
+					continue;
+				}
+				this.velocity.x *= - 1;
+				velocity.x = 0;
+				transform.Translate (this.velocity.x * Time.deltaTime, 0, 0);
+				//velocity.x = (hit.distance - skinWidth) * directionX;
+
+				itemCollisions.left = directionX == -1;
+				itemCollisions.right = directionX == 1;
+				break;
+			} else if (playerHit && false) {
+				Player enemy = playerHit.transform.GetComponent<Player> ();
+				//velocity.x = (hit.distance - skinWidth) * directionX;
+				if (playerHit.distance == 0 && false) {
+					if ((transform.position.x - enemy.transform.position.y) > 0) {
+						velocity.x = 5 / 4.25f;
+					} else if ((transform.position.x - enemy.transform.position.y) <= 0) {
+						velocity.x = -5 / 4.25f;
+					}
+				}
+				rayLength = hit.distance;
+				itemCollisions.left = directionX == -1;
+				itemCollisions.right = directionX == 1;
+				if (Mathf.Abs(enemy.velocity.x) < Mathf.Abs(velocity.x) && !enemy.IsDead()) {
+					//enemy.controller.Move(new Vector3(velocity.x,0,0));
+					//break;
+				}
+
+
+			}
+		}
+	}
 	void VerticalCollisions(ref Vector3 velocity){
 		float directionY = Mathf.Sign (velocity.y);
 		float rayLength = Mathf.Abs (velocity.y)+ skinWidth;
@@ -115,7 +179,7 @@ public class Item : RaycastController {
 
 			if (hit) {
 				int collisionLayer = hit.transform.gameObject.layer;
-
+				print ("Verical");
 
 
 				if (directionY > 0 && LayerMask.NameToLayer ("Platforms") == collisionLayer) {
