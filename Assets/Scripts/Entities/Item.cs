@@ -179,8 +179,6 @@ public class Item : RaycastController {
 
 			if (hit) {
 				int collisionLayer = hit.transform.gameObject.layer;
-				print ("Verical");
-
 
 				if (directionY > 0 && LayerMask.NameToLayer ("Platforms") == collisionLayer) {
 					continue;
