@@ -56,7 +56,8 @@ public class Controller2D : RaycastController{
 		}
 	}
 
-	void HorizonatalCollisions(ref Vector3 velocity){
+	bool HorizonatalCollisions(ref Vector3 velocity){
+		bool wall = false;
 		float directionX = Mathf.Sign (velocity.x);
 		float rayLength = Mathf.Abs (velocity.x) + skinWidth;
 
@@ -72,12 +73,13 @@ public class Controller2D : RaycastController{
 			Debug.DrawRay (rayOrigin, Vector2.right * directionX * rayLength, Color.red); //Draw Red Lines in Scene for Debuging Purposes
 
 			if (hit) { //Case Ray Hits Considered Target
+				wall = true;
 				int collisionLayer = hit.transform.gameObject.layer;
 
 				if (hit.distance == 0 && collisionLayer == LayerMask.NameToLayer ("Obsticle")) {
 					me.velocity.x = 10 / 4.25f * me.facing;
 				}
-				if (hit.distance == 0 || (LayerMask.NameToLayer ("Platforms") == collisionLayer)) { //if inside of object allow player to move freely
+				if (hit.distance == 0 && (LayerMask.NameToLayer ("Platforms") == collisionLayer)) { //if inside of object allow player to move freely
 					continue;
 				}
 
@@ -123,17 +125,22 @@ public class Controller2D : RaycastController{
 						me.velocity.x = -5 / 4.25f;
 					}
 				}
-				rayLength = hit.distance;
+				rayLength = playerHit.distance;
 				collisions.left = directionX == -1;
 				collisions.right = directionX == 1;
-				if (Mathf.Abs(enemy.velocity.x) < Mathf.Abs(velocity.x) && !enemy.IsDead()) {
-					enemy.controller.Move(new Vector3(velocity.x,0,0));
+				Vector3 temp = enemy.velocity * Time.deltaTime;
+				if (Mathf.Abs (enemy.velocity.x) < Mathf.Abs (velocity.x) && !enemy.IsDead () && !enemy.GetComponent<Controller2D> ().HorizonatalCollisions (ref temp)) {
+					enemy.controller.Move (new Vector3 (velocity.x, 0, 0));
+					break;
+				} else if (enemy.GetComponent<Controller2D> ().HorizonatalCollisions (ref temp)) {
+					print ("wall");					
 					break;
 				}
 
 
 			}
 		}
+		return wall;
 	}
 
 	//Vertical Collisions Are Very Similar to Horizontal
