@@ -3,6 +3,7 @@
 # =============== #
 Temp/
 Library/
+Library/metadata/
 *.meta
 *.metadata
 
