@@ -4,85 +4,78 @@ size: 128,32
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-Art/Weapons/AssaultRifle
-  rotate: false
-  xy: 2, 18
-  size: 36, 11
-  orig: 36, 11
-  offset: 0, 0
-  index: -1
 Cow Components/CowBiceps
   rotate: false
-  xy: 82, 18
+  xy: 60, 15
   size: 12, 11
   orig: 12, 11
   offset: 0, 0
   index: -1
 Cow Components/CowForearm
   rotate: false
-  xy: 114, 21
+  xy: 112, 18
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 Cow Components/CowHand
   rotate: false
-  xy: 107, 16
+  xy: 122, 22
   size: 4, 4
   orig: 4, 4
   offset: 0, 0
   index: -1
 Cow Components/CowHead
   rotate: false
-  xy: 40, 16
+  xy: 18, 13
   size: 20, 13
   orig: 20, 13
   offset: 0, 0
   index: -1
 Cow Components/CowHoof
-  rotate: true
-  xy: 35, 11
+  rotate: false
+  xy: 74, 16
   size: 5, 3
   orig: 5, 3
   offset: 0, 0
   index: -1
 Cow Components/CowJaw
-  rotate: true
-  xy: 28, 2
+  rotate: false
+  xy: 74, 21
   size: 14, 5
   orig: 14, 5
   offset: 0, 0
   index: -1
 Cow Components/CowLowerLeg
   rotate: true
-  xy: 96, 14
+  xy: 90, 20
   size: 6, 9
   orig: 6, 9
   offset: 0, 0
   index: -1
 Cow Components/CowNeck
   rotate: false
-  xy: 40, 8
+  xy: 101, 20
   size: 9, 6
   orig: 9, 6
   offset: 0, 0
   index: -1
 Cow Components/CowTail
   rotate: true
-  xy: 96, 22
+  xy: 18, 4
   size: 7, 16
   orig: 7, 16
   offset: 0, 0
   index: -1
 Cow Components/CowThigh
   rotate: true
-  xy: 62, 17
+  xy: 40, 14
   size: 12, 18
   orig: 12, 18
   offset: 0, 0
   index: -1
 Cow Components/CowTorsoUdder
-  rotate: true
+  rotate: false
   xy: 2, 2
   size: 14, 24
   orig: 14, 24
