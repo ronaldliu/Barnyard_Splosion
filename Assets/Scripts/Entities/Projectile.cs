@@ -64,12 +64,14 @@ public class Projectile : RaycastController {
 					Player enemy = hit.transform.GetComponent<Player> (); //Create Player Dictionary
 					enemy.health -= 10;
 					enemy.velocity = shootdir;
-				} else if ((collisionMask.value & 1 << collisionLayer) == 0) {
+
+				} else if ((collisionMask.value & 1 << collisionLayer) != 0) {
 					//Ricochette? 
 					print("x " + shootdir.x +"y " + shootdir.y +"z " + shootdir.z );
-					//shootdir = Vector3.Reflect(shootdir,Vector3.back);
+					//shootdir = Vector3.Reflect(shootdir,hit.normal);
 				}
 				Destroy (gameObject);
+
 			}
 			hitSomething = true;
 		}

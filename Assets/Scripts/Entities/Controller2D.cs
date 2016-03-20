@@ -68,7 +68,6 @@ public class Controller2D : RaycastController{
 
 			//Raycast Detection of Collisions with only collisionMask Layer being considered
 			RaycastHit2D hit = Physics2D.Raycast (rayOrigin, Vector2.right * directionX, rayLength, collisionMask); 
-			RaycastHit2D playerHit = Physics2D.Raycast (rayOrigin, Vector2.right * directionX, rayLength, fightingMask); 
 
 			Debug.DrawRay (rayOrigin, Vector2.right * directionX * rayLength, Color.red); //Draw Red Lines in Scene for Debuging Purposes
 
@@ -115,30 +114,7 @@ public class Controller2D : RaycastController{
 					collisions.left = directionX == -1;
 					collisions.right = directionX == 1;
 				}
-			} else if (playerHit) {
-				Player enemy = playerHit.transform.GetComponent<Player> ();
-				//velocity.x = (hit.distance - skinWidth) * directionX;
-				if (playerHit.distance == 0 && false) {
-					if ((me.transform.position.x - enemy.transform.position.y) > 0) {
-						me.velocity.x = 5 / 4.25f;
-					} else if ((me.transform.position.x - enemy.transform.position.y) <= 0) {
-						me.velocity.x = -5 / 4.25f;
-					}
-				}
-				rayLength = playerHit.distance;
-				collisions.left = directionX == -1;
-				collisions.right = directionX == 1;
-				Vector3 temp = velocity * Time.deltaTime;
-				if (Mathf.Abs (enemy.velocity.x) < Mathf.Abs (velocity.x) && !enemy.IsDead () && !enemy.GetComponent<Controller2D> ().HorizonatalCollisions (ref temp)) {
-					enemy.controller.Move (new Vector3 (velocity.x, 0, 0));
-					break;
-				} else if (enemy.GetComponent<Controller2D> ().HorizonatalCollisions (ref temp)) {
-					print ("wall");					
-					break;
-				}
-
-
-			}
+			} 
 		}
 		return wall;
 	}

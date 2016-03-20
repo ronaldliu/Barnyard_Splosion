@@ -127,7 +127,9 @@ public class Player : MonoBehaviour {
                 anim.state.SetAnimation(2, "Jump", false);
             }
 			//Hit/Fire Weapon
-		
+			if (weaponInHand) {
+				holding.AlignItem ();
+			}
 			if (Input.GetButtonDown ("Fire_" + player) && !weaponInHand) {
 				//Add Weapon Fire Support Here
 				anim.state.SetAnimation (3, "Poke", false);
@@ -193,10 +195,8 @@ public class Player : MonoBehaviour {
 		if (! new Vector2 (Input.GetAxisRaw ("AimH_" + player), Input.GetAxisRaw ("AimV_" + player)).Equals(Vector2.zero)) {
 			holding.velocity = new Vector3 (aimAngle == 90 || aimAngle == 270 ? 0 :
 				(Mathf.Abs (Mathf.Cos (aimAngle)) * facing), Mathf.Sin (aimAngle), 0)*5;
-			//print (holding.velocity);
 		}
 		boxCollider.size = new Vector2 (.23f, .55f);
-
 		skeleton.FindSlot ("WeaponImage").Attachment = null;
 		holding.PlayerDrop();
 		holding = null;
@@ -204,7 +204,8 @@ public class Player : MonoBehaviour {
 	}
 	public void PickUpItem(Item item){
 		anim.state.ClearTrack (3);
-		boxCollider.size = new Vector2 (.45f, .55f);
+		boxCollider.size = new Vector2 (.45f, .55f);		
+		boxCollider.offset = new Vector2 (0, 0);
 		holding = item;
 		image = item.childTransform.GetComponent<SpriteRenderer> ().sprite;
 		skelRend.skeleton.AttachUnitySprite ("WeaponImage", image,"Sprites/Default");

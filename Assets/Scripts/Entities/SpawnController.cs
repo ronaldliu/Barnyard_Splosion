@@ -18,9 +18,9 @@ public class SpawnController : MonoBehaviour {
 	void SpawnWeapon()
 	{
 		Vector3 spawnPosition = new Vector3(transform.position.x, transform.position.y + spawnHeight, transform.position.z);
-		//if (random)
-			//Instantiate(weapon[Random.Range(0, weapon.Length)], spawnPosition, Quaternion.identity);
-		//else
-			//Instantiate (weapon[choice], spawnPosition, Quaternion.identity);
+		if (random)
+			Instantiate(weapon[Random.Range(0, weapon.Length)], spawnPosition, Quaternion.identity);
+		else
+			Instantiate (weapon[choice], spawnPosition, Quaternion.identity);
 	}
 }

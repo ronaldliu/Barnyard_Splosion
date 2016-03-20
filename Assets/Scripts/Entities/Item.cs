@@ -22,7 +22,7 @@ public class Item : RaycastController {
 	}
 	void Update(){
 		if (held) {
-			AlignItem();
+			//AlignItem();
 		} else {
 			if (itemCollisions.above || itemCollisions.below) { 		
 				velocity = Vector3.zero;
