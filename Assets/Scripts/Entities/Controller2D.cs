@@ -128,7 +128,7 @@ public class Controller2D : RaycastController{
 				rayLength = playerHit.distance;
 				collisions.left = directionX == -1;
 				collisions.right = directionX == 1;
-				Vector3 temp = enemy.velocity * Time.deltaTime;
+				Vector3 temp = velocity * Time.deltaTime;
 				if (Mathf.Abs (enemy.velocity.x) < Mathf.Abs (velocity.x) && !enemy.IsDead () && !enemy.GetComponent<Controller2D> ().HorizonatalCollisions (ref temp)) {
 					enemy.controller.Move (new Vector3 (velocity.x, 0, 0));
 					break;
