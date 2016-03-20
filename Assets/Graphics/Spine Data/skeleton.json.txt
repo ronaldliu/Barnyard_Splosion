@@ -1,26 +1,26 @@
 {
-"skeleton": { "hash": "3NmH4SU+ySdbLR5NHJqfgW+q04Y", "spine": "3.0.08", "width": 42.97, "height": 54.99, "images": "" },
+"skeleton": { "hash": "8Pgzy+JPotwa5hUGGiHSD+XZnog", "spine": "3.1.02", "width": 24.5, "height": 54.99, "images": "" },
 "bones": [
 	{ "name": "root" },
 	{ "name": "Hip", "parent": "root", "x": -2.96, "y": -3.59 },
 	{ "name": "Spine", "parent": "Hip", "length": 15.75, "x": -0.62, "y": 0.85, "rotation": 90.28 },
-	{ "name": "Tail", "parent": "Spine", "length": 13.08, "x": 0.35, "y": 2.11, "rotation": 152.94 },
-	{ "name": "RShoulder", "parent": "Spine", "length": 9, "x": 15.24, "y": 1.33, "rotation": 222.43 },
-	{ "name": "RForearm", "parent": "RShoulder", "length": 7.5, "x": 8.84, "rotation": 98.05 },
-	{ "name": "RHand", "parent": "RForearm", "length": 2.7, "x": 7.8, "y": -0.07, "rotation": 16.15 },
-	{ "name": "Weapon", "parent": "RHand", "length": 0.6, "x": -1.38, "y": -0.34, "rotation": 65.02 },
 	{ "name": "Neck", "parent": "Spine", "length": 4.85, "x": 16.61, "y": 0.09, "rotation": 0.89 },
 	{ "name": "Skull", "parent": "Neck", "length": 5.54, "x": 6.43, "y": 0.16, "rotation": -2.18 },
 	{ "name": "Jaw", "parent": "Skull", "length": 7.03, "x": -2.2, "y": -4.39, "rotation": -91.41 },
+	{ "name": "LLeg", "parent": "Hip", "length": 14.41, "x": 0.96, "y": -1.4, "rotation": 294.79 },
+	{ "name": "LShin", "parent": "LLeg", "length": 6.36, "x": 14.31, "rotation": 320.79 },
+	{ "name": "LFoot", "parent": "LShin", "length": 2.42, "x": 6.66, "y": 0.16, "rotation": 372.6 },
 	{ "name": "LShoulder", "parent": "Spine", "length": 9, "x": 15.22, "y": -1.66, "rotation": 222.43 },
 	{ "name": "LForearm", "parent": "LShoulder", "length": 7.5, "x": 8.84, "rotation": 98.05 },
 	{ "name": "LHand", "parent": "LForearm", "length": 2.56, "x": 7.8, "y": -0.07, "rotation": 16.15 },
 	{ "name": "RLeg", "parent": "Hip", "length": 14.41, "x": -2.03, "y": -1.4, "rotation": 294.79 },
 	{ "name": "RShin", "parent": "RLeg", "length": 6.36, "x": 14.31, "rotation": 320.79 },
 	{ "name": "RFoot", "parent": "RShin", "length": 2.42, "x": 6.66, "y": 0.16, "rotation": 372.6 },
-	{ "name": "LLeg", "parent": "Hip", "length": 14.41, "x": 0.96, "y": -1.4, "rotation": 294.79 },
-	{ "name": "LShin", "parent": "LLeg", "length": 6.36, "x": 14.31, "rotation": 320.79 },
-	{ "name": "LFoot", "parent": "LShin", "length": 2.42, "x": 6.66, "y": 0.16, "rotation": 372.6 }
+	{ "name": "RShoulder", "parent": "Spine", "length": 9, "x": 15.24, "y": 1.33, "rotation": 222.43 },
+	{ "name": "RForearm", "parent": "RShoulder", "length": 7.5, "x": 8.84, "rotation": 98.05 },
+	{ "name": "RHand", "parent": "RForearm", "length": 2.7, "x": 7.8, "y": -0.07, "rotation": 16.15 },
+	{ "name": "Tail", "parent": "Spine", "length": 13.08, "x": 0.35, "y": 2.11, "rotation": 152.94 },
+	{ "name": "Weapon", "parent": "RHand", "length": 0.6, "x": -1.38, "y": -0.34, "rotation": 65.02 }
 ],
 "slots": [
 	{ "name": "CowFull", "bone": "root" },
@@ -38,10 +38,12 @@
 	{ "name": "RShin", "bone": "RShin", "attachment": "Cow Components/CowLowerLeg" },
 	{ "name": "RFoot", "bone": "RFoot", "attachment": "Cow Components/CowHoof" },
 	{ "name": "RThigh", "bone": "RLeg", "attachment": "Cow Components/CowThigh" },
-	{ "name": "WeaponImage", "bone": "Weapon", "attachment": "Art/Weapons/AssaultRifle" },
+	{ "name": "WeaponImage", "bone": "Weapon" },
 	{ "name": "RArm", "bone": "RForearm", "attachment": "Cow Components/CowForearm" },
 	{ "name": "RHand", "bone": "RHand", "attachment": "Cow Components/CowHand" },
-	{ "name": "RBicep", "bone": "RShoulder", "attachment": "Cow Components/CowBiceps" }
+	{ "name": "RBicep", "bone": "RShoulder", "attachment": "Cow Components/CowBiceps" },
+	{ "name": "BackItem", "bone": "Spine" },
+	{ "name": "ShirtSlot", "bone": "Spine" }
 ],
 "skins": {
 	"default": {
@@ -95,9 +97,6 @@
 		},
 		"TorsoUdder": {
 			"Cow Components/CowTorsoUdder": { "x": 6.22, "y": -2.11, "rotation": -91.17, "width": 14, "height": 24 }
-		},
-		"WeaponImage": {
-			"Art/Weapons/AssaultRifle": { "x": -3.8, "y": -4.22, "rotation": -131.95, "width": 36, "height": 11 }
 		}
 	}
 },
@@ -251,10 +250,10 @@
 			},
 			"Weapon": {
 				"rotate": [
-					{ "time": 0, "angle": 35.68 }
+					{ "time": 0, "angle": 35.87 }
 				],
 				"translate": [
-					{ "time": 0, "x": 2.07, "y": 2.4 }
+					{ "time": 0, "x": 4.81, "y": -0.98 }
 				]
 			}
 		}
@@ -466,6 +465,11 @@
 					{ "time": 0.6666, "x": 0, "y": 0.3 },
 					{ "time": 0.9333, "x": 0, "y": 0.9 }
 				]
+			},
+			"Spine": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				]
 			}
 		}
 	},
@@ -522,6 +526,11 @@
 					{ "time": 0.3333, "x": 0, "y": -0.06 },
 					{ "time": 0.4, "x": 0, "y": 1.35 },
 					{ "time": 0.4666, "x": 0, "y": 1.19 }
+				]
+			},
+			"Spine": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
 				]
 			}
 		}

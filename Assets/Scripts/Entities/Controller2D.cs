@@ -127,8 +127,8 @@ public class Controller2D : RaycastController{
 				collisions.left = directionX == -1;
 				collisions.right = directionX == 1;
 				if (Mathf.Abs(enemy.velocity.x) < Mathf.Abs(velocity.x) && !enemy.IsDead()) {
-					//enemy.controller.Move(new Vector3(velocity.x,0,0));
-					//break;
+					enemy.controller.Move(new Vector3(velocity.x,0,0));
+					break;
 				}
 
 
