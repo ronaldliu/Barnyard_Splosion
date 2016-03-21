@@ -78,7 +78,7 @@ public class Controller2D : RaycastController{
 				if (hit.distance == 0 && collisionLayer == LayerMask.NameToLayer ("Obsticle")) {
 					me.velocity.x = 10 / 4.25f * me.facing;
 				}
-				if (hit.distance == 0 && (LayerMask.NameToLayer ("Platforms") == collisionLayer)) { //if inside of object allow player to move freely
+				if (LayerMask.NameToLayer ("Platforms") == collisionLayer) { //if inside of object allow player to move freely
 					continue;
 				}
 
@@ -141,7 +141,8 @@ public class Controller2D : RaycastController{
 					collisions.droppable = false;
 
 				}
-				if (directionY > 0 && LayerMask.NameToLayer ("Platforms") == collisionLayer) {
+				if ((directionY > 0 && LayerMask.NameToLayer ("Platforms") == collisionLayer) ||
+					(LayerMask.NameToLayer ("Platforms") == collisionLayer && hit.distance ==0)) {
 					continue;
 				}
 

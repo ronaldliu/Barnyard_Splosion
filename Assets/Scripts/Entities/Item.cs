@@ -24,7 +24,7 @@ public class Item : RaycastController {
 		if (held) {
 			//AlignItem();
 		} else {
-			if (itemCollisions.above || itemCollisions.below) { 		
+			if (itemCollisions.above || itemCollisions.below) {
 				velocity = Vector3.zero;
 				rotate = false;
 				itemCollisions.previousTime = Time.time;
@@ -89,9 +89,9 @@ public class Item : RaycastController {
 		if (rotate) {
 			childTransform.Rotate (0, 0, 10);
 		} else if ((current > 0.1f && current < 60) || (current > 90.1f && current <= 120) || (current > 180.1f && current < 270)) {
-			childTransform.Rotate (0, 0, -5*facing);
+			childTransform.Rotate (0, 0, -5 * facing);
 		} else if ((current >= 60 && current < 89.9f) || (current >120&& current < 179.9f) || (current >= 270 && current < 359.9f)) {
-			childTransform.Rotate (0, 0, 5*facing);
+			childTransform.Rotate (0, 0, 5 * facing);
 		}
 	}
 	public virtual void AlignItem(){
@@ -126,7 +126,7 @@ public class Item : RaycastController {
 			if (hit) { //Case Ray Hits Considered Target
 				int collisionLayer = hit.transform.gameObject.layer;
 
-				if ((LayerMask.NameToLayer ("Platforms") == collisionLayer)) { //if inside of object allow player to move freely
+				if (LayerMask.NameToLayer ("Platforms") == collisionLayer) { //if inside of object allow player to move freely
 					continue;
 				}
 				this.velocity.x *= - 1;
@@ -184,10 +184,9 @@ public class Item : RaycastController {
 					continue;
 				}
 
-				if (collisionLayer == LayerMask.NameToLayer ("Platforms") || directionY == -1) {
+				if (directionY == -1) {
 					velocity.y = (hit.distance - skinWidth) * directionY;
 					rayLength = hit.distance;
-					//print ("Hit " + LayerMask.LayerToName(collisionLayer));
 				}
 
 

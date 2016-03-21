@@ -20,7 +20,7 @@ public class Player : MonoBehaviour {
 	public float aimAngle;
 	[HideInInspector]
 	public bool weaponInHand = false;
-
+	public bool arms = true;
 	public float facing = 1;
 	public float gravity;
 	[HideInInspector]
@@ -96,9 +96,10 @@ public class Player : MonoBehaviour {
 			if(input.x != 0 && Mathf.Abs(aimer.x) < .1f) {
 				facing = Mathf.Sign (input.x);
 			}
-			arm.rotation = Mathf.Rad2Deg * (aimAngle) - 150; 
-			backArm.rotation = Mathf.Rad2Deg * (aimAngle) - 150; 
-
+			if (arms) {
+				arm.rotation = Mathf.Rad2Deg * (aimAngle) - 150; 
+				backArm.rotation = Mathf.Rad2Deg * (aimAngle) - 150; 
+			}
 			weap.rotation = -55; 
 			//character.transform.localScale = new Vector3 (facing  , 1, 0);
 			skeleton.flipX = facing < 0;

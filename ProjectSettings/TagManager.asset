@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Map
+  - Item
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - Dead
   - Platforms
   - Item
-  - 
+  - ItemHolder
   - 
   - 
   - 

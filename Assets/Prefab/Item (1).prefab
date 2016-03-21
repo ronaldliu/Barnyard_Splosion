@@ -116,12 +116,12 @@ MonoBehaviour:
   pickUpRayCount: 3
   collisionMask:
     serializedVersion: 2
-    m_Bits: 33024
+    m_Bits: 164096
   horizontalRaySpacing: 0
   verticalRaySpacing: 0
   pickUpRaySpacing: 0
   collider: {fileID: 6104698}
-  held: 1
+  held: 0
   holdingMe: {fileID: 0}
   fightingMask:
     serializedVersion: 2
