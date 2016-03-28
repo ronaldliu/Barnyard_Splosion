@@ -256,18 +256,19 @@ public class Controller2D : RaycastController{
 		}
 
 		//Item Pick Up
-
 		for (int i = 0; i <  pickUpRayCount; i++) {
-			rayOrigin = (directionX == -1) ? raycastOrigins.bottomLeft : raycastOrigins.bottomRight;
+			rayOrigin = raycastOrigins.bottomMiddle;
 			rayOrigin += Vector2.up * (pickUpRaySpacing * i);
 
-			hit = Physics2D.Raycast (rayOrigin, Vector2.right * directionX, rayLength, pickUpMask); 
+			hit = Physics2D.Raycast (rayOrigin, Vector2.right * directionX, rayLength, pickUpMask);
+			RaycastHit2D hit2 = Physics2D.Raycast (rayOrigin, Vector2.right * -directionX, rayLength, pickUpMask); 
 
 			Debug.DrawRay (rayOrigin, Vector2.right * directionX * rayLength, Color.black); //Draw Red Lines in Scene for Debuging Purposes
+			Debug.DrawRay (rayOrigin, Vector2.right * -directionX * rayLength, Color.black); //Draw Red Lines in Scene for Debuging Purposes
 
-			if (hit) { //Case Ray Hits Considered Target
+			if (hit||hit2) { //Case Ray Hits Considered Target
 				print("h");
-				Item item = hit.transform.GetComponentInParent<Item>();
+				Item item = hit ? hit.transform.GetComponentInParent<Item>() : hit2.transform.GetComponentInParent<Item>();
 				if (!item.held && !me.weaponInHand) {
 					me.PickUpItem (item);
 					item.CatchPlayer (me);

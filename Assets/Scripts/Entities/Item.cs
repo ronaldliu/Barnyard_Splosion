@@ -11,7 +11,7 @@ public class Item : RaycastController {
 	Vector2 aim;
 	public Vector3 velocity;
 	public float gravity = -10;
-	SimpleCollision itemCollisions;
+	public SimpleCollision itemCollisions;
 	public Transform childTransform;
 	bool rotate = true;
 	void Awake () {

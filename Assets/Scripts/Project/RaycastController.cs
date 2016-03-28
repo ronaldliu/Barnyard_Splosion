@@ -12,7 +12,7 @@ public class RaycastController : MonoBehaviour {
 	public RaycastOrigins raycastOrigins; 	//Struct for storing Raycast Data
 
 	//Non-Editor Customizable, but Still Visible from Other Classes
-	[HideInInspector]
+
 	public float horizontalRaySpacing;	
 	[HideInInspector]
 	public float verticalRaySpacing;
@@ -40,6 +40,7 @@ public class RaycastController : MonoBehaviour {
 		raycastOrigins.topRight= new Vector2 (bounds.max.x, bounds.max.y);
 		raycastOrigins.fistRight= new Vector2 (bounds.max.x, (bounds.max.y - (bounds.max.y -bounds.min.y)/3.65f));
 		raycastOrigins.fistLeft= new Vector2 (bounds.min.x, (bounds.max.y - (bounds.max.y -bounds.min.y)/3.65f));
+		raycastOrigins.bottomMiddle = new Vector2 ((bounds.max.x + bounds.min.x)/2, bounds.min.y);
 
 
 	}
@@ -63,5 +64,6 @@ public class RaycastController : MonoBehaviour {
 		public Vector2 topLeft,topRight;
 		public Vector2 bottomLeft,bottomRight;
 		public Vector2 fistRight,fistLeft;
+		public Vector2 bottomMiddle;
 	}
 }
