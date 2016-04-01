@@ -148,7 +148,7 @@ public class Player : MonoBehaviour {
 					animReset = false;
 					anim.state.ClearTrack(1);
 
-                    anim.state.SetAnimation(1, "animation", true);
+                    anim.state.SetAnimation(1, "Walking", true);
                 }
 			} else {
 
