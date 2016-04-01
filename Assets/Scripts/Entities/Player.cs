@@ -107,15 +107,7 @@ public class Player : MonoBehaviour {
 			Debug.DrawRay(character.transform.position,new Vector3(aimAngle == 90 || aimAngle == 270 ? 0  :
 				(Mathf.Abs(Mathf.Cos(aimAngle))*facing),Mathf.Sin(aimAngle), 0) * .5f,Color.cyan);
 			
-			if (input.y < -0.5f && Mathf.Abs (input.x) < 0.05f) {
-				//anim.state.SetAnimation(2, "Crouch", false);
-				if (crouchTap.TapCheck () && !crouchTap.activeDTap) {
-					controller.FallThrough ();
-					crouchTap.activeDTap = true;
-				}
-			} else {
-				crouchTap.Reset ();
-			}
+
 
 			//Jump Velocity
 			if ((Input.GetButtonDown ("Jump_" + player)|| Input.GetAxisRaw ("Vertical_" + player) > .85f)&& controller.collisions.below) {
@@ -154,16 +146,29 @@ public class Player : MonoBehaviour {
 				if (animReset)
                 {
 					animReset = false;
+					anim.state.ClearTrack(1);
+
                     anim.state.SetAnimation(1, "animation", true);
                 }
 			} else {
+
 				anim.state.SetAnimation (1, "Standing", true);
 				anim.state.ClearTrack(1);
 
                 //Reset the walk animation
                 animReset = true;
 			}
-		
+			if (input.y < -0.5f && Mathf.Abs (input.x) < 0.05f) {
+				anim.state.ClearTrack(1);
+
+				anim.state.SetAnimation(1, "Crouch", true);
+				if (crouchTap.TapCheck () && !crouchTap.activeDTap) {
+					controller.FallThrough ();
+					crouchTap.activeDTap = true;
+				}
+			} else {
+				crouchTap.Reset ();
+			}
 		
 		} else {
 			if (!dead) { 
