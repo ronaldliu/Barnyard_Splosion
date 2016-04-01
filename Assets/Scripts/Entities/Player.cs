@@ -146,9 +146,15 @@ public class Player : MonoBehaviour {
 						animReset = false;
 						anim.state.ClearTrack (1);
 
+<<<<<<< HEAD
 						anim.state.SetAnimation (1, "animation", true);
 					}
 				} else {
+=======
+                    anim.state.SetAnimation(1, "Walking", true);
+                }
+			} else {
+>>>>>>> 3b92a781526ed1c15127aa97538c4cc30672a294
 
 					anim.state.SetAnimation (1, "Standing", true);
 					anim.state.ClearTrack (1);
