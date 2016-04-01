@@ -4,7 +4,7 @@ using System.Collections;
 public class GameHandler: MonoBehaviour {
 	public GameObject yes;
 	public CameraBox cam;
-	public float timeLimit;
+	public float timeLimit = 5;
 	public Font myfont;
 	// Use this for initialization
 	void Start () {
@@ -27,11 +27,12 @@ public class GameHandler: MonoBehaviour {
 		} else {
 			GUI.Label (new Rect (300, 10, 200, 1000), "00:00");
 			GUI.Label (new Rect (300,500, 200, 1000), "Match End");
-			new WaitForSeconds(10);
+			//new WaitForSeconds(10);
 			InitiateGameOver ();
 		}
 	}
 	void InitiateGameOver(){
-		//Make canvas visible with winner
+		GameObject.Find ("GameState").GetComponent<UnityEngine.UI.Text> ().text = "Match End";
+
 	}
 }

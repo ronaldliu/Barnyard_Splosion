@@ -29,6 +29,8 @@ public class Player : MonoBehaviour {
 	float velocityXSmoothing;
 	[HideInInspector]
 	public BoxCollider2D boxCollider;
+	[HideInInspector] 
+	public int killCount = 0;
 
 	//Class References
 	SkeletonAnimation anim;
@@ -101,9 +103,7 @@ public class Player : MonoBehaviour {
 					backArm.rotation = Mathf.Rad2Deg * (aimAngle) - 150; 
 				}
 				weap.rotation = -55; 
-				//character.transform.localScale = new Vector3 (facing  , 1, 0);
 				skeleton.flipX = facing < 0;
-				//character.transform.localScale = new Vector3 (facing * 4.75f , 4.75f, 0);
 				Debug.DrawRay (character.transform.position, new Vector3 (aimAngle == 90 || aimAngle == 270 ? 0 :
 				(Mathf.Abs (Mathf.Cos (aimAngle)) * facing), Mathf.Sin (aimAngle), 0) * .5f, Color.cyan);
 			
@@ -145,16 +145,9 @@ public class Player : MonoBehaviour {
 					if (animReset) {
 						animReset = false;
 						anim.state.ClearTrack (1);
-
-<<<<<<< HEAD
-						anim.state.SetAnimation (1, "animation", true);
-					}
+                   		anim.state.SetAnimation(1, "Walking", true);
+                	}
 				} else {
-=======
-                    anim.state.SetAnimation(1, "Walking", true);
-                }
-			} else {
->>>>>>> 3b92a781526ed1c15127aa97538c4cc30672a294
 
 					anim.state.SetAnimation (1, "Standing", true);
 					anim.state.ClearTrack (1);
