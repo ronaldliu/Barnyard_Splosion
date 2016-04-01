@@ -74,109 +74,107 @@ public class Player : MonoBehaviour {
 		if (controller.collisions.above || controller.collisions.below) { 		
 			velocity.y = 0;
 		}
-
-		if (!IsDead ()) {
-			aimAngle = 0;
-			if (!aimer.Equals (Vector2.zero)) {
-				if (Mathf.Abs(aimer.x) < 0.1f) {
-					if (Mathf.Sign (aimer.y) == -1) {
-						aimAngle = 270 * Mathf.Deg2Rad;
+		if (Time.timeScale != 0) {
+			if (!IsDead ()) {
+				aimAngle = 0;
+				if (!aimer.Equals (Vector2.zero)) {
+					if (Mathf.Abs (aimer.x) < 0.1f) {
+						if (Mathf.Sign (aimer.y) == -1) {
+							aimAngle = 270 * Mathf.Deg2Rad;
+						} else {
+							aimAngle = 90 * Mathf.Deg2Rad;
+						}
+					} else if (aimer.y == 0) {
+						facing = Mathf.Sign (aimer.x);
 					} else {
-						aimAngle = 90 * Mathf.Deg2Rad;
+						aimAngle = Mathf.Atan2 (aimer.y, Mathf.Abs (aimer.x));
+						facing = Mathf.Sign (aimer.x);
 					}
-				} else if (aimer.y == 0) {
-					facing = Mathf.Sign (aimer.x);
-				} else {
-					aimAngle = Mathf.Atan2(aimer.y, Mathf.Abs(aimer.x));
-					facing = Mathf.Sign (aimer.x);
 				}
-			}
 
-			//Sprite Direction
-			if(input.x != 0 && Mathf.Abs(aimer.x) < .1f) {
-				facing = Mathf.Sign (input.x);
-			}
-			if (arms) {
-				arm.rotation = Mathf.Rad2Deg * (aimAngle) - 150; 
-				backArm.rotation = Mathf.Rad2Deg * (aimAngle) - 150; 
-			}
-			weap.rotation = -55; 
-			//character.transform.localScale = new Vector3 (facing  , 1, 0);
-			skeleton.flipX = facing < 0;
-			//character.transform.localScale = new Vector3 (facing * 4.75f , 4.75f, 0);
-			Debug.DrawRay(character.transform.position,new Vector3(aimAngle == 90 || aimAngle == 270 ? 0  :
-				(Mathf.Abs(Mathf.Cos(aimAngle))*facing),Mathf.Sin(aimAngle), 0) * .5f,Color.cyan);
+				//Sprite Direction
+				if (input.x != 0 && Mathf.Abs (aimer.x) < .1f) {
+					facing = Mathf.Sign (input.x);
+				}
+				if (arms) {
+					arm.rotation = Mathf.Rad2Deg * (aimAngle) - 150; 
+					backArm.rotation = Mathf.Rad2Deg * (aimAngle) - 150; 
+				}
+				weap.rotation = -55; 
+				//character.transform.localScale = new Vector3 (facing  , 1, 0);
+				skeleton.flipX = facing < 0;
+				//character.transform.localScale = new Vector3 (facing * 4.75f , 4.75f, 0);
+				Debug.DrawRay (character.transform.position, new Vector3 (aimAngle == 90 || aimAngle == 270 ? 0 :
+				(Mathf.Abs (Mathf.Cos (aimAngle)) * facing), Mathf.Sin (aimAngle), 0) * .5f, Color.cyan);
 			
 
 
-			//Jump Velocity
-			if ((Input.GetButtonDown ("Jump_" + player)|| Input.GetAxisRaw ("Vertical_" + player) > .85f)&& controller.collisions.below) {
-				velocity.y = jumpVelocity;
-			}
-
-            //jump Animation
-            if(velocity.y != 0)
-            {
-                anim.state.SetAnimation(2, "Jump", false);
-            }
-			//Hit/Fire Weapon
-			if (weaponInHand) {
-				holding.AlignItem ();
-			}
-			if (Input.GetButtonDown ("Fire_" + player) && !weaponInHand) {
-				//Add Weapon Fire Support Here
-				anim.state.SetAnimation (3, "Poke", false);
-				controller.Punch (facing);
-			} else if ((Input.GetButton ("Fire_" + player) || Input.GetAxisRaw ("Fire_" + player) > .25f) && weaponInHand && !shotLock) {
-				holding.Fire ();
-			} else if (Input.GetButtonUp ("Fire_" + player) && Input.GetAxisRaw ("Fire_" + player) < .25f) {
-				shotLock = false;
-			}
-			//Drop Weapon
-			if (Input.GetButtonDown ("Drop_" + player) && weaponInHand) {
-				DropItem();
-			}
-			//Horizontal Velocity Smoothing
-
-			float targetVelocityX = input.x * moveSpeed;
-			velocity.x = Mathf.SmoothDamp (velocity.x, targetVelocityX, ref velocityXSmoothing,
-				(controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
-
-			if (targetVelocityX != 0) {
-				if (animReset)
-                {
-					animReset = false;
-					anim.state.ClearTrack(1);
-
-                    anim.state.SetAnimation(1, "animation", true);
-                }
-			} else {
-
-				anim.state.SetAnimation (1, "Standing", true);
-				anim.state.ClearTrack(1);
-
-                //Reset the walk animation
-                animReset = true;
-			}
-			if (input.y < -0.5f && Mathf.Abs (input.x) < 0.05f) {
-				anim.state.ClearTrack(1);
-
-				anim.state.SetAnimation(1, "Crouch", true);
-				if (crouchTap.TapCheck () && !crouchTap.activeDTap) {
-					controller.FallThrough ();
-					crouchTap.activeDTap = true;
+				//Jump Velocity
+				if ((Input.GetButtonDown ("Jump_" + player) || Input.GetAxisRaw ("Vertical_" + player) > .85f) && controller.collisions.below) {
+					velocity.y = jumpVelocity;
 				}
-			} else {
-				crouchTap.Reset ();
-			}
-		
-		} else {
-			if (!dead) { 
-				Death ();
-			}
-			velocity.x = Mathf.SmoothDamp (velocity.x, 0, ref velocityXSmoothing, 0.05f);
-		}
 
+				//jump Animation
+				if (velocity.y != 0) {
+					anim.state.SetAnimation (2, "Jump", false);
+				}
+				//Hit/Fire Weapon
+				if (weaponInHand) {
+					holding.AlignItem ();
+				}
+				if (Input.GetButtonDown ("Fire_" + player) && !weaponInHand) {
+					//Add Weapon Fire Support Here
+					anim.state.SetAnimation (3, "Poke", false);
+					controller.Punch (facing);
+				} else if ((Input.GetButton ("Fire_" + player) || Input.GetAxisRaw ("Fire_" + player) > .25f) && weaponInHand && !shotLock) {
+					holding.Fire ();
+				} else if (Input.GetButtonUp ("Fire_" + player) && Input.GetAxisRaw ("Fire_" + player) < .25f) {
+					shotLock = false;
+				}
+				//Drop Weapon
+				if (Input.GetButtonDown ("Drop_" + player) && weaponInHand) {
+					DropItem ();
+				}
+				//Horizontal Velocity Smoothing
+
+				float targetVelocityX = input.x * moveSpeed;
+				velocity.x = Mathf.SmoothDamp (velocity.x, targetVelocityX, ref velocityXSmoothing,
+					(controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
+
+				if (targetVelocityX != 0) {
+					if (animReset) {
+						animReset = false;
+						anim.state.ClearTrack (1);
+
+						anim.state.SetAnimation (1, "animation", true);
+					}
+				} else {
+
+					anim.state.SetAnimation (1, "Standing", true);
+					anim.state.ClearTrack (1);
+
+					//Reset the walk animation
+					animReset = true;
+				}
+				if (input.y < -0.5f && Mathf.Abs (input.x) < 0.05f) {
+					anim.state.ClearTrack (1);
+
+					anim.state.SetAnimation (1, "Crouch", true);
+					if (crouchTap.TapCheck () && !crouchTap.activeDTap) {
+						controller.FallThrough ();
+						crouchTap.activeDTap = true;
+					}
+				} else {
+					crouchTap.Reset ();
+				}
+		
+			} else {
+				if (!dead) { 
+					Death ();
+				}
+				velocity.x = Mathf.SmoothDamp (velocity.x, 0, ref velocityXSmoothing, 0.05f);
+			}
+		}
 		//Gravity and Move Player for Input
 		velocity.y += gravity * Time.deltaTime;
 		controller.Move (velocity * Time.deltaTime);
