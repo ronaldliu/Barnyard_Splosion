@@ -54,6 +54,7 @@ public class Item : RaycastController {
 	}
 	public void CatchPlayer(Player me){
 		holdingMe = me;
+		childTransform.GetComponent<SpriteRenderer> ().enabled = false;
 		transform.SetParent(holdingMe.transform);
 		fightingMask = me.controller.fightingMask;
 		held = true;
@@ -64,6 +65,8 @@ public class Item : RaycastController {
 		fightingMask = new LayerMask();
 		transform.SetParent (null);
 		held = false;
+		childTransform.GetComponent<SpriteRenderer> ().enabled = true;
+
 		transform.rotation = Quaternion.Euler(0,0,0);
 		childTransform.rotation = Quaternion.Euler(0,0,Mathf.Round(childTransform.rotation.eulerAngles.z/ 5) * 5);
 		//facing = 1;
