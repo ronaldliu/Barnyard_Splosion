@@ -8,47 +8,36 @@ public class CharacterMenu : MonoBehaviour {
 	bool[] accepted;
 	int numControllers;
 	float limiter = 0;
+	bool canInteract = true;
 
 	void Start()
 	{
 		string[] joysticks = Input.GetJoystickNames ();
 		selected = new int[joysticks.Length];
 		numControllers = joysticks.Length;
+		accepted = new bool[] { false, false, false };
 	}
 
 	void Update()
 	{
-		for (int i = 0; i < numControllers; i++) 
-		{
-			if (Time.time > limiter && Input.GetAxisRaw ("Horizontal_P" + (i + 1)) > 0) {
-				limiter = Time.time + 1 / 20;
-				if (current + 1 > characters.Length - 1)
-					current = 0;
-				else
-					current++;
-			} else if (Time.time > limiter && Input.GetAxisRaw ("Horizontal_P" + (i + 1)) < 0) {
-				limiter = Time.time + 1 / 20;
-				if (current - 1 < 0)
-					current = characters.Length - 1;
-				else
-					current--;
-			}
-
-			selected [i] = current;
-
-			if (Input.GetButtonDown ("Jump_P" + (i + 1))) {
-				accepted [i] = true;
+		int input;
+		for (int i = 0; i < numControllers; i++) {
+			input = (int) Input.GetAxisRaw ("Horizontal_P" + (i + 1));
+			if (input != 0 && canInteract) {
+				canInteract = false;
+				StartCoroutine (SelectionChange (input));
 			}
 		}
+	}
 
-		bool allAccept = false;
-		foreach (bool ans in accepted) {
-			if (ans == false)
-				break;
+	IEnumerator SelectionChange(int input)
+	{
+		if (input > 0 && current < characters.Length - 1) {
+			current++;
+		} else if (input < 0 && current > 0) {
+			current--;
 		}
-
-		if (allAccept) {
-			// Display a ready screen to move to map select menu
-		}
+		yield return new WaitForSeconds (0.2f);
+		canInteract = true;
 	}
 }
