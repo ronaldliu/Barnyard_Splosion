@@ -5,39 +5,39 @@ public class CharacterMenu : MonoBehaviour {
 	public Selectable[] characters;
 	public int current;
 	public int[] selected;
-	bool[] accepted;
+	bool[] canInteract;
 	int numControllers;
 	float limiter = 0;
-	bool canInteract = true;
 
 	void Start()
 	{
 		string[] joysticks = Input.GetJoystickNames ();
 		selected = new int[joysticks.Length];
 		numControllers = joysticks.Length;
-		accepted = new bool[] { false, false, false };
+		canInteract = new bool[] { true, true, true };
+		selected = new int[] { 0, 0, 0 };
 	}
 
 	void Update()
 	{
 		int input;
-		for (int i = 0; i < numControllers; i++) {
+		for (int i = 0; i < 3; i++) {
 			input = (int) Input.GetAxisRaw ("Horizontal_P" + (i + 1));
-			if (input != 0 && canInteract) {
-				canInteract = false;
-				StartCoroutine (SelectionChange (input));
+			if (input != 0 && canInteract[i]) {
+				canInteract[i] = false;
+				StartCoroutine (SelectionChange (input, i));
 			}
 		}
 	}
 
-	IEnumerator SelectionChange(int input)
+	IEnumerator SelectionChange(int input, int controller)
 	{
-		if (input > 0 && current < characters.Length - 1) {
-			current++;
-		} else if (input < 0 && current > 0) {
-			current--;
+		if (input > 0 && selected[controller] < characters.Length - 1) {
+			selected[controller]++;
+		} else if (input < 0 && selected[controller] > 0) {
+			selected[controller]--;
 		}
 		yield return new WaitForSeconds (0.2f);
-		canInteract = true;
+		canInteract[controller] = true;
 	}
 }
