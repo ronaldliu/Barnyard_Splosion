@@ -45,10 +45,12 @@ public class Player : MonoBehaviour {
 	Item holding;
 	TapInfo crouchTap;
 	bool shotLock = true;
+	GameHandler game;
 	//ItemEntity item;
 	//Class Reference to Item Entity Here!
 
 	void Start () {
+		game = GameObject.Find ("Gui").GetComponent<GameHandler> ();
 		boxCollider = GetComponent<BoxCollider2D> ();
 		character = GetComponent<MeshRenderer> ();
 		controller = GetComponent<Controller2D> ();
@@ -76,7 +78,7 @@ public class Player : MonoBehaviour {
 		if (controller.collisions.above || controller.collisions.below) { 		
 			velocity.y = 0;
 		}
-		if (Time.timeScale != 0) {
+		if (!game.gameEnd) {
 			if (!IsDead ()) {
 				aimAngle = 0;
 				if (!aimer.Equals (Vector2.zero)) {
@@ -145,8 +147,8 @@ public class Player : MonoBehaviour {
 					if (animReset) {
 						animReset = false;
 						anim.state.ClearTrack (1);
-                   		anim.state.SetAnimation(1, "Walking", true);
-                	}
+						anim.state.SetAnimation (1, "Walking", true);
+					}
 				} else {
 
 					anim.state.SetAnimation (1, "Standing", true);
@@ -173,10 +175,13 @@ public class Player : MonoBehaviour {
 				}
 				velocity.x = Mathf.SmoothDamp (velocity.x, 0, ref velocityXSmoothing, 0.05f);
 			}
+		
+			//Gravity and Move Player for Input
+			velocity.y += gravity * Time.deltaTime;
+			controller.Move (velocity * Time.deltaTime);
+		} else {
+			anim.enabled = false;
 		}
-		//Gravity and Move Player for Input
-		velocity.y += gravity * Time.deltaTime;
-		controller.Move (velocity * Time.deltaTime);
 	}
 
 	public bool IsDead(){

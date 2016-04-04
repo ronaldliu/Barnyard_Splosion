@@ -1923,8 +1923,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   yes: {fileID: 0}
   cam: {fileID: 0}
-  timeLimit: 5
-  myfont: {fileID: 0}
+  timeLimit: 0.16666667
+  gameEnd: 0
 --- !u!4 &1735972262
 Transform:
   m_ObjectHideFlags: 0
