@@ -5,6 +5,7 @@ public class CharacterMenu : MonoBehaviour {
 	public Selectable[] characters;
 	public int current;
 	public int[] selected;
+	public GameObject[] selectors;
 	bool[] canInteract;
 	int numControllers;
 	float limiter = 0;
@@ -30,6 +31,23 @@ public class CharacterMenu : MonoBehaviour {
 		}
 	}
 
+	void MoveSelector(GameObject sel, int curCtrl, float sub)
+	{
+		Vector3 charPos = new Vector3(characters [selected [curCtrl]].transform.position.x - sub,
+			sel.transform.position.y, sel.transform.position.z);
+		sel.transform.position = charPos;
+	}
+
+	float getSubAmount(int ctrl)
+	{
+		if (ctrl == 0)
+			return 1;
+		else if (ctrl == 1)
+			return 0;
+		else
+			return -1;
+	}
+
 	IEnumerator SelectionChange(int input, int controller)
 	{
 		if (input > 0 && selected[controller] < characters.Length - 1) {
@@ -37,6 +55,10 @@ public class CharacterMenu : MonoBehaviour {
 		} else if (input < 0 && selected[controller] > 0) {
 			selected[controller]--;
 		}
+
+		float subFrom = getSubAmount (controller);
+
+		MoveSelector (selectors[controller], controller, subFrom);
 		yield return new WaitForSeconds (0.2f);
 		canInteract[controller] = true;
 	}

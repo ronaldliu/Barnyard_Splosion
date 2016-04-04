@@ -2,8 +2,8 @@
 using System.Collections;
 
 public class Selectable : MonoBehaviour {
-	public void selectMap()
+	public void selectCharacter()
 	{
-		
+
 	}
 }

@@ -32,7 +32,7 @@ public class MapMenu : MonoBehaviour {
 			}
 
 			if (Input.GetButtonDown ("Jump_P" + (i + 1)))
-				maps [current].selectMap ();
+				maps [current].selectCharacter ();
 		}
 	}
 }
