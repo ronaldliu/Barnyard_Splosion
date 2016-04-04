@@ -101,8 +101,8 @@ public class Item : RaycastController {
 		facing =(int) holdingMe.facing;
 		transform.localScale = new Vector3(facing, 1);
 		transform.position = new Vector3 ( holdingMe.transform.position.x + holdingMe.weap.WorldX , holdingMe.transform.position.y +holdingMe.weap.WorldY);
-		transform.rotation = Quaternion.Euler (new Vector3 (0, 0, (holdingMe.facing > 0 ) ? (holdingMe.arm.rotation + 150) : 360 - (holdingMe.arm.rotation + 150)));
-		childTransform.rotation = Quaternion.Euler (new Vector3 (0, 0, (holdingMe.facing > 0 ) ? (holdingMe.arm.rotation + 150) : 360 - (holdingMe.arm.rotation + 150)));
+		transform.rotation = Quaternion.Euler (new Vector3 (0, 0, (holdingMe.facing > 0 ) ? (holdingMe.arm.rotation-217) : 360 - (holdingMe.arm.rotation - 217)));
+		childTransform.rotation = Quaternion.Euler (new Vector3 (0, 0, (holdingMe.facing > 0 ) ? (holdingMe.arm.rotation - 217) : 360 - (holdingMe.arm.rotation - 217)));
 
 	}
 	void HorizonatalCollisions(ref Vector3 velocity){

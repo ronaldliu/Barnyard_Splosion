@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "iPWtCMczptmvAr5DouBKlaoKmPs", "spine": "3.1.03", "width": 24.5, "height": 54.99, "images": "" },
+"skeleton": { "hash": "s/xY40adyiIxy3MD27L1AT2Zd3w", "spine": "3.1.04", "width": 24.5, "height": 54.99, "images": "" },
 "bones": [
 	{ "name": "root" },
 	{ "name": "Hip", "parent": "root", "x": -2.96, "y": -3.59 },
@@ -24,69 +24,34 @@
 ],
 "slots": [
 	{ "name": "CowFull", "bone": "root" },
-	{ "name": "LShin", "bone": "LShin", "attachment": "Cow Components/CowLowerLeg" },
+	{ "name": "LShin", "bone": "LShin", "attachment": "LShin" },
 	{ "name": "LFoot", "bone": "LFoot", "attachment": "Cow Components/CowHoof" },
-	{ "name": "LThigh", "bone": "LLeg", "attachment": "Cow Components/CowThigh" },
-	{ "name": "LArm", "bone": "LForearm", "attachment": "Cow Components/CowForearm" },
+	{ "name": "LThigh", "bone": "LLeg", "attachment": "LThigh" },
+	{ "name": "LArm", "bone": "LForearm", "attachment": "LArm" },
 	{ "name": "LHand", "bone": "LHand", "attachment": "Cow Components/CowHand" },
-	{ "name": "LBiceps", "bone": "LShoulder", "attachment": "Cow Components/CowBiceps" },
-	{ "name": "Tail", "bone": "Tail", "attachment": "Cow Components/CowTail" },
-	{ "name": "TorsoUdder", "bone": "Spine", "attachment": "Cow Components/CowTorsoUdder" },
-	{ "name": "Neck", "bone": "Neck", "attachment": "Cow Components/CowNeck" },
-	{ "name": "Head", "bone": "Skull", "attachment": "Cow Components/CowHead" },
-	{ "name": "Mouth", "bone": "Jaw", "attachment": "Cow Components/CowJaw" },
-	{ "name": "RShin", "bone": "RShin", "attachment": "Cow Components/CowLowerLeg" },
+	{ "name": "LBiceps", "bone": "LShoulder", "attachment": "LBiceps" },
+	{ "name": "Tail", "bone": "Tail", "attachment": "Tail" },
+	{ "name": "TorsoUdder", "bone": "Spine", "attachment": "Belly" },
+	{ "name": "Neck", "bone": "Neck", "attachment": "Neck" },
+	{ "name": "Head", "bone": "Skull", "attachment": "Head" },
+	{ "name": "Mouth", "bone": "Jaw", "attachment": "Jaw" },
+	{ "name": "RShin", "bone": "RShin", "attachment": "RShin" },
 	{ "name": "RFoot", "bone": "RFoot", "attachment": "Cow Components/CowHoof" },
-	{ "name": "RThigh", "bone": "RLeg", "attachment": "Cow Components/CowThigh" },
-	{ "name": "WeaponImage", "bone": "Weapon" },
-	{ "name": "RArm", "bone": "RForearm", "attachment": "Cow Components/CowForearm" },
+	{ "name": "RThigh", "bone": "RLeg", "attachment": "RThigh" },
+	{ "name": "WeaponImage", "bone": "Weapon", "attachment": "Art/Weapons/AssaultRifle" },
+	{ "name": "RArm", "bone": "RForearm", "attachment": "RArm" },
 	{ "name": "RHand", "bone": "RHand", "attachment": "Cow Components/CowHand" },
-	{ "name": "RBicep", "bone": "RShoulder", "attachment": "Cow Components/CowBiceps" },
+	{ "name": "RBicep", "bone": "RShoulder", "attachment": "RBicep" },
 	{ "name": "BackItem", "bone": "Spine" },
 	{ "name": "ShirtSlot", "bone": "Spine" }
 ],
 "skins": {
 	"default": {
-		"Head": {
-			"Cow Components/CowHead": { "x": 0.75, "y": -4.04, "rotation": 270.99, "width": 20, "height": 13 },
-			"HorseComponents/HorseHead": { "x": 1.65, "y": -6.06, "rotation": 270.99, "width": 25, "height": 16 }
-		},
-		"LArm": {
-			"Cow Components/CowForearm": { "x": 2.81, "y": -0.28, "rotation": -50.76, "width": 8, "height": 8 },
-			"HorseComponents/HorseForearm": { "x": 2.81, "y": -0.28, "rotation": -50.76, "width": 8, "height": 8 }
-		},
-		"LBiceps": {
-			"Cow Components/CowBiceps": { "x": 3.92, "y": -0.9, "rotation": 47.28, "width": 12, "height": 11 },
-			"HorseComponents/HorseBicep": { "x": 3.92, "y": -0.9, "rotation": 47.28, "width": 12, "height": 11 }
-		},
 		"LFoot": {
 			"Cow Components/CowHoof": { "x": 1.48, "y": 0.54, "rotation": 91.81, "width": 5, "height": 3 }
 		},
 		"LHand": {
 			"Cow Components/CowHand": { "x": 0.92, "y": 0.39, "rotation": -66.92, "width": 4, "height": 4 }
-		},
-		"LShin": {
-			"Cow Components/CowLowerLeg": { "x": 3.99, "y": 0.5, "rotation": 104.41, "width": 6, "height": 9 },
-			"HorseComponents/Ankles": { "x": 3.99, "y": 0.5, "rotation": 104.41, "width": 6, "height": 9 }
-		},
-		"LThigh": {
-			"Cow Components/CowThigh": { "x": 6.94, "y": -0.45, "rotation": 65.2, "width": 12, "height": 18 },
-			"HorseComponents/HorseThigh": { "x": 6.94, "y": -0.45, "rotation": 65.2, "width": 12, "height": 18 }
-		},
-		"Mouth": {
-			"Cow Components/CowJaw": { "x": 2.74, "y": -0.93, "rotation": 2.39, "width": 14, "height": 5 }
-		},
-		"Neck": {
-			"Cow Components/CowNeck": { "x": 2.1, "y": -0.8, "rotation": 268.83, "width": 9, "height": 6 },
-			"HorseComponents/HorseNeck": { "x": 2.1, "y": -0.8, "rotation": 268.83, "width": 9, "height": 6 }
-		},
-		"RArm": {
-			"Cow Components/CowForearm": { "x": 2.81, "y": -0.28, "rotation": -50.76, "width": 8, "height": 8 },
-			"HorseComponents/HorseForearm": { "x": 2.81, "y": -0.28, "rotation": -50.76, "width": 8, "height": 8 }
-		},
-		"RBicep": {
-			"Cow Components/CowBiceps": { "x": 3.92, "y": -0.9, "rotation": 47.28, "width": 12, "height": 11 },
-			"HorseComponents/HorseBicep": { "x": 3.92, "y": -0.9, "rotation": 47.28, "width": 12, "height": 11 }
 		},
 		"RFoot": {
 			"Cow Components/CowHoof": { "x": 1.48, "y": 0.54, "rotation": 91.81, "width": 5, "height": 3 }
@@ -94,21 +59,87 @@
 		"RHand": {
 			"Cow Components/CowHand": { "x": 0.92, "y": 0.39, "rotation": 293.07, "width": 4, "height": 4 }
 		},
+		"WeaponImage": {
+			"Art/Weapons/AssaultRifle": { "rotation": -132, "width": 36, "height": 11 }
+		}
+	},
+	"Cow": {
+		"Head": {
+			"Head": { "name": "Cow Components/CowHead", "x": 0.75, "y": -4.04, "rotation": -89, "width": 20, "height": 13 }
+		},
+		"LArm": {
+			"LArm": { "name": "Cow Components/CowForearm", "x": 2.81, "y": -0.28, "rotation": -50.76, "width": 8, "height": 8 }
+		},
+		"LBiceps": {
+			"LBiceps": { "name": "Cow Components/CowBiceps", "x": 3.92, "y": -0.9, "rotation": 47.28, "width": 12, "height": 11 }
+		},
+		"LShin": {
+			"LShin": { "name": "Cow Components/CowLowerLeg", "x": 3.99, "y": 0.5, "rotation": 104.41, "width": 6, "height": 9 }
+		},
+		"LThigh": {
+			"LThigh": { "name": "Cow Components/CowThigh", "x": 6.94, "y": -0.45, "rotation": 65.2, "width": 12, "height": 18 }
+		},
+		"Mouth": {
+			"Jaw": { "name": "Cow Components/CowJaw", "x": 2.74, "y": -0.93, "rotation": 2.39, "width": 14, "height": 5 }
+		},
+		"Neck": {
+			"Neck": { "name": "Cow Components/CowNeck", "x": 2.1, "y": -0.8, "rotation": -91.16, "width": 9, "height": 6 }
+		},
+		"RArm": {
+			"RArm": { "name": "Cow Components/CowForearm", "x": 2.81, "y": -0.28, "rotation": -50.76, "width": 8, "height": 8 }
+		},
+		"RBicep": {
+			"RBicep": { "name": "Cow Components/CowBiceps", "x": 3.92, "y": -0.9, "rotation": 47.28, "width": 12, "height": 11 }
+		},
 		"RShin": {
-			"Cow Components/CowLowerLeg": { "x": 3.99, "y": 0.5, "rotation": 104.41, "width": 6, "height": 9 },
-			"HorseComponents/Ankles": { "x": 3.99, "y": 0.5, "rotation": 104.41, "width": 6, "height": 9 }
+			"RShin": { "name": "Cow Components/CowLowerLeg", "x": 3.99, "y": 0.5, "rotation": 104.41, "width": 6, "height": 9 }
 		},
 		"RThigh": {
-			"Cow Components/CowThigh": { "x": 6.94, "y": -0.46, "rotation": 65.2, "width": 12, "height": 18 },
-			"HorseComponents/HorseThigh": { "x": 6.94, "y": -0.46, "rotation": 65.2, "width": 12, "height": 18 }
+			"RThigh": { "name": "Cow Components/CowThigh", "x": 6.94, "y": -0.46, "rotation": 65.2, "width": 12, "height": 18 }
 		},
 		"Tail": {
-			"Cow Components/CowTail": { "x": 9.17, "y": -0.18, "rotation": 116.78, "width": 7, "height": 16 },
-			"HorseComponents/HorseTail": { "x": 9.17, "y": -0.18, "rotation": 116.78, "width": 7, "height": 17 }
+			"Tail": { "name": "Cow Components/CowTail", "x": 9.17, "y": -0.18, "rotation": 116.78, "width": 7, "height": 16 }
 		},
 		"TorsoUdder": {
-			"Cow Components/CowTorsoUdder": { "x": 6.22, "y": -2.11, "rotation": -91.17, "width": 14, "height": 24 },
-			"HorseComponents/HorseTorso": { "x": 6.22, "y": -2.11, "rotation": -91.17, "width": 12, "height": 24 }
+			"Belly": { "name": "Cow Components/CowTorsoUdder", "x": 6.22, "y": -2.11, "rotation": -91.17, "width": 14, "height": 24 }
+		}
+	},
+	"Horse": {
+		"Head": {
+			"Head": { "name": "HorseComponents/HorseHead", "x": 1.65, "y": -6.06, "rotation": -89, "width": 25, "height": 16 }
+		},
+		"LArm": {
+			"LArm": { "name": "HorseComponents/HorseForearm", "x": 2.81, "y": -0.28, "rotation": -50.76, "width": 8, "height": 8 }
+		},
+		"LBiceps": {
+			"LBiceps": { "name": "HorseComponents/HorseBicep", "x": 3.92, "y": -0.9, "rotation": 47.28, "width": 12, "height": 11 }
+		},
+		"LShin": {
+			"LShin": { "name": "HorseComponents/Ankles", "x": 3.99, "y": 0.5, "rotation": 104.41, "width": 6, "height": 9 }
+		},
+		"LThigh": {
+			"LThigh": { "name": "HorseComponents/HorseThigh", "x": 6.94, "y": -0.45, "rotation": 65.2, "width": 12, "height": 18 }
+		},
+		"Neck": {
+			"Neck": { "name": "HorseComponents/HorseNeck", "x": 2.1, "y": -0.8, "rotation": -91.16, "width": 9, "height": 6 }
+		},
+		"RArm": {
+			"RArm": { "name": "HorseComponents/HorseForearm", "x": 2.81, "y": -0.28, "rotation": -50.76, "width": 8, "height": 8 }
+		},
+		"RBicep": {
+			"RBicep": { "name": "HorseComponents/HorseBicep", "x": 3.92, "y": -0.9, "rotation": 47.28, "width": 12, "height": 11 }
+		},
+		"RShin": {
+			"RShin": { "name": "HorseComponents/Ankles", "x": 3.99, "y": 0.5, "rotation": 104.41, "width": 6, "height": 9 }
+		},
+		"RThigh": {
+			"RThigh": { "name": "HorseComponents/HorseThigh", "x": 6.94, "y": -0.46, "rotation": 65.2, "width": 12, "height": 18 }
+		},
+		"Tail": {
+			"Tail": { "name": "HorseComponents/HorseTail", "x": 9.17, "y": -0.18, "rotation": 116.78, "width": 7, "height": 17 }
+		},
+		"TorsoUdder": {
+			"Belly": { "name": "HorseComponents/HorseTorso", "x": 6.22, "y": -2.11, "rotation": -91.17, "width": 12, "height": 24 }
 		}
 	}
 },
@@ -255,10 +286,10 @@
 			},
 			"Weapon": {
 				"rotate": [
-					{ "time": 0, "angle": 35.87 }
+					{ "time": 0, "angle": -65.02 }
 				],
 				"translate": [
-					{ "time": 0, "x": 4.81, "y": -0.98 }
+					{ "time": 0, "x": 1.38, "y": 0.34 }
 				]
 			}
 		}

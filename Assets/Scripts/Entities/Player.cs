@@ -45,10 +45,15 @@ public class Player : MonoBehaviour {
 	Item holding;
 	TapInfo crouchTap;
 	bool shotLock = true;
-	//ItemEntity item;
-	//Class Reference to Item Entity Here!
+    //ItemEntity item;
+    //Class Reference to Item Entity Here!
 
-	void Start () {
+    //for the arm rotation for HoldingRifle
+    public float FrontArmRotation = 217.67f;
+    private float BackArmRotation = 251.08f;
+    private float WeaponWorldRotation = 131.94f;
+
+    void Start () {
 		boxCollider = GetComponent<BoxCollider2D> ();
 		character = GetComponent<MeshRenderer> ();
 		controller = GetComponent<Controller2D> ();
@@ -99,10 +104,13 @@ public class Player : MonoBehaviour {
 					facing = Mathf.Sign (input.x);
 				}
 				if (arms) {
-					arm.rotation = Mathf.Rad2Deg * (aimAngle) - 150; 
-					backArm.rotation = Mathf.Rad2Deg * (aimAngle) - 150; 
-				}
-				weap.rotation = -55; 
+                    // This is currently only set up for the holding rifle animation
+                    arm.rotation = FrontArmRotation + (aimAngle * 180 / Mathf.PI);
+                    backArm.rotation = BackArmRotation + (aimAngle * 180 / Mathf.PI);
+                    weap.rotation = -31;
+                    weap.x = -.020f;
+                }
+				//weap.rotation = -55; 
 				skeleton.flipX = facing < 0;
 				Debug.DrawRay (character.transform.position, new Vector3 (aimAngle == 90 || aimAngle == 270 ? 0 :
 				(Mathf.Abs (Mathf.Cos (aimAngle)) * facing), Mathf.Sin (aimAngle), 0) * .5f, Color.cyan);
@@ -212,6 +220,7 @@ public class Player : MonoBehaviour {
 		holding = item;
 		image = item.childTransform.GetComponent<SpriteRenderer> ().sprite;
 		skelRend.skeleton.AttachUnitySprite ("WeaponImage", image,"Sprites/Default");
+        anim.state.SetAnimation(2, "HoldingRifle", false);
 		weaponInHand = true;
 		shotLock = true;
 		print ("Pick Up Successful");

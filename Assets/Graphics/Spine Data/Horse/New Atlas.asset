@@ -9,8 +9,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c89a2c74ce34cde4d85dae21948984d2, type: 3}
-  m_Name: skeleton_Atlas
+  m_Name: New Atlas
   m_EditorClassIdentifier: 
   atlasFile: {fileID: 4900000, guid: 70faa9fc0f781c1428ad9c5b43dd6ed1, type: 3}
   materials:
-  - {fileID: 2100000, guid: 79935539badedaa4db9d66ab6f1d695f, type: 2}
+  - {fileID: 2100000, guid: c8d42f23984a5b843a05476825754371, type: 2}
