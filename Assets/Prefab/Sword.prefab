@@ -108,7 +108,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 128676}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8a2a96cbfcb19645bd8102b82fadf31, type: 3}
+  m_Script: {fileID: 11500000, guid: dd3fa72f4a3304946a589188b10a31d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   horizontalRayCount: 4
@@ -116,7 +116,7 @@ MonoBehaviour:
   pickUpRayCount: 3
   collisionMask:
     serializedVersion: 2
-    m_Bits: 164096
+    m_Bits: 33024
   horizontalRaySpacing: 0
   verticalRaySpacing: 0
   pickUpRaySpacing: 0
@@ -129,7 +129,7 @@ MonoBehaviour:
   facing: 1
   velocity: {x: 0, y: 0, z: 0}
   gravity: -10
-  childTransform: {fileID: 0}
+  childTransform: {fileID: 475400}
 --- !u!212 &21227108
 SpriteRenderer:
   m_ObjectHideFlags: 1
