@@ -46,6 +46,7 @@ public class Player : MonoBehaviour {
 	TapInfo crouchTap;
 	bool shotLock = true;
 	GameHandler game;
+	TapInfo dashTap;
 	//ItemEntity item;
 	//Class Reference to Item Entity Here!
 
@@ -64,7 +65,9 @@ public class Player : MonoBehaviour {
 		skeleton.FindSlot ("WeaponImage").Attachment = null;
 		anim.state.ClearTrack(1);
 		controller.CatchPlayer (this);
-		crouchTap = new TapInfo (.6f, 3);
+		crouchTap = new TapInfo (.6f, int.MaxValue);
+		dashTap = new TapInfo (.6f, int.MaxValue);
+
 		UpdateGravity ();
 	}
 
@@ -113,8 +116,9 @@ public class Player : MonoBehaviour {
 
 
 				//Jump Velocity
-				if ((Input.GetButtonDown ("Jump_" + player) || Input.GetAxisRaw ("Vertical_" + player) > .85f) && controller.collisions.below) {
-					velocity.y = jumpVelocity;
+				if ((Input.GetButton("Jump_" + player) || Input.GetAxisRaw ("Vertical_" + player) > .85f) ){//&& controller.collisions.below) {
+					controller.LadderCheck ();
+					//velocity.y = jumpVelocity;
 				}
 
 				//jump Animation
@@ -138,9 +142,28 @@ public class Player : MonoBehaviour {
 				if (Input.GetButtonDown ("Drop_" + player) && weaponInHand) {
 					DropItem ();
 				}
+
+				//Dash implemented here
+				float targetVelocityX = 0; 
+				if (input.x != 0) {
+					if (dashTap.TapCheck () && (Mathf.Sign (input.x) == dashTap.moving)) {
+						targetVelocityX = input.x * moveSpeed * 2;
+						if (animReset) {
+							animReset = false;
+							anim.state.ClearTrack (1);
+							anim.state.SetAnimation (1, "Run", true);
+						}
+					} else {
+						targetVelocityX = input.x * moveSpeed; 
+						if (!dashTap.TapCheck ()) {
+							dashTap.moving = Mathf.Sign (input.x);
+						}
+					}
+				} else {
+					dashTap.Reset ();
+				}
 				//Horizontal Velocity Smoothing
 
-				float targetVelocityX = input.x * moveSpeed;
 				velocity.x = Mathf.SmoothDamp (velocity.x, targetVelocityX, ref velocityXSmoothing,
 					(controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
 
@@ -151,7 +174,6 @@ public class Player : MonoBehaviour {
 						anim.state.SetAnimation (1, "Walking", true);
 					}
 				} else {
-
 					anim.state.SetAnimation (1, "Standing", true);
 					anim.state.ClearTrack (1);
 
@@ -237,7 +259,7 @@ public class Player : MonoBehaviour {
 		public float lastTap;
 		public float delay;
 		public int maxTaps;
-
+		public float moving;
 		public TapInfo(float delay,int maxTaps){
 			this.delay = delay;
 			this.maxTaps = maxTaps;
@@ -245,6 +267,7 @@ public class Player : MonoBehaviour {
 			activeDTap = false;
 			tapCount = 0;
 			lastTap = 0;
+			moving = 0;
 		}
 		public bool TapCheck(){
 			if (!lastInput) {

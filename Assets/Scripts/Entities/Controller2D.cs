@@ -10,6 +10,8 @@ public class Controller2D : RaycastController{
 	public LayerMask fightingMask;	 //Used to Hit Other Players
 	public CollisionInfo collisions; //Collision Struct
 	public LayerMask pickUpMask;
+	public LayerMask climbMask;
+
 	public float punchForce = 20;
 
 	//For Slope Handling
@@ -239,9 +241,27 @@ public class Controller2D : RaycastController{
 			}
 		}
 	}
-
+	public void LadderCheck(){
+		UpdateRaycastOrigins ();
+		float rayLength = skinWidth;
+		for (int i = 0; i < verticalRayCount; i++) {
+			Vector2 rayOrigin = raycastOrigins.bottomLeft;
+			rayOrigin += Vector2.right * (verticalRaySpacing * i);
+			RaycastHit2D hit = Physics2D.Raycast (rayOrigin, Vector2.up, rayLength, climbMask);
+			if (hit) {
+				print ("Ladder");
+				me.velocity.y = 3;
+				return;
+			} 
+			Debug.DrawRay (rayOrigin, Vector2.up * rayLength, Color.red);
+		}
+		if (collisions.below) {
+			me.velocity.y = me.jumpVelocity;
+		}
+	}
 	//This is How to Inflict Damage and Affect Other players with a punch
 	public void Punch(float directionX){ 
+		UpdateRaycastOrigins ();
 		float rayLength = punchLength / 45;
 		Vector2 rayOrigin = ((directionX == -1) ? raycastOrigins.fistLeft : raycastOrigins.fistRight);
 		RaycastHit2D hit = Physics2D.Raycast (rayOrigin, Vector2.right * directionX, rayLength, fightingMask);
