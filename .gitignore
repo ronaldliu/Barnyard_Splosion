@@ -1,9 +1,18 @@
 # =============== #
 # Unity generated #
 # =============== #
-Temp/
-Library
-Library/metadata/
+Temp
+Library/AssetImportState
+Library/AssetServerCacheV3
+Library/assetDatabase3
+Library/cache
+Library/guidmapper
+Library/expandedItems
+Library/previews
+Library/FailedAssetImports.txt
+Library/ScriptAssemblies
+Library/ScriptMapper
+Library/metadata
 *.meta
 *.metadata
 
