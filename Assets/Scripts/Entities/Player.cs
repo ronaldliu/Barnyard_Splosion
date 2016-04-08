@@ -79,6 +79,7 @@ public class Player : MonoBehaviour {
 			velocity.y = 0;
 		}
 		if (!game.gameEnd) {
+			anim.enabled = true;
 			if (!IsDead ()) {
 				aimAngle = 0;
 				if (!aimer.Equals (Vector2.zero)) {

@@ -315,9 +315,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 264207161}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b4861a7ad5a0554ab2d07cee3c886d0, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c2655a9c618d4845b879ea92fa94736, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scrollSpeed: 1
 --- !u!212 &264207164
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -395,9 +396,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 385294878}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b4861a7ad5a0554ab2d07cee3c886d0, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c2655a9c618d4845b879ea92fa94736, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scrollSpeed: 1
 --- !u!212 &385294881
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -465,9 +467,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 398592151}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b4861a7ad5a0554ab2d07cee3c886d0, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c2655a9c618d4845b879ea92fa94736, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scrollSpeed: 1
 --- !u!212 &398592154
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1217,9 +1220,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1371361559}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b4861a7ad5a0554ab2d07cee3c886d0, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c2655a9c618d4845b879ea92fa94736, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scrollSpeed: 1
 --- !u!212 &1371361562
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1497,9 +1501,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1425364157}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b4861a7ad5a0554ab2d07cee3c886d0, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c2655a9c618d4845b879ea92fa94736, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scrollSpeed: 1
 --- !u!212 &1425364160
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1778,7 +1783,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1664514106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1923,7 +1928,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   yes: {fileID: 0}
   cam: {fileID: 0}
-  timeLimit: 0.16666667
+  timeLimit: 5
+  timeStart: 0
   gameEnd: 0
 --- !u!4 &1735972262
 Transform:
@@ -2263,9 +2269,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2132299162}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b4861a7ad5a0554ab2d07cee3c886d0, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c2655a9c618d4845b879ea92fa94736, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scrollSpeed: 1
 --- !u!212 &2132299165
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ public class LevelManager : MonoBehaviour {
 	public UnityEngine.EventSystems.EventSystem events;
 
 	void Start(){
+		print ("Menu");
 		Time.timeScale = 0;
 	}
 	public void LoadScene(string name){
