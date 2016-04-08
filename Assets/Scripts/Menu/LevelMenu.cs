@@ -29,7 +29,7 @@ public class LevelMenu : MonoBehaviour {
 				StartCoroutine (SelectionChange (input, i));
 			}
 			if (Input.GetButtonDown ("Jump_P" + (i + 1))) {
-				if (readyToLoad = true)
+				if (readyToLoad == true)
 					SceneManager.LoadScene (maps[current]);
 				else
 					readyToLoad = true;
@@ -56,6 +56,7 @@ public class LevelMenu : MonoBehaviour {
 		}
 
 		float subFrom = getSubAmount (controller);
+		readyToLoad = false;
 
 		yield return new WaitForSeconds (0.2f);
 		canInteract[controller] = true;
