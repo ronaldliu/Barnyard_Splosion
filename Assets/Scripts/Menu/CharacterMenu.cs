@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class CharacterMenu : MonoBehaviour {
 	public int current;
@@ -7,6 +8,7 @@ public class CharacterMenu : MonoBehaviour {
 	public int[] selected;
 	public GameObject[] selectors;
 	bool[] canInteract;
+	bool loadNextScene;
 	int numControllers;
 	float limiter = 0;
 
@@ -17,6 +19,7 @@ public class CharacterMenu : MonoBehaviour {
 		numControllers = joysticks.Length;
 		canInteract = new bool[] { true, true, true };
 		selected = new int[] { 0, 0, 0 };
+		loadNextScene = false;
 	}
 
 	void Update()
@@ -27,6 +30,14 @@ public class CharacterMenu : MonoBehaviour {
 			if (input != 0 && canInteract[i]) {
 				canInteract[i] = false;
 				StartCoroutine (SelectionChange (input, i));
+			}
+			if (Input.GetButtonDown("Accept_P" + (i+1)))
+			{
+				if (loadNextScene == true) {
+					SceneManager.LoadScene ("LevelSelect");
+				}
+				else
+					loadNextScene = true;
 			}
 		}
 	}
