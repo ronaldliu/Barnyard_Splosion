@@ -197,7 +197,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 490420, guid: e733285b4384a474981da780204c176a, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3358210, guid: e733285b4384a474981da780204c176a, type: 2}
       propertyPath: m_Mesh
@@ -703,7 +703,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 6ffe4ca11f81b144a9a34e6a22b97f9d, type: 3}
+    m_Font: {fileID: 12800000, guid: d83fb582b64e34892ad085b8805a9a20, type: 3}
     m_FontSize: 28
     m_FontStyle: 0
     m_BestFit: 0
@@ -993,7 +993,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 490420, guid: e733285b4384a474981da780204c176a, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3358210, guid: e733285b4384a474981da780204c176a, type: 2}
       propertyPath: m_Mesh
@@ -1520,8 +1520,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 166710, guid: 3cd35c280b9e90e459b1e1c2d7c165af, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11420462, guid: 3cd35c280b9e90e459b1e1c2d7c165af, type: 2}
+      propertyPath: projectile
+      value: 
+      objectReference: {fileID: 126562, guid: 7b2f8defc99ddc2408310956487f377d, type: 2}
     m_RemovedComponents:
     - {fileID: 11416790, guid: 3cd35c280b9e90e459b1e1c2d7c165af, type: 2}
     - {fileID: 6167830, guid: 3cd35c280b9e90e459b1e1c2d7c165af, type: 2}
@@ -1582,7 +1586,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 6ffe4ca11f81b144a9a34e6a22b97f9d, type: 3}
+    m_Font: {fileID: 12800000, guid: d83fb582b64e34892ad085b8805a9a20, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
@@ -1836,7 +1840,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 454048, guid: 3cd35c280b9e90e459b1e1c2d7c165af, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 11420462, guid: 3cd35c280b9e90e459b1e1c2d7c165af, type: 2}
       propertyPath: fightingMask.m_Bits
@@ -2033,6 +2037,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
+--- !u!1001 &1821976239
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 490232, guid: 7b2f8defc99ddc2408310956487f377d, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 2.6825097
+      objectReference: {fileID: 0}
+    - target: {fileID: 490232, guid: 7b2f8defc99ddc2408310956487f377d, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 7.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 490232, guid: 7b2f8defc99ddc2408310956487f377d, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 490232, guid: 7b2f8defc99ddc2408310956487f377d, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 490232, guid: 7b2f8defc99ddc2408310956487f377d, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 490232, guid: 7b2f8defc99ddc2408310956487f377d, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 490232, guid: 7b2f8defc99ddc2408310956487f377d, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 490232, guid: 7b2f8defc99ddc2408310956487f377d, type: 2}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 126562, guid: 7b2f8defc99ddc2408310956487f377d, type: 2}
+      propertyPath: m_Name
+      value: bullet
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 7b2f8defc99ddc2408310956487f377d, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1825469012
 GameObject:
   m_ObjectHideFlags: 0

@@ -30,6 +30,9 @@ public class Projectile : RaycastController {
 		this.gravity = gravity;
 		this.facing = facing;
 		shootdir = Vector3.right * facing;
+		if (facing < 0) {
+			GetComponent<SpriteRenderer> ().flipX = true;
+		}
 		velocity = shootdir * speed/50;
 		//shootdir.y += Random.Range (-AttachedTo.variance/20, AttachedTo.variance/20);
 		//print ("S " + speed);
