@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 public class CharacterMenu : MonoBehaviour {
 	public int current;
 	public Selectable[] characters;
+	public Sprite[]
 	public int[] selected;
-	public GameObject[] selectors;
 	bool[] canInteract;
 	bool loadNextScene;
 	int numControllers;
@@ -42,11 +42,9 @@ public class CharacterMenu : MonoBehaviour {
 		}
 	}
 
-	void MoveSelector(GameObject sel, int curCtrl, float sub)
+	void UpdateCharacters(int curCtrl)
 	{
-		Vector3 charPos = new Vector3(characters [selected [curCtrl]].transform.position.x - sub,
-			sel.transform.position.y, sel.transform.position.z);
-		sel.transform.position = charPos;
+		
 	}
 
 	float getSubAmount(int ctrl)
@@ -67,9 +65,7 @@ public class CharacterMenu : MonoBehaviour {
 			selected[controller]--;
 		}
 
-		float subFrom = getSubAmount (controller);
-
-		MoveSelector (selectors[controller], controller, subFrom);
+		UpdateCharacters ();
 		yield return new WaitForSeconds (0.2f);
 		canInteract[controller] = true;
 	}

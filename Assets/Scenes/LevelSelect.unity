@@ -128,9 +128,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   current: 0
   maps:
-  - 
-  - 
-  - 
+  - Gameplay Temp
+  - Gameplay Temp
+  - Gameplay Temp
   pmaps:
   - {fileID: 2127734667}
   - {fileID: 627926502}

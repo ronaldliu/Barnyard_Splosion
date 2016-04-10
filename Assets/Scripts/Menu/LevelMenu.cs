@@ -22,9 +22,9 @@ public class LevelMenu : MonoBehaviour {
 
 	void Update()
 	{
-		int input;
+		float input;
 		for (int i = 0; i < 3; i++) {
-			input = (int) Input.GetAxisRaw ("Vertical_P" + (i + 1));
+			input = Input.GetAxisRaw ("Vertical_P" + (i + 1));
 			if (input != 0 && canInteract[i]) {
 				canInteract[i] = false;
 				StartCoroutine (SelectionChange (input, i));
@@ -48,7 +48,7 @@ public class LevelMenu : MonoBehaviour {
 			return -1;
 	}
 
-	IEnumerator SelectionChange(int input, int controller)
+	IEnumerator SelectionChange(float input, int controller)
 	{
 		pmaps [current].GetComponent<SpriteRenderer> ().color = Color.white;
 
