@@ -17,6 +17,7 @@ public class LevelMenu : MonoBehaviour {
 		current = 0;
 		numControllers = joysticks.Length;
 		canInteract = new bool[] { true, true, true };
+		pmaps [current].GetComponent<SpriteRenderer> ().color = Color.magenta;
 	}
 
 	void Update()
@@ -49,14 +50,18 @@ public class LevelMenu : MonoBehaviour {
 
 	IEnumerator SelectionChange(int input, int controller)
 	{
-		if (input > 0 && current < maps.Length - 1) {
+		pmaps [current].GetComponent<SpriteRenderer> ().color = Color.white;
+
+		if (input < 0 && current < maps.Length - 1) {
 			current++;
-		} else if (input < 0 && current > 0) {
+		} else if (input > 0 && current > 0) {
 			current--;
 		}
 
 		float subFrom = getSubAmount (controller);
 		readyToLoad = false;
+
+		pmaps [current].GetComponent<SpriteRenderer> ().color = Color.magenta;
 
 		yield return new WaitForSeconds (0.2f);
 		canInteract[controller] = true;
