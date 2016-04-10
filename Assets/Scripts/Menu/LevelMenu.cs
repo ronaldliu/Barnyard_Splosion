@@ -28,7 +28,7 @@ public class LevelMenu : MonoBehaviour {
 				canInteract[i] = false;
 				StartCoroutine (SelectionChange (input, i));
 			}
-			if (Input.GetButtonDown ("Jump_P" + (i + 1))) {
+			if (Input.GetButtonDown ("Accept_P" + (i + 1))) {
 				if (readyToLoad == true)
 					SceneManager.LoadScene (maps[current]);
 				else
