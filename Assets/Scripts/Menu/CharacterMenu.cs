@@ -4,8 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class CharacterMenu : MonoBehaviour {
 	public int current;
-	public Selectable[] characters;
-	public Sprite[]
+	public GameObject[] characters;
+	public Sprite[] availCharacters;
 	public int[] selected;
 	bool[] canInteract;
 	bool loadNextScene;
@@ -18,15 +18,17 @@ public class CharacterMenu : MonoBehaviour {
 		selected = new int[joysticks.Length];
 		numControllers = joysticks.Length;
 		canInteract = new bool[] { true, true, true };
-		selected = new int[] { 0, 0, 0 };
+		selected = new int[] { 0, 0, 0, 0 };
 		loadNextScene = false;
+		if (numControllers < 4)
+			characters [3].GetComponent<SpriteRenderer> ().color = Color.clear;
 	}
 
 	void Update()
 	{
-		int input;
+		float input;
 		for (int i = 0; i < 3; i++) {
-			input = (int) Input.GetAxisRaw ("Horizontal_P" + (i + 1));
+			input = Input.GetAxisRaw ("Horizontal_P" + (i + 1));
 			if (input != 0 && canInteract[i]) {
 				canInteract[i] = false;
 				StartCoroutine (SelectionChange (input, i));
@@ -42,23 +44,18 @@ public class CharacterMenu : MonoBehaviour {
 		}
 	}
 
-	void UpdateCharacters(int curCtrl)
+	void UpdateCharacters()
 	{
-		
+		for (int i = 0; i < 3; i++) 
+		{
+			characters [i].GetComponent<SpriteRenderer> ().sprite = availCharacters [selected [i]];
+		}
 	}
 
-	float getSubAmount(int ctrl)
+	IEnumerator SelectionChange(float input, int controller)
 	{
-		if (ctrl == 0)
-			return 1;
-		else if (ctrl == 1)
-			return 0;
-		else
-			return -1;
-	}
+		loadNextScene = false;
 
-	IEnumerator SelectionChange(int input, int controller)
-	{
 		if (input > 0 && selected[controller] < characters.Length - 1) {
 			selected[controller]++;
 		} else if (input < 0 && selected[controller] > 0) {
