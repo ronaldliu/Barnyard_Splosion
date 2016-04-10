@@ -289,7 +289,7 @@ Prefab:
       objectReference: {fileID: 2100000, guid: 85618b37317b97248b30d879b4b63f66, type: 2}
     - target: {fileID: 11496254, guid: e733285b4384a474981da780204c176a, type: 2}
       propertyPath: initialSkinName
-      value: default
+      value: Horse
       objectReference: {fileID: 0}
     - target: {fileID: 11496254, guid: e733285b4384a474981da780204c176a, type: 2}
       propertyPath: loop
@@ -851,7 +851,7 @@ Prefab:
       objectReference: {fileID: 2100000, guid: 85618b37317b97248b30d879b4b63f66, type: 2}
     - target: {fileID: 11496254, guid: e733285b4384a474981da780204c176a, type: 2}
       propertyPath: initialSkinName
-      value: default
+      value: Chicken
       objectReference: {fileID: 0}
     - target: {fileID: 11496254, guid: e733285b4384a474981da780204c176a, type: 2}
       propertyPath: timeScale
@@ -1077,7 +1077,7 @@ Prefab:
       objectReference: {fileID: 2100000, guid: 85618b37317b97248b30d879b4b63f66, type: 2}
     - target: {fileID: 11496254, guid: e733285b4384a474981da780204c176a, type: 2}
       propertyPath: initialSkinName
-      value: default
+      value: Cow
       objectReference: {fileID: 0}
     - target: {fileID: 11496254, guid: e733285b4384a474981da780204c176a, type: 2}
       propertyPath: timeScale
