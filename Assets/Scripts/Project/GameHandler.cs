@@ -12,12 +12,9 @@ public class GameHandler: MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		print ("Start");
 		timeLimit = timelim;
 		timeLimit *= 60;
-
 		gameEnd = true;
-		//timeStart = Time.time;
 		timer = GameObject.Find ("Time").GetComponent<UnityEngine.UI.Text> ();
 		StartCoroutine(StartDelay ());
 
@@ -25,14 +22,15 @@ public class GameHandler: MonoBehaviour {
 		//var go = Instantiate(yes.GetComponent<GameOptions> ().p1, transform.position, transform.rotation); //How to add players
 		//cam.targets.Add(yes.GetComponent<GameOptions> ().p1.GetComponent<Player>());
 	}
-	
+
+	//This will be used to determine stats about the current game round such as kills, people who are out and whether to end the round
 	void Update () {
 		if (timeLimit - (Time.time - timeStart) <= 0) {
 			//Time.timeScale = 0;
 		}
 	}
 	void OnGUI(){
-		//GUI.contentColor = Color.black;
+	//This method is launched right before drawing Graphics, so it is used to update stats such as lives, kills, health, and time
 		if (!gameEnd) {
 			if (timeLimit - (Time.time - timeStart) >= 0) {
 				timer.text = "" + (Mathf.Floor ((timeLimit / 60) - Mathf.Ceil ((Time.time - timeStart) / 60))) + ":";
@@ -43,6 +41,7 @@ public class GameHandler: MonoBehaviour {
 			}
 		}
 	}
+	//This is used to End 
 	void InitiateGameOver(){
 		gameEnd = true;
 		GameObject.Find ("GameState").GetComponent<UnityEngine.UI.Text> ().text = "Match End";
@@ -58,7 +57,7 @@ public class GameHandler: MonoBehaviour {
 	IEnumerator StartDelay(){
 		timer.text = timeLimit / 60 + ":00";
 		Time.timeScale = 1;
-		yield return new WaitForSeconds (5);
+		yield return new WaitForSeconds (3);
 		timeStart = Time.time;
 		gameEnd = false;
 	}
