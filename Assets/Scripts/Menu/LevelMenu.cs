@@ -30,10 +30,12 @@ public class LevelMenu : MonoBehaviour {
 				StartCoroutine (SelectionChange (input, i));
 			}
 			if (Input.GetButtonDown ("Accept_P" + (i + 1))) {
-				if (readyToLoad == true)
-					SceneManager.LoadScene (maps[current]);
-				else
+				if (readyToLoad == true) {
+					GameObject.Find ("GameOptions").GetComponent<GameOptions> ().level = maps [current];
+					SceneManager.LoadScene (maps [current]);
+				} else {
 					readyToLoad = true;
+				}
 			}
 		}
 	}
