@@ -58,6 +58,7 @@ public class Controller2D : RaycastController{
 		}
 	}
 
+	//Used to detect collisions using raycasting
 	bool HorizonatalCollisions(ref Vector3 velocity){
 		bool wall = false;
 		float directionX = Mathf.Sign (velocity.x);
@@ -65,8 +66,8 @@ public class Controller2D : RaycastController{
 
 		//Loop For cycling through Cast Rays Up the Side of the Character
 		for (int i = 0; i <  horizontalRayCount; i++) {
-			Vector2 rayOrigin = (directionX == -1) ? raycastOrigins.bottomLeft : raycastOrigins.bottomRight;
-			rayOrigin += Vector2.up * (horizontalRaySpacing * i);
+			Vector2 rayOrigin = (directionX == -1) ? raycastOrigins.bottomLeft : raycastOrigins.bottomRight; //Choose starting point
+			rayOrigin += Vector2.up * (horizontalRaySpacing * i);//Move current cast start based on loop itteration
 
 			//Raycast Detection of Collisions with only collisionMask Layer being considered
 			RaycastHit2D hit = Physics2D.Raycast (rayOrigin, Vector2.right * directionX, rayLength, collisionMask); 
@@ -78,10 +79,10 @@ public class Controller2D : RaycastController{
 				int collisionLayer = hit.transform.gameObject.layer;
 
 				if (hit.distance == 0 && collisionLayer == LayerMask.NameToLayer ("Obsticle")) {
-					me.velocity.x = 10 / 4.25f * me.facing;
+					me.velocity.x = 10 / 4.25f * me.facing;//If you end up in an Obstacle/Wall it will fling you back in
 				}
 				if (LayerMask.NameToLayer ("Platforms") == collisionLayer) { //if inside of object allow player to move freely
-					continue;
+					continue; //Ignore collision if it is a platform
 				}
 
 				float slopeAngle = Vector2.Angle (hit.normal, Vector2.up);

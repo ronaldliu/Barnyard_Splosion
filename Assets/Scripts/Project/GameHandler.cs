@@ -41,19 +41,23 @@ public class GameHandler: MonoBehaviour {
 			}
 		}
 	}
-	//This is used to End 
+	//This is used to End the current round
 	void InitiateGameOver(){
 		gameEnd = true;
 		GameObject.Find ("GameState").GetComponent<UnityEngine.UI.Text> ().text = "Match End";
 		StartCoroutine(MenuDelay ());
 
 	}
+
+	//This delay is to denote the end of the round
 	IEnumerator MenuDelay(){
 		yield return new WaitForSeconds (5);
 		LevelManager reset = transform.gameObject.AddComponent<LevelManager>();
 		Time.timeScale = 0;
 		reset.LoadScene ("MainMenu");
 	}
+
+	//This is used to start the round after a period of preperation
 	IEnumerator StartDelay(){
 		timer.text = timeLimit / 60 + ":00";
 		Time.timeScale = 1;
