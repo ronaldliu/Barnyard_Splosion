@@ -259,10 +259,10 @@ MonoBehaviour:
   - {fileID: 1788306572}
   - {fileID: 1511255561}
   availCharacters:
-  - {fileID: 21300000, guid: 8641c2f7840ef1343b54b8422642d16e, type: 3}
-  - {fileID: 21300000, guid: c8bb3d6f60ca34b4db677a766b31f40a, type: 3}
-  - {fileID: 21300000, guid: 4756643bc8177214f995f8dd76e520ca, type: 3}
-  - {fileID: 21300000, guid: ef103a6f5dadda942b50ce7c18e8dc57, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   selected: 00000000000000000000000000000000
 --- !u!4 &1618403524
 Transform:
@@ -469,7 +469,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0.019607844}
+  m_BackGroundColor: {r: 0.3455882, g: 0.3455882, b: 0.3455882, a: 0.019607844}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0

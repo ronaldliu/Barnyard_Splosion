@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class GameOptions : MonoBehaviour {
-	public GameObject level;
+	public string level;
 	public GameObject p1, p2, p3, p4;
 
 	// Use this for initialization

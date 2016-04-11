@@ -5,8 +5,10 @@ using UnityEngine.SceneManagement;
 public class CharacterMenu : MonoBehaviour {
 	public int current;
 	public GameObject[] characters;
-	public Sprite[] availCharacters;
+	public GameObject[] availCharacters;
 	public int[] selected;
+
+	GameObject gameOptions;
 	bool[] canInteract;
 	bool loadNextScene;
 	int numControllers;
@@ -19,6 +21,7 @@ public class CharacterMenu : MonoBehaviour {
 		numControllers = joysticks.Length;
 		canInteract = new bool[] { true, true, true };
 		selected = new int[] { 0, 0, 0, 0 };
+		gameOptions = GameObject.Find ("GameOptions");
 		loadNextScene = false;
 		if (numControllers < 4)
 			characters [3].GetComponent<SpriteRenderer> ().color = Color.clear;
@@ -36,6 +39,7 @@ public class CharacterMenu : MonoBehaviour {
 			if (Input.GetButtonDown("Accept_P" + (i+1)))
 			{
 				if (loadNextScene == true) {
+					gameOptions.GetComponent<GameOptions> ();
 					SceneManager.LoadScene ("LevelSelect");
 				}
 				else
@@ -48,7 +52,8 @@ public class CharacterMenu : MonoBehaviour {
 	{
 		for (int i = 0; i < 3; i++) 
 		{
-			characters [i].GetComponent<SpriteRenderer> ().sprite = availCharacters [selected [i]];
+			characters [i].GetComponent<SpriteRenderer> ().sprite = 
+				availCharacters[selected [i]].GetComponent<SpriteRenderer>().sprite;
 		}
 	}
 
