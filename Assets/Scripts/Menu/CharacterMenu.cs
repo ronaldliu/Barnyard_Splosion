@@ -6,6 +6,7 @@ public class CharacterMenu : MonoBehaviour {
 	public int current;
 	public GameObject[] characters;
 	public GameObject[] availCharacters;
+	public Sprite[] characterSprite;
 	public int[] selected;
 
 	GameObject gameOptions;
@@ -39,7 +40,10 @@ public class CharacterMenu : MonoBehaviour {
 			if (Input.GetButtonDown("Accept_P" + (i+1)))
 			{
 				if (loadNextScene == true) {
-					gameOptions.GetComponent<GameOptions> ();
+					gameOptions.GetComponent<GameOptions> ().p1 = availCharacters[selected[0]];
+					gameOptions.GetComponent<GameOptions> ().p2 = availCharacters[selected[1]];
+					gameOptions.GetComponent<GameOptions> ().p3 = availCharacters[selected[2]];
+					gameOptions.GetComponent<GameOptions> ().p4 = availCharacters[selected[3]];
 					SceneManager.LoadScene ("LevelSelect");
 				}
 				else
@@ -52,8 +56,7 @@ public class CharacterMenu : MonoBehaviour {
 	{
 		for (int i = 0; i < 3; i++) 
 		{
-			characters [i].GetComponent<SpriteRenderer> ().sprite = 
-				availCharacters[selected [i]].GetComponent<SpriteRenderer>().sprite;
+			characters [i].GetComponent<SpriteRenderer> ().sprite = characterSprite [selected [i]];
 		}
 	}
 
@@ -61,7 +64,7 @@ public class CharacterMenu : MonoBehaviour {
 	{
 		loadNextScene = false;
 
-		if (input > 0 && selected[controller] < characters.Length - 1) {
+		if (input > 0 && selected[controller] < availCharacters.Length - 1) {
 			selected[controller]++;
 		} else if (input < 0 && selected[controller] > 0) {
 			selected[controller]--;

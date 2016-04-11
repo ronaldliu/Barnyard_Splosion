@@ -259,10 +259,15 @@ MonoBehaviour:
   - {fileID: 1788306572}
   - {fileID: 1511255561}
   availCharacters:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 193950, guid: 1ad98fc47685f6e4098cd13e28fd44d6, type: 2}
+  - {fileID: 124580, guid: 862e3b81334129f4e982c2955732ae48, type: 2}
+  - {fileID: 148436, guid: 612bf45b247697b479ecb45efc6a1600, type: 2}
+  - {fileID: 189798, guid: 2eb6e37ce391e28408a44f9bda148bd2, type: 2}
+  characterSprite:
+  - {fileID: 21300000, guid: 8641c2f7840ef1343b54b8422642d16e, type: 3}
+  - {fileID: 21300000, guid: c8bb3d6f60ca34b4db677a766b31f40a, type: 3}
+  - {fileID: 21300000, guid: 4756643bc8177214f995f8dd76e520ca, type: 3}
+  - {fileID: 21300000, guid: ef103a6f5dadda942b50ce7c18e8dc57, type: 3}
   selected: 00000000000000000000000000000000
 --- !u!4 &1618403524
 Transform:

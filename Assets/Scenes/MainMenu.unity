@@ -545,7 +545,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Gameplay Temp
+          m_StringArgument: CharacterSelect
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -1046,7 +1046,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c106d92947eccd74295038341a52e77e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: {fileID: 0}
+  level: $
   p1: {fileID: 131284, guid: 52b3c2cbf0c0d894288c34fabe067399, type: 2}
   p2: {fileID: 142792, guid: e733285b4384a474981da780204c176a, type: 2}
   p3: {fileID: 0}
