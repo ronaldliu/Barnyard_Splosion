@@ -4,268 +4,261 @@ size: 256,32
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-Art/Weapons/AssaultRifle
-  rotate: false
-  xy: 2, 19
-  size: 36, 11
-  orig: 36, 11
-  offset: 0, 0
-  index: -1
 ChickenComponents/ChickenHead
   rotate: false
-  xy: 119, 13
+  xy: 55, 13
   size: 21, 17
   orig: 21, 17
   offset: 0, 0
   index: -1
 ChickenComponents/Chicken_Bicep
-  rotate: false
-  xy: 158, 3
+  rotate: true
+  xy: 127, 5
   size: 10, 12
   orig: 10, 12
   offset: 0, 0
   index: -1
 ChickenComponents/Chicken_Foot
   rotate: false
-  xy: 184, 2
+  xy: 229, 19
   size: 9, 2
   orig: 9, 2
   offset: 0, 0
   index: -1
 ChickenComponents/Chicken_Leg
   rotate: true
-  xy: 54, 2
+  xy: 209, 20
   size: 10, 18
   orig: 10, 18
   offset: 0, 0
   index: -1
 ChickenComponents/Chicken_Neck
   rotate: true
-  xy: 128, 2
+  xy: 248, 21
   size: 9, 6
   orig: 9, 6
   offset: 0, 0
   index: -1
 ChickenComponents/Chicken_Shin
-  rotate: false
-  xy: 113, 8
+  rotate: true
+  xy: 194, 2
   size: 4, 8
   orig: 4, 8
   offset: 0, 0
   index: -1
 ChickenComponents/Chicken_Tail
   rotate: false
-  xy: 119, 2
+  xy: 55, 2
   size: 7, 9
   orig: 7, 9
   offset: 0, 0
   index: -1
 ChickenComponents/Chicken_Torso
   rotate: true
-  xy: 67, 18
+  xy: 29, 2
   size: 12, 24
   orig: 12, 24
   offset: 0, 0
   index: -1
 ChickenComponents/Chicken_Wing
-  rotate: true
-  xy: 184, 6
+  rotate: false
+  xy: 141, 3
   size: 10, 12
   orig: 10, 12
   offset: 0, 0
   index: -1
 Cow Components/CowBiceps
   rotate: false
-  xy: 81, 5
+  xy: 87, 5
   size: 12, 11
   orig: 12, 11
   offset: 0, 0
   index: -1
 Cow Components/CowForearm
   rotate: false
-  xy: 198, 8
+  xy: 181, 8
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 Cow Components/CowHand
   rotate: false
-  xy: 95, 3
+  xy: 229, 13
   size: 4, 4
   orig: 4, 4
   offset: 0, 0
   index: -1
 Cow Components/CowHead
   rotate: false
-  xy: 142, 17
+  xy: 127, 17
   size: 20, 13
   orig: 20, 13
   offset: 0, 0
   index: -1
 Cow Components/CowHoof
-  rotate: false
-  xy: 28, 14
+  rotate: true
+  xy: 101, 2
   size: 5, 3
   orig: 5, 3
   offset: 0, 0
   index: -1
 Cow Components/CowJaw
   rotate: true
-  xy: 74, 2
+  xy: 80, 2
   size: 14, 5
   orig: 14, 5
   offset: 0, 0
   index: -1
 Cow Components/CowLowerLeg
   rotate: false
-  xy: 136, 2
+  xy: 64, 2
   size: 6, 9
   orig: 6, 9
   offset: 0, 0
   index: -1
 Cow Components/CowNeck
-  rotate: false
-  xy: 227, 10
+  rotate: true
+  xy: 72, 2
   size: 9, 6
   orig: 9, 6
   offset: 0, 0
   index: -1
 Cow Components/CowTail
   rotate: true
-  xy: 95, 9
+  xy: 101, 9
   size: 7, 16
   orig: 7, 16
   offset: 0, 0
   index: -1
 Cow Components/CowThigh
   rotate: true
-  xy: 187, 18
+  xy: 149, 18
   size: 12, 18
   orig: 12, 18
   offset: 0, 0
   index: -1
 Cow Components/CowTorsoUdder
   rotate: true
-  xy: 2, 3
+  xy: 29, 16
   size: 14, 24
   orig: 14, 24
   offset: 0, 0
   index: -1
 Goat/Bicep
   rotate: false
-  xy: 144, 4
+  xy: 153, 5
   size: 12, 11
   orig: 12, 11
   offset: 0, 0
   index: -1
 Goat/Chest
   rotate: true
-  xy: 28, 2
+  xy: 2, 2
   size: 10, 24
   orig: 10, 24
   offset: 0, 0
   index: -1
 Goat/Forearm
   rotate: false
-  xy: 218, 8
+  xy: 201, 8
   size: 7, 8
   orig: 7, 8
   offset: 0, 0
   index: -1
 Goat/Head
   rotate: false
-  xy: 164, 18
+  xy: 104, 18
   size: 21, 12
   orig: 21, 12
   offset: 0, 0
   index: -1
 Goat/Jaw
   rotate: false
-  xy: 198, 2
+  xy: 181, 2
   size: 11, 4
   orig: 11, 4
   offset: 0, 0
   index: -1
 Goat/Neck
   rotate: false
-  xy: 211, 2
+  xy: 204, 2
   size: 7, 4
   orig: 7, 4
   offset: 0, 0
   index: -1
 Goat/Shin
-  rotate: true
-  xy: 227, 2
+  rotate: false
+  xy: 119, 7
   size: 6, 9
   orig: 6, 9
   offset: 0, 0
   index: -1
 Goat/Tail
-  rotate: true
-  xy: 220, 2
+  rotate: false
+  xy: 213, 2
   size: 4, 5
   orig: 4, 5
   offset: 0, 0
   index: -1
 Goat/Thigh
   rotate: true
-  xy: 207, 18
+  xy: 169, 18
   size: 12, 18
   orig: 12, 18
   offset: 0, 0
   index: -1
 HorseComponents/Ankles
   rotate: false
-  xy: 238, 7
+  xy: 210, 9
   size: 6, 9
   orig: 6, 9
   offset: 0, 0
   index: -1
 HorseComponents/HorseBicep
   rotate: false
-  xy: 170, 5
+  xy: 167, 5
   size: 12, 11
   orig: 12, 11
   offset: 0, 0
   index: -1
 HorseComponents/HorseForearm
   rotate: false
-  xy: 208, 8
+  xy: 191, 8
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 HorseComponents/HorseHead
   rotate: false
-  xy: 40, 14
+  xy: 2, 14
   size: 25, 16
   orig: 25, 16
   offset: 0, 0
   index: -1
 HorseComponents/HorseNeck
-  rotate: true
-  xy: 246, 2
+  rotate: false
+  xy: 218, 12
   size: 9, 6
   orig: 9, 6
   offset: 0, 0
   index: -1
 HorseComponents/HorseTail
-  rotate: false
-  xy: 247, 13
+  rotate: true
+  xy: 229, 23
   size: 7, 17
   orig: 7, 17
   offset: 0, 0
   index: -1
 HorseComponents/HorseThigh
   rotate: true
-  xy: 227, 18
+  xy: 189, 18
   size: 12, 18
   orig: 12, 18
   offset: 0, 0
   index: -1
 HorseComponents/HorseTorso
   rotate: true
-  xy: 93, 18
+  xy: 78, 18
   size: 12, 24
   orig: 12, 24
   offset: 0, 0

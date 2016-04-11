@@ -47,10 +47,26 @@ public class Player : MonoBehaviour {
 	bool shotLock = true;
 	GameHandler game;
 	TapInfo dashTap;
-	//ItemEntity item;
-	//Class Reference to Item Entity Here!
+    //ItemEntity item;
+    //Class Reference to Item Entity Here!
 
-	void Start () {
+    //for the arm rotation for HoldingRifle
+    public float FrontArmRotation = 217.67f;
+    private float BackArmRotation = 251.08f;
+    private float WeaponWorldRotation = 131.94f;
+
+    //For the regular Arm holding
+
+    private float FrontArmRotationNoWeapon = 222.44f;
+    private float BackArmRotationNoWeapon = 222.44f;
+
+    //This is for healthbar, getting a refernece to the Canvas GameObject, to access it's child RawImage
+    public GameObject healthbar;
+    //These will be for storing the distance between the RawImage recttransform left and right values
+    private float width;
+    private float startMaxXPos;
+
+    void Start () {
 		game = GameObject.Find ("Gui").GetComponent<GameHandler> ();
 		boxCollider = GetComponent<BoxCollider2D> ();
 		character = GetComponent<MeshRenderer> ();
@@ -68,12 +84,21 @@ public class Player : MonoBehaviour {
 		crouchTap = new TapInfo (.6f, int.MaxValue);
 		dashTap = new TapInfo (.6f, int.MaxValue);
 
-		UpdateGravity ();
+        //Initiate the width of the HP bar, this may need to be placed in the Update portion if window scaling is changed.
+        width = healthbar.GetComponent<RectTransform>().rect.width;
+        startMaxXPos = healthbar.GetComponent<RectTransform>().offsetMax.x;
+        //print(width + " " + startMaxXPos);
+
+        UpdateGravity();
 	}
 
 	void Update(){
 
-		UpdateGravity ();
+        //Change the width of the HPbar in accordance to the ration of current health to max health
+        healthbar.GetComponent<RectTransform>().offsetMax = new Vector2(startMaxXPos - width * (1 - (health / 100)), healthbar.GetComponent<RectTransform>().offsetMax.y);
+        //print(width + " " + health);
+
+        UpdateGravity();
 		Vector2 input = new Vector2 (Input.GetAxisRaw ("Horizontal_" + player), Input.GetAxisRaw ("Vertical_" + player));
 		Vector2 aimer = new Vector2 (Input.GetAxisRaw ("AimH_" + player), Input.GetAxisRaw ("AimV_" + player));
 
@@ -104,12 +129,36 @@ public class Player : MonoBehaviour {
 				if (input.x != 0 && Mathf.Abs (aimer.x) < .1f) {
 					facing = Mathf.Sign (input.x);
 				}
-				if (arms) {
-					arm.rotation = Mathf.Rad2Deg * (aimAngle) - 150; 
-					backArm.rotation = Mathf.Rad2Deg * (aimAngle) - 150; 
-				}
-				weap.rotation = -55; 
-				skeleton.flipX = facing < 0;
+                if (arms)
+                {
+                    //arm.rotation = Mathf.Rad2Deg * (aimAngle) - 150; 
+                    //backArm.rotation = Mathf.Rad2Deg * (aimAngle) - 150; 
+                    // This is currently only set up for the holding rifle animation
+                    if (weaponInHand)
+                    {
+                        //Check to see what weapon type it is and apply the appropriate rotations
+                        if (holding.weaponType == "Rifle")
+                        {
+                            arm.rotation = FrontArmRotation + (aimAngle * 180 / Mathf.PI);
+                            backArm.rotation = BackArmRotation + (aimAngle * 180 / Mathf.PI);
+                            weap.rotation = -31;
+                            weap.x = -.020f;
+                        }
+                        else if (holding.weaponType == "Longsword")
+                        {
+                            arm.rotation = FrontArmRotationNoWeapon + Mathf.Rad2Deg * (aimAngle);
+                            backArm.rotation = BackArmRotationNoWeapon + Mathf.Rad2Deg * (aimAngle);
+                            weap.rotation = -70;
+                        }
+
+                    }
+                    else
+                    {
+                        arm.rotation = FrontArmRotationNoWeapon + Mathf.Rad2Deg * (aimAngle);
+                        backArm.rotation = BackArmRotationNoWeapon + Mathf.Rad2Deg * (aimAngle);
+                    }
+                }
+                skeleton.flipX = facing < 0;
 				Debug.DrawRay (character.transform.position, new Vector3 (aimAngle == 90 || aimAngle == 270 ? 0 :
 				(Mathf.Abs (Mathf.Cos (aimAngle)) * facing), Mathf.Sin (aimAngle), 0) * .5f, Color.cyan);
 			
@@ -228,7 +277,11 @@ public class Player : MonoBehaviour {
 				(Mathf.Abs (Mathf.Cos (aimAngle)) * facing), Mathf.Sin (aimAngle), 0)*5;
 		}
 		boxCollider.size = new Vector2 (.23f, .55f);
-		skeleton.FindSlot ("WeaponImage").Attachment = null;
+
+        //This code resets arm rotations to the default punching stance
+        anim.state.SetAnimation(2, "Arms-Reset", false);
+
+        skeleton.FindSlot ("WeaponImage").Attachment = null;
 		holding.PlayerDrop();
 		holding = null;
 		weaponInHand = false;
@@ -240,7 +293,23 @@ public class Player : MonoBehaviour {
 		holding = item;
 		image = item.childTransform.GetComponent<SpriteRenderer> ().sprite;
 		skelRend.skeleton.AttachUnitySprite ("WeaponImage", image,"Sprites/Default");
-		weaponInHand = true;
+
+        //This code will need to be changed to be a conditional, based on the type of item picked up.
+        //This code is now conditional, however, the case where the item picked up is not a weapon (or doesnt have that variable) 
+        // Is not handled currently.
+        if (item.isWeapon)
+        {
+            if (item.weaponType == "Rifle")
+            {
+                anim.state.SetAnimation(2, "HoldingRifle", false);
+            }
+            else if (item.weaponType == "Longsword")
+            {
+                anim.state.SetAnimation(2, "Arms-Reset", false);
+            }
+        }
+
+        weaponInHand = true;
 		shotLock = true;
 		print ("Pick Up Successful");
 		//Add to skeleton here

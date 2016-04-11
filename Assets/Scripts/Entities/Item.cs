@@ -14,7 +14,9 @@ public class Item : RaycastController {
 	public SimpleCollision itemCollisions;
 	public Transform childTransform;
 	bool rotate = true;
-	void Awake () {
+    public bool isWeapon;
+    public string weaponType;
+    void Awake () {
 		//print ("Gun");
 		childTransform = transform.FindChild("Image");
 		collider = childTransform.GetComponent<BoxCollider2D>();
@@ -98,14 +100,14 @@ public class Item : RaycastController {
 		}
 	}
 	public virtual void AlignItem(){
-		facing =(int) holdingMe.facing;
-		transform.localScale = new Vector3(facing, 1);
-		transform.position = new Vector3 ( holdingMe.transform.position.x + holdingMe.weap.WorldX , holdingMe.transform.position.y +holdingMe.weap.WorldY);
-		transform.rotation = Quaternion.Euler (new Vector3 (0, 0, (holdingMe.facing > 0 ) ? (holdingMe.arm.rotation + 150) : 360 - (holdingMe.arm.rotation + 150)));
-		childTransform.rotation = Quaternion.Euler (new Vector3 (0, 0, (holdingMe.facing > 0 ) ? (holdingMe.arm.rotation + 150) : 360 - (holdingMe.arm.rotation + 150)));
+        facing = (int)holdingMe.facing;
+        transform.localScale = new Vector3(facing, 1);
+        transform.position = new Vector3(holdingMe.transform.position.x + holdingMe.weap.WorldX, holdingMe.transform.position.y + holdingMe.weap.WorldY);
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, (holdingMe.facing > 0) ? (holdingMe.arm.rotation - 217) : 360 - (holdingMe.arm.rotation - 217)));
+        childTransform.rotation = Quaternion.Euler(new Vector3(0, 0, (holdingMe.facing > 0) ? (holdingMe.arm.rotation - 217) : 360 - (holdingMe.arm.rotation - 217)));
 
-	}
-	void HorizonatalCollisions(ref Vector3 velocity){
+    }
+    void HorizonatalCollisions(ref Vector3 velocity){
 		float directionX = Mathf.Sign (velocity.x);
 		float rayLength = Mathf.Abs (velocity.x) + skinWidth;
 

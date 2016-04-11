@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "r+eQE1mILl9TnUYf3r33uprcJlk", "spine": "3.1.04", "width": 22.54, "height": 53, "images": "" },
+"skeleton": { "hash": "tRY5loByRZGBuho+cmUYfywz3Js", "spine": "3.1.04", "width": 0, "height": 0, "images": "" },
 "bones": [
 	{ "name": "root" },
 	{ "name": "Hip", "parent": "root", "x": -2.96, "y": -3.59 },
@@ -38,7 +38,7 @@
 	{ "name": "RShin", "bone": "RShin", "attachment": "RShin" },
 	{ "name": "RFoot", "bone": "RFoot", "attachment": "Foot" },
 	{ "name": "RThigh", "bone": "RLeg", "attachment": "RThigh" },
-	{ "name": "WeaponImage", "bone": "Weapon", "attachment": "Art/Weapons/AssaultRifle" },
+	{ "name": "WeaponImage", "bone": "Weapon" },
 	{ "name": "RArm", "bone": "RForearm", "attachment": "RArm" },
 	{ "name": "RHand", "bone": "RHand", "attachment": "Hand" },
 	{ "name": "RBicep", "bone": "RShoulder", "attachment": "RBicep" },
@@ -46,11 +46,7 @@
 	{ "name": "ShirtSlot", "bone": "Spine" }
 ],
 "skins": {
-	"default": {
-		"WeaponImage": {
-			"Art/Weapons/AssaultRifle": { "rotation": -132, "width": 36, "height": 11 }
-		}
-	},
+	"default": {},
 	"Chicken": {
 		"Head": {
 			"Head": { "name": "ChickenComponents/ChickenHead", "x": 1.49, "y": -2.91, "rotation": -89, "width": 21, "height": 17 }
@@ -253,6 +249,40 @@
 	}
 },
 "animations": {
+	"Arms-Reset": {
+		"bones": {
+			"RShoulder": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				]
+			},
+			"LShoulder": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				]
+			},
+			"RForearm": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				]
+			},
+			"LForearm": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				]
+			},
+			"RHand": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				]
+			},
+			"LHand": {
+				"rotate": [
+					{ "time": 0, "angle": 0 }
+				]
+			}
+		}
+	},
 	"Arms-Weapon": {
 		"bones": {
 			"LForearm": {

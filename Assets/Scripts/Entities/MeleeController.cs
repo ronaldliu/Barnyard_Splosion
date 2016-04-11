@@ -13,7 +13,7 @@ public class MeleeController : Item{
 		if (Time.time - lastFire > .45f) 
 		{
 			lastFire = Time.time;
-			holdingMe.arm.rotation += 90;
+			holdingMe.arm.rotation += 35;
 
 			swing = true;
 		}
@@ -22,7 +22,7 @@ public class MeleeController : Item{
 	void LateUpdate () {
 		if (swing) {
 			if (Time.time - lastFire < .25f) {
-				holdingMe.arm.rotation -= 15;
+				holdingMe.arm.rotation -= 33;
 				holdingMe.arms = false;
 				Swing ();
 				base.Fire ();
