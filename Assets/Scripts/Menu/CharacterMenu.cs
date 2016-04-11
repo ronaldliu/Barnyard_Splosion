@@ -8,30 +8,27 @@ public class CharacterMenu : MonoBehaviour {
 	public GameObject[] availCharacters;
 	public Sprite[] characterSprite;
 	public int[] selected;
+	public int numControllers;
 
 	GameObject gameOptions;
 	bool[] canInteract;
 	bool loadNextScene;
-	int numControllers;
 	float limiter = 0;
 
 	void Start()
 	{
 		string[] joysticks = Input.GetJoystickNames ();
 		selected = new int[joysticks.Length];
-		numControllers = joysticks.Length;
 		canInteract = new bool[] { true, true, true };
 		selected = new int[] { 0, 0, 0, 0 };
 		gameOptions = GameObject.Find ("GameOptions");
 		loadNextScene = false;
-		if (numControllers < 4)
-			characters [3].GetComponent<SpriteRenderer> ().color = Color.clear;
 	}
 
 	void Update()
 	{
 		float input;
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < numControllers; i++) {
 			input = Input.GetAxisRaw ("Horizontal_P" + (i + 1));
 			if (input != 0 && canInteract[i]) {
 				canInteract[i] = false;
@@ -54,7 +51,7 @@ public class CharacterMenu : MonoBehaviour {
 
 	void UpdateCharacters()
 	{
-		for (int i = 0; i < 3; i++) 
+		for (int i = 0; i < numControllers; i++) 
 		{
 			characters [i].GetComponent<SpriteRenderer> ().sprite = characterSprite [selected [i]];
 		}
