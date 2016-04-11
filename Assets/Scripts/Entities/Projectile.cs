@@ -41,7 +41,7 @@ public class Projectile : RaycastController {
 
 	void Update()
 	{
-
+		
 		if (!gravity) {//Finish gravity calcs
 			transform.Translate (velocity);
 		} else {
@@ -66,7 +66,7 @@ public class Projectile : RaycastController {
 				if ((fightingMask.value & 1 << collisionLayer) != 0) {
 					Player enemy = hit.transform.GetComponent<Player> (); //Create Player Dictionary
 					enemy.health -= 10;
-					enemy.velocity = shootdir;
+					//enemy.velocity = shootdir;
 
 				} else if ((collisionMask.value & 1 << collisionLayer) != 0) {
 					//Ricochette? 
