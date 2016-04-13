@@ -40,8 +40,8 @@ public class WeaponController : Item {
 			nextfire = Time.time + 1 / firerate;
 			ammo--;
 
-			GameObject shot = (GameObject)Instantiate (projectile, shotSpawn.position, shotSpawn.rotation);
-			shot.GetComponent<Projectile>().SetupProjectile (collisionMask, fightingMask, this, projectileSpeed, damage,facing, bulletDrop);
+			GameObject shot = (GameObject)Instantiate (projectile, shotSpawn.position, Quaternion.Euler(Vector3.zero));
+			shot.GetComponent<Projectile>().SetupProjectile (collisionMask, fightingMask, this, projectileSpeed, damage,facing,shotSpawn.right, bulletDrop);
 			shot.transform.SetParent (GameObject.Find ("Projectiles").transform);
 		}
 	}

@@ -250,7 +250,6 @@ public class Controller2D : RaycastController{
 			rayOrigin += Vector2.right * (verticalRaySpacing * i);
 			RaycastHit2D hit = Physics2D.Raycast (rayOrigin, Vector2.up, rayLength, climbMask);
 			if (hit) {
-				print ("Ladder");
 				me.velocity.y = 3;
 				return;
 			} 
