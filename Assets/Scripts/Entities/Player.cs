@@ -182,14 +182,17 @@ public class Player : MonoBehaviour {
 					//Add Weapon Fire Support Here
 					anim.state.SetAnimation (3, "Poke", false);
 					controller.Punch (facing);
-				} else if ((Input.GetButton ("Fire_" + player) || Input.GetAxisRaw ("Fire_" + player) > .25f) && weaponInHand && !shotLock) {
+				} else if ((Input.GetButton ("Fire_" + player) || Input.GetAxisRaw ("Fire_" + player) > .25f) && weaponInHand) {
 					holding.Fire ();
-				} else if (Input.GetButtonUp ("Fire_" + player) && Input.GetAxisRaw ("Fire_" + player) < .25f) {
-					shotLock = false;
-				}
+				} 
 				//Drop Weapon
-				if (Input.GetButtonDown ("Drop_" + player) && weaponInHand) {
-					DropItem ();
+				if (Input.GetButtonDown ("Drop_" + player)) {
+					if (weaponInHand) {
+						DropItem ();
+
+					} else {
+						controller.PickupCheck ();
+					}
 				}
 
 				//Dash implemented here
@@ -263,6 +266,9 @@ public class Player : MonoBehaviour {
 	//Drop Item, Animate Death, Ect
 	public void Death(){
 		print (player);
+		if (weaponInHand) {
+			DropItem ();
+		}
 		anim.state.ClearTracks ();
 		anim.state.SetAnimation (1, "Death", false);
 		boxCollider.size = new Vector2 (.55f, .22f);

@@ -158,34 +158,40 @@ public class Controller2D : RaycastController{
 						velocity.x = velocity.y / Mathf.Tan (collisions.slopeAngle * Mathf.Deg2Rad) * Mathf.Sign (velocity.x);
 					}
 				}
-
-
-
+					
 				if (me.IsDead ()) {
 					velocity.y = 0;
 					continue;
 				}
 
-			} else if (playerHit) {
-				int collisionLayer = playerHit.transform.gameObject.layer;
+			} 
+		}
+		if (directionY < 0) {
+			for (int j = 1; j < verticalRayCount - 1; j++) {
+				Vector2 rayOrigin = raycastOrigins.bottomLeft;
+				rayOrigin += Vector2.right * (verticalRaySpacing * j + velocity.x);
+				RaycastHit2D playerHit = Physics2D.Raycast (rayOrigin, Vector2.up * directionY, rayLength, fightingMask);
 
-				if (playerHit.distance == 0 ) { //if inside of object allow player to move freely
-					continue;
-				}
+				if (playerHit) {
+					int collisionLayer = playerHit.transform.gameObject.layer;
+
+					if (playerHit.distance == 0 || collisions.below) { //if inside of object allow player to move freely
+						continue;
+					}
 
 					//Jumped/Bounced on Player - Inflict Damage?
-				if ((me.transform.position.y - playerHit.transform.GetComponent<Player> ().transform.position.y) > .54f) {
-					me.velocity.y = me.jumpVelocity;
-					playerHit.transform.GetComponent<Player> ().velocity.y = -10; 	//Add implementation of Dictionary Here
-					playerHit.transform.GetComponent<Player> ().health -= 20;
-					Move (me.velocity * Time.deltaTime);
-				} else {
-					velocity.y = 0;
-				}
+					if ((me.transform.position.y - playerHit.transform.GetComponent<Player> ().transform.position.y) > .54f) {
+						me.velocity.y = me.jumpVelocity;
+						playerHit.transform.GetComponent<Player> ().velocity.y = -10; 	//Add implementation of Dictionary Here
+						playerHit.transform.GetComponent<Player> ().health -= 20;
+						Move (me.velocity * Time.deltaTime);
+					} else {
+						velocity.y = 0;
+					}
 
+				}
 			}
 		}
-
 		if (collisions.climbingSlope) {
 			float directionX = Mathf.Sign (velocity.x);
 			rayLength = Mathf.Abs (velocity.x) + skinWidth;
@@ -275,29 +281,34 @@ public class Controller2D : RaycastController{
 			enemy.health -= 10;
 		}
 
-		//Item Pick Up
+
+	}
+	//Item Pick Up
+
+	public void PickupCheck(){
+		UpdateRaycastOrigins ();
+		float rayLength = punchLength / 45;
 		for (int i = 0; i <  pickUpRayCount; i++) {
-			rayOrigin = raycastOrigins.bottomMiddle;
+			Vector2 rayOrigin = raycastOrigins.bottomMiddle;
 			rayOrigin += Vector2.up * (pickUpRaySpacing * i);
 
-			hit = Physics2D.Raycast (rayOrigin, Vector2.right * directionX, rayLength, pickUpMask);
-			RaycastHit2D hit2 = Physics2D.Raycast (rayOrigin, Vector2.right * -directionX, rayLength, pickUpMask); 
+			RaycastHit2D hit = Physics2D.Raycast (rayOrigin, Vector2.right , rayLength, pickUpMask);
+			RaycastHit2D hit2 = Physics2D.Raycast (rayOrigin, Vector2.right * -1, rayLength, pickUpMask); 
 
-			Debug.DrawRay (rayOrigin, Vector2.right * directionX * rayLength, Color.black); //Draw Red Lines in Scene for Debuging Purposes
-			Debug.DrawRay (rayOrigin, Vector2.right * -directionX * rayLength, Color.black); //Draw Red Lines in Scene for Debuging Purposes
+			Debug.DrawRay (rayOrigin, Vector2.right  * rayLength, Color.black); //Draw Red Lines in Scene for Debuging Purposes
+			Debug.DrawRay (rayOrigin, Vector2.right * -1 * rayLength, Color.black); //Draw Red Lines in Scene for Debuging Purposes
 
 			if (hit||hit2) { //Case Ray Hits Considered Target
-				print("h");
 				Item item = hit ? hit.transform.GetComponentInParent<Item>() : hit2.transform.GetComponentInParent<Item>();
 				if (!item.held && !me.weaponInHand) {
 					me.PickUpItem (item);
 					item.CatchPlayer (me);
-					break;
+					return;
 				}
 			}
 		}
-	}
 
+	}
 	public void FallThrough(){
 		if (collisions.droppable) {
 			transform.Translate (new Vector3 (0, -.5f/4.25f, 0));
