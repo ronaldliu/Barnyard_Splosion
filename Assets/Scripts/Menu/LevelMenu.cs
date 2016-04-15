@@ -16,7 +16,7 @@ public class LevelMenu : MonoBehaviour {
 		string[] joysticks = Input.GetJoystickNames ();
 		current = 0;
 		numControllers = joysticks.Length;
-		canInteract = new bool[] { true, true, true };
+		canInteract = new bool[] { true, true, true,true};
 		pmaps [current].GetComponent<SpriteRenderer> ().color = Color.magenta;
 	}
 
@@ -67,5 +67,6 @@ public class LevelMenu : MonoBehaviour {
 
 		yield return new WaitForSeconds (0.2f);
 		canInteract[controller] = true;
+
 	}
 }

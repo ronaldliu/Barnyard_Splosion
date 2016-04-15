@@ -1,28 +1,72 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GameHandler: MonoBehaviour {
-	public GameObject yes;
+	public GameObject options;
 	public CameraBox cam;
 	public float timeLimit = 5;
 	private const float timelim = 2;
 	public float timeStart;
 	public UnityEngine.UI.Text timer;
 	public bool gameEnd;
-
+	GameOptions info;
+	public GameObject[] bars;
+	public Transform [] playerStarts;
 	// Use this for initialization
 	void Start () {
+		Time.timeScale = 0;
 		timeLimit = timelim;
 		timeLimit *= 60;
 		gameEnd = true;
 		timer = GameObject.Find ("Time").GetComponent<UnityEngine.UI.Text> ();
+
+		options = GameObject.Find ("GameOptions");
+		info = options.GetComponent<GameOptions> ();
+
+		InstantiatePlayers (1);
 		StartCoroutine(StartDelay ());
 
-		//yes = GameObject.Find ("GameOptions");
+
+
+
+
 		//var go = Instantiate(yes.GetComponent<GameOptions> ().p1, transform.position, transform.rotation); //How to add players
 		//cam.targets.Add(yes.GetComponent<GameOptions> ().p1.GetComponent<Player>());
 	}
+	void InstantiatePlayers(int numPlayers){
+		Player[] players = {
+			info.p1.GetComponent<Player> (),
+			info.p2.GetComponent<Player> (),
+			info.p3.GetComponent<Player> (),
+			info.p4.GetComponent<Player> ()
+		};
+		players[1].player = "P2";
+		players[2].player = "P3";
+		players[3].player = "P4";
 
+		players [0].healthbar = bars [0];
+		players[1].healthbar = bars [1];
+		players[2].healthbar = bars [2];
+		players[3].healthbar = bars [3];
+
+		Instantiate (players[0].gameObject,playerStarts[0].position,playerStarts[0].rotation);
+		Instantiate (players[1].gameObject,playerStarts[1].position,playerStarts[1].rotation);
+		Instantiate (players[2].gameObject,playerStarts[2].position,playerStarts[2].rotation);
+		Instantiate (players[3].gameObject,playerStarts[3].position,playerStarts[3].rotation);
+
+		cam.targets = new List<Player>(players);
+		/*Add(players[0]);
+		cam.targets.Add(players[1]);
+		cam.targets.Add(players[2]);
+		cam.targets.Add(players[3]);
+
+		players [0].controller.fightingMask = LayerMask.NameToLayer ("Player 2") + LayerMask.NameToLayer ("Player 3") + LayerMask.NameToLayer ("Player 4");
+		players [1].controller.fightingMask = LayerMask.NameToLayer ("Player 1") + LayerMask.NameToLayer ("Player 3") + LayerMask.NameToLayer ("Player 4");
+		players [2].controller.fightingMask = LayerMask.NameToLayer ("Player 2") + LayerMask.NameToLayer ("Player 1") + LayerMask.NameToLayer ("Player 4");
+		players [3].controller.fightingMask = LayerMask.NameToLayer ("Player 2") + LayerMask.NameToLayer ("Player 3") + LayerMask.NameToLayer ("Player 1");
+*/
+	}
 	//This will be used to determine stats about the current game round such as kills, people who are out and whether to end the round
 	void Update () {
 		if (timeLimit - (Time.time - timeStart) <= 0) {

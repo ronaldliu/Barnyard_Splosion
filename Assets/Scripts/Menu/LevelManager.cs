@@ -7,7 +7,7 @@ public class LevelManager : MonoBehaviour {
 
 	void Start(){
 		print ("Menu");
-		Time.timeScale = 0;
+		Time.timeScale = 1;
 	}
 	public void LoadScene(string name){
 		SceneManager.LoadScene(name);

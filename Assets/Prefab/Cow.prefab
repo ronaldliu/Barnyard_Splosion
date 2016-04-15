@@ -111,6 +111,8 @@ MonoBehaviour:
   killCount: 0
   controller: {fileID: 0}
   skelRend: {fileID: 0}
+  FrontArmRotation: 217.67
+  healthbar: {fileID: 0}
 --- !u!114 &11425116
 MonoBehaviour:
   m_ObjectHideFlags: 1

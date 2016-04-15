@@ -83,9 +83,22 @@ public class Player : MonoBehaviour {
 		controller.CatchPlayer (this);
 		crouchTap = new TapInfo (.6f, int.MaxValue);
 		dashTap = new TapInfo (.6f, int.MaxValue);
-
+		switch (player) {
+		case "P1":
+			controller.fightingMask = LayerMask.NameToLayer ("Player 2") + LayerMask.NameToLayer ("Player 3") + LayerMask.NameToLayer ("Player 4");
+			break;
+		case "P2":
+			controller.fightingMask = LayerMask.NameToLayer ("Player 1") + LayerMask.NameToLayer ("Player 3") + LayerMask.NameToLayer ("Player 4");
+			break;
+		case "P3":
+			controller.fightingMask = LayerMask.NameToLayer ("Player 2") + LayerMask.NameToLayer ("Player 1") + LayerMask.NameToLayer ("Player 4");
+			break;
+		case "P4":
+			controller.fightingMask = LayerMask.NameToLayer ("Player 2") + LayerMask.NameToLayer ("Player 3") + LayerMask.NameToLayer ("Player 1");
+			break;
+		}
         //Initiate the width of the HP bar, this may need to be placed in the Update portion if window scaling is changed.
-        width = healthbar.GetComponent<RectTransform>().rect.width;
+       // width = healthbar.GetComponent<RectTransform>().rect.width;
         startMaxXPos = healthbar.GetComponent<RectTransform>().offsetMax.x;
         //print(width + " " + startMaxXPos);
 
@@ -95,7 +108,7 @@ public class Player : MonoBehaviour {
 	void Update(){
 
         //Change the width of the HPbar in accordance to the ration of current health to max health
-        healthbar.GetComponent<RectTransform>().offsetMax = new Vector2(startMaxXPos - width * (1 - (health / 100)), healthbar.GetComponent<RectTransform>().offsetMax.y);
+       // healthbar.GetComponent<RectTransform>().offsetMax = new Vector2(startMaxXPos - width * (1 - (health / 100)), healthbar.GetComponent<RectTransform>().offsetMax.y);
         //print(width + " " + health);
 
         UpdateGravity();
