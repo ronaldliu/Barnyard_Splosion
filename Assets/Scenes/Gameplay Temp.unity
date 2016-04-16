@@ -411,12 +411,6 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
---- !u!114 &266507837 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11443550, guid: 862e3b81334129f4e982c2955732ae48,
-    type: 2}
-  m_PrefabInternal: {fileID: 709964403}
-  m_Script: {fileID: 11500000, guid: 507ac11b27149834d889560d51a6c67b, type: 3}
 --- !u!1 &338164515
 GameObject:
   m_ObjectHideFlags: 0
@@ -2071,7 +2065,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 11490588, guid: fc27506c04071304a8b2033341085473, type: 2}
       propertyPath: targets.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 493462, guid: fc27506c04071304a8b2033341085473, type: 2}
       propertyPath: m_LocalPosition.x
@@ -2106,24 +2100,24 @@ Prefab:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11490588, guid: fc27506c04071304a8b2033341085473, type: 2}
-      propertyPath: targets.Array.data[0]
-      value: 
-      objectReference: {fileID: 266507837}
-    - target: {fileID: 11490588, guid: fc27506c04071304a8b2033341085473, type: 2}
-      propertyPath: targets.Array.data[1]
-      value: 
-      objectReference: {fileID: 2014373657}
-    - target: {fileID: 11490588, guid: fc27506c04071304a8b2033341085473, type: 2}
-      propertyPath: targets.Array.data[2]
-      value: 
-      objectReference: {fileID: 1954709326}
-    - target: {fileID: 11490588, guid: fc27506c04071304a8b2033341085473, type: 2}
       propertyPath: cam
       value: 
       objectReference: {fileID: 1705668296}
     - target: {fileID: 2011214, guid: fc27506c04071304a8b2033341085473, type: 2}
       propertyPath: orthographic size
       value: 2.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 11490588, guid: fc27506c04071304a8b2033341085473, type: 2}
+      propertyPath: targets.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 11490588, guid: fc27506c04071304a8b2033341085473, type: 2}
+      propertyPath: targets.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 11490588, guid: fc27506c04071304a8b2033341085473, type: 2}
+      propertyPath: targets.Array.data[2]
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fc27506c04071304a8b2033341085473, type: 2}
@@ -2401,18 +2395,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1836194130}
---- !u!114 &1954709326 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11416244, guid: 1ad98fc47685f6e4098cd13e28fd44d6,
-    type: 2}
-  m_PrefabInternal: {fileID: 956120011}
-  m_Script: {fileID: 11500000, guid: 507ac11b27149834d889560d51a6c67b, type: 3}
---- !u!114 &2014373657 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11402974, guid: 2eb6e37ce391e28408a44f9bda148bd2,
-    type: 2}
-  m_PrefabInternal: {fileID: 110439545}
-  m_Script: {fileID: 11500000, guid: 507ac11b27149834d889560d51a6c67b, type: 3}
 --- !u!1 &2014904192
 GameObject:
   m_ObjectHideFlags: 0
