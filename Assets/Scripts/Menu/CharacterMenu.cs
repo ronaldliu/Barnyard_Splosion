@@ -5,8 +5,10 @@ using UnityEngine.SceneManagement;
 public class CharacterMenu : MonoBehaviour {
 	public int current;
 	public GameObject[] characters;
+	public GameObject[] CharBG;
 	public GameObject[] availCharacters;
 	public Sprite[] characterSprite;
+	public Sprite[] characterBackground;
 	public int[] selected;
 	public int numControllers;
 
@@ -58,6 +60,7 @@ public class CharacterMenu : MonoBehaviour {
 		for (int i = 0; i < numControllers; i++) 
 		{
 			characters [i].GetComponent<SpriteRenderer> ().sprite = characterSprite [selected [i]];
+			CharBG [i].GetComponent<SpriteRenderer> ().sprite = characterBackground [selected [i]];
 		}
 	}
 
