@@ -14,7 +14,7 @@ public class GameHandler: MonoBehaviour {
 	public GameObject[] bars;
 	public Transform [] playerStarts;
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		Time.timeScale = 0;
 		timeLimit = timelim;
 		timeLimit *= 60;
@@ -41,7 +41,21 @@ public class GameHandler: MonoBehaviour {
 			info.p3.GetComponent<Player> (),
 			info.p4.GetComponent<Player> ()
 		};
+
+		GameObject player1 =(GameObject) Instantiate (players[0].gameObject,playerStarts[0].position,playerStarts[0].rotation);
+		GameObject player2 =(GameObject) Instantiate (players[1].gameObject,playerStarts[1].position,playerStarts[1].rotation);
+		GameObject player3 =(GameObject) Instantiate (players[2].gameObject,playerStarts[2].position,playerStarts[2].rotation);
+		GameObject player4 =(GameObject) Instantiate (players[3].gameObject,playerStarts[3].position,playerStarts[3].rotation);
+
+		players = new Player[]{
+			player1.GetComponent<Player>(),
+			player2.GetComponent<Player>(),
+			player3.GetComponent<Player>(),
+			player4.GetComponent<Player>()
+		};
+		players[0].player = "P1";
 		players[1].player = "P2";
+
 		players[2].player = "P3";
 		players[3].player = "P4";
 
@@ -50,17 +64,21 @@ public class GameHandler: MonoBehaviour {
 		players[2].healthbar = bars [2];
 		players[3].healthbar = bars [3];
 
-		Instantiate (players[0].gameObject,playerStarts[0].position,playerStarts[0].rotation);
-		Instantiate (players[1].gameObject,playerStarts[1].position,playerStarts[1].rotation);
-		Instantiate (players[2].gameObject,playerStarts[2].position,playerStarts[2].rotation);
-		Instantiate (players[3].gameObject,playerStarts[3].position,playerStarts[3].rotation);
+		players[0].gameObject.layer = LayerMask.NameToLayer("Player 1");
+		players[1].gameObject.layer = LayerMask.NameToLayer ("Player 2");
+		players[2].gameObject.layer =  LayerMask.NameToLayer("Player 3");
+		players[3].gameObject.layer =  LayerMask.NameToLayer("Player 4");
 
-		cam.targets = new List<Player>(players);
-		/*Add(players[0]);
+		players[0].boxCollider = players[0].transform.GetComponent<BoxCollider2D> ();
+		players[1].boxCollider = players[1].transform.GetComponent<BoxCollider2D> ();
+		players[2].boxCollider = players[2].transform.GetComponent<BoxCollider2D> ();		
+		players[3].boxCollider = players[3].transform.GetComponent<BoxCollider2D> ();
+
+		cam.targets.Add (players [0]);
 		cam.targets.Add(players[1]);
 		cam.targets.Add(players[2]);
 		cam.targets.Add(players[3]);
-
+		/*
 		players [0].controller.fightingMask = LayerMask.NameToLayer ("Player 2") + LayerMask.NameToLayer ("Player 3") + LayerMask.NameToLayer ("Player 4");
 		players [1].controller.fightingMask = LayerMask.NameToLayer ("Player 1") + LayerMask.NameToLayer ("Player 3") + LayerMask.NameToLayer ("Player 4");
 		players [2].controller.fightingMask = LayerMask.NameToLayer ("Player 2") + LayerMask.NameToLayer ("Player 1") + LayerMask.NameToLayer ("Player 4");
