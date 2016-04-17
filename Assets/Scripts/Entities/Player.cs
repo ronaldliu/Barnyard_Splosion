@@ -27,7 +27,7 @@ public class Player : MonoBehaviour {
 	public float jumpVelocity;
 	public Vector3 velocity;
 	float velocityXSmoothing;
-	[HideInInspector]
+	//[HideInInspector]
 	public BoxCollider2D boxCollider;
 	[HideInInspector] 
 	public int killCount = 0;
@@ -83,34 +83,21 @@ public class Player : MonoBehaviour {
 		controller.CatchPlayer (this);
 		crouchTap = new TapInfo (.6f, int.MaxValue);
 		dashTap = new TapInfo (.6f, int.MaxValue);
-		switch (player) {
-		case "P1":
-			controller.fightingMask = LayerMask.NameToLayer ("Player 2") + LayerMask.NameToLayer ("Player 3") + LayerMask.NameToLayer ("Player 4");
-			break;
-		case "P2":
-			controller.fightingMask = LayerMask.NameToLayer ("Player 1") + LayerMask.NameToLayer ("Player 3") + LayerMask.NameToLayer ("Player 4");
-			break;
-		case "P3":
-			controller.fightingMask = LayerMask.NameToLayer ("Player 2") + LayerMask.NameToLayer ("Player 1") + LayerMask.NameToLayer ("Player 4");
-			break;
-		case "P4":
-			controller.fightingMask = LayerMask.NameToLayer ("Player 2") + LayerMask.NameToLayer ("Player 3") + LayerMask.NameToLayer ("Player 1");
-			break;
-		}
+
         //Initiate the width of the HP bar, this may need to be placed in the Update portion if window scaling is changed.
-       // width = healthbar.GetComponent<RectTransform>().rect.width;
-        startMaxXPos = healthbar.GetComponent<RectTransform>().offsetMax.x;
+        width = healthbar.GetComponent<RectTransform>().rect.width;
+		startMaxXPos = healthbar.GetComponent<RectTransform>().offsetMax.x;
+
         //print(width + " " + startMaxXPos);
 
         UpdateGravity();
 	}
-
 	void Update(){
+		SetFightMask();
 
         //Change the width of the HPbar in accordance to the ration of current health to max health
-       // healthbar.GetComponent<RectTransform>().offsetMax = new Vector2(startMaxXPos - width * (1 - (health / 100)), healthbar.GetComponent<RectTransform>().offsetMax.y);
+        healthbar.GetComponent<RectTransform>().offsetMax = new Vector2(startMaxXPos - width * (1 - (health / 100)), healthbar.GetComponent<RectTransform>().offsetMax.y);
         //print(width + " " + health);
-
         UpdateGravity();
 		Vector2 input = new Vector2 (Input.GetAxisRaw ("Horizontal_" + player), Input.GetAxisRaw ("Vertical_" + player));
 		Vector2 aimer = new Vector2 (Input.GetAxisRaw ("AimH_" + player), Input.GetAxisRaw ("AimV_" + player));
@@ -122,6 +109,7 @@ public class Player : MonoBehaviour {
 		if (!game.gameEnd) {
 			anim.enabled = true;
 			if (!IsDead ()) {
+				
 				aimAngle = 0;
 				if (!aimer.Equals (Vector2.zero)) {
 					if (Mathf.Abs (aimer.x) < 0.1f) {
@@ -195,9 +183,12 @@ public class Player : MonoBehaviour {
 					//Add Weapon Fire Support Here
 					anim.state.SetAnimation (3, "Poke", false);
 					controller.Punch (facing);
-				} else if ((Input.GetButton ("Fire_" + player) || Input.GetAxisRaw ("Fire_" + player) > .25f) && weaponInHand) {
+					print ("Punching");
+				} else if (/*(Input.GetButton ("Fire_" + player) || */(Input.GetAxisRaw ("Fire_" + player) < -.25f) && weaponInHand) {
 					holding.Fire ();
+					print ("Shooting");
 				} 
+				print ("Firing: " + Input.GetAxisRaw ("Fire_" + player) + "  Weapon:  " + weaponInHand);
 				//Drop Weapon
 				if (Input.GetButtonDown ("Drop_" + player)) {
 					if (weaponInHand) {
@@ -276,6 +267,22 @@ public class Player : MonoBehaviour {
 		return health <= 0;
 	}
 
+	public void SetFightMask(){
+		switch (player) {
+		case "P1":
+			controller.fightingMask = (1 << LayerMask.NameToLayer ("Player 2")) | (1 << LayerMask.NameToLayer ("Player 3")) | (1 <<LayerMask.NameToLayer ("Player 4"));
+			break;
+		case "P2":
+			controller.fightingMask = (1 << LayerMask.NameToLayer ("Player 1")) | (1 << LayerMask.NameToLayer ("Player 3")) | (1 <<LayerMask.NameToLayer ("Player 4"));
+			break;
+		case "P3":
+			controller.fightingMask = (1 << LayerMask.NameToLayer ("Player 2")) | (1 << LayerMask.NameToLayer ("Player 1")) | (1 <<LayerMask.NameToLayer ("Player 4"));
+			break;
+		case "P4":
+			controller.fightingMask = (1 << LayerMask.NameToLayer ("Player 2")) | (1 << LayerMask.NameToLayer ("Player 3")) | (1 <<LayerMask.NameToLayer ("Player 1"));
+			break;
+		}
+	}
 	//Drop Item, Animate Death, Ect
 	public void Death(){
 		print (player);
