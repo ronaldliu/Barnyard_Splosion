@@ -11,6 +11,7 @@ public class CharacterMenu : MonoBehaviour {
 	public int numControllers;
 
 	GameObject gameOptions;
+	GameObject PressA;
 	bool[] canInteract;
 	bool loadNextScene;
 	float limiter = 0;
@@ -22,6 +23,8 @@ public class CharacterMenu : MonoBehaviour {
 		canInteract = new bool[] { true, true, true };
 		selected = new int[] { 0, 0, 0, 0 };
 		gameOptions = GameObject.Find ("GameOptions");
+		PressA = GameObject.Find ("PressAtoPlay");
+		PressA.GetComponent<SpriteRenderer> ().color = Color.clear;
 		loadNextScene = false;
 	}
 
@@ -37,14 +40,15 @@ public class CharacterMenu : MonoBehaviour {
 			if (Input.GetButtonDown("Accept_P" + (i+1)))
 			{
 				if (loadNextScene == true) {
-					gameOptions.GetComponent<GameOptions> ().p1 = availCharacters[selected[0]];
-					gameOptions.GetComponent<GameOptions> ().p2 = availCharacters[selected[1]];
-					gameOptions.GetComponent<GameOptions> ().p3 = availCharacters[selected[2]];
-					gameOptions.GetComponent<GameOptions> ().p4 = availCharacters[selected[3]];
+					gameOptions.GetComponent<GameOptions> ().p1 = availCharacters [selected [0]];
+					gameOptions.GetComponent<GameOptions> ().p2 = availCharacters [selected [1]];
+					gameOptions.GetComponent<GameOptions> ().p3 = availCharacters [selected [2]];
+					gameOptions.GetComponent<GameOptions> ().p4 = availCharacters [selected [3]];
 					SceneManager.LoadScene ("LevelSelect");
-				}
-				else
+				} else {
+					PressA.GetComponent<SpriteRenderer> ().color = Color.white;
 					loadNextScene = true;
+				}
 			}
 		}
 	}
