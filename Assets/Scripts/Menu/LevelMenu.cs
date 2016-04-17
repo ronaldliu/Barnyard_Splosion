@@ -10,6 +10,7 @@ public class LevelMenu : MonoBehaviour {
 	bool readyToLoad = false;
 	int numControllers;
 	float limiter = 0;
+	GameObject PressA;
 
 	void Start()
 	{
@@ -18,6 +19,8 @@ public class LevelMenu : MonoBehaviour {
 		numControllers = joysticks.Length;
 		canInteract = new bool[] { true, true, true,true};
 		pmaps [current].GetComponent<SpriteRenderer> ().color = Color.magenta;
+		PressA = GameObject.Find ("PressAtoPlay");
+		PressA.GetComponent<SpriteRenderer> ().color = Color.clear;
 	}
 
 	void Update()
@@ -34,6 +37,7 @@ public class LevelMenu : MonoBehaviour {
 					GameObject.Find ("GameOptions").GetComponent<GameOptions> ().level = maps [current];
 					SceneManager.LoadScene (maps [current]);
 				} else {
+					PressA.GetComponent<SpriteRenderer> ().color = Color.white;
 					readyToLoad = true;
 				}
 			}
