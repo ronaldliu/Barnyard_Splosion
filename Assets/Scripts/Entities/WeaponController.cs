@@ -16,6 +16,7 @@ public class WeaponController : Item {
 	// Used for bullet spread so it isnt just straight
 	// Higher the number the more variance
 	public float variance;
+    public AudioSource firingSound;
 
 	float nextfire = 0;
 
@@ -39,7 +40,7 @@ public class WeaponController : Item {
 		{
 			nextfire = Time.time + 1 / firerate;
 			ammo--;
-
+            firingSound.Play();
 			GameObject shot = (GameObject)Instantiate (projectile, shotSpawn.position, Quaternion.Euler(Vector3.zero));
 			shot.GetComponent<Projectile>().SetupProjectile (collisionMask, fightingMask, this, projectileSpeed, damage,facing,shotSpawn.right, bulletDrop);
 			shot.transform.SetParent (GameObject.Find ("Projectiles").transform);

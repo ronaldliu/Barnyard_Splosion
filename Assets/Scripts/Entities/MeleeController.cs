@@ -5,6 +5,7 @@ public class MeleeController : Item{
 	float lastFire = 0;
 	bool swing = false;
 	float swingStart = 0;
+    public AudioSource swingSound;
 	void Start () {
 		base.Start ();
 	}
@@ -37,6 +38,7 @@ public class MeleeController : Item{
 		UpdateItemRaycastOrigins ();
 		float directionX = facing;
 		float rayLength = skinWidth;
+        swingSound.Play();
 		for (int i = 0; i <  horizontalRayCount; i++) {
 			print (i);
 			Vector2 rayOrigin = (directionX == -1) ? raycastOrigins.bottomLeft : raycastOrigins.bottomRight;
