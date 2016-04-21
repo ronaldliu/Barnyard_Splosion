@@ -184,7 +184,7 @@ public class Player : MonoBehaviour {
 					anim.state.SetAnimation (3, "Poke", false);
 					controller.Punch (facing);
 					print ("Punching");
-				} else if (/*(Input.GetButton ("Fire_" + player) || */(Input.GetAxisRaw ("Fire_" + player) < -.25f) && weaponInHand) {
+				} else if ((Input.GetButton ("Fire_" + player) || (Input.GetAxisRaw ("Fire_" + player)) < -.25f) && weaponInHand) {
 					holding.Fire ();
 					print ("Shooting");
 				} 

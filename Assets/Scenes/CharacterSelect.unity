@@ -858,8 +858,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 357a7a2edd853e9419e38a7d7f58f7ef, type: 3}
   - {fileID: 21300000, guid: 0a22217017cb8524a9175d61e5c31d6a, type: 3}
   - {fileID: 21300000, guid: f8065525317d8ca449bd9a691b803b62, type: 3}
-  selected: 0000000000000000000000000000000000000000
-  numControllers: 3
+  selected: 00000000000000000000000000000000
+  numControllers: 4
 --- !u!4 &1618403524
 Transform:
   m_ObjectHideFlags: 0

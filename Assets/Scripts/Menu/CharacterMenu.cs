@@ -22,7 +22,7 @@ public class CharacterMenu : MonoBehaviour {
 	{
 		string[] joysticks = Input.GetJoystickNames ();
 		selected = new int[joysticks.Length];
-		canInteract = new bool[] { true, true, true };
+		canInteract = new bool[] { true, true, true,true };
 		selected = new int[] { 0, 0, 0, 0 };
 		gameOptions = GameObject.Find ("GameOptions");
 		PressA = GameObject.Find ("PressAtoPlay");

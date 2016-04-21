@@ -13,6 +13,8 @@ public class LevelManager : MonoBehaviour {
 		SceneManager.LoadScene(name);
 	}
 	public void QuitGame(){
+
+		print ("Quit it");
 		Application.Quit();
 	}
 	public void OptionsMenu(bool clicked){

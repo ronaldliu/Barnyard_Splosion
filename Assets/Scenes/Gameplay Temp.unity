@@ -931,9 +931,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 6.84, y: 0.59}
+  m_Offset: {x: 6.840001, y: 0.9122526}
   serializedVersion: 2
-  m_Size: {x: 0.6152005, y: 7.534482}
+  m_Size: {x: 0.6152005, y: 8.1789875}
 --- !u!61 &905582669
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -945,9 +945,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: -6.82, y: 0.62}
+  m_Offset: {x: -6.82, y: 1.0067039}
   serializedVersion: 2
-  m_Size: {x: 0.67527986, y: 7.556563}
+  m_Size: {x: 0.67527986, y: 8.329972}
 --- !u!61 &905582670
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -959,7 +959,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 3.87}
+  m_Offset: {x: 0, y: 4.7}
   serializedVersion: 2
   m_Size: {x: 14.289107, y: 1.0080441}
 --- !u!61 &905582671
@@ -1002,7 +1002,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
 --- !u!1 &1213317447
 GameObject:
   m_ObjectHideFlags: 0
@@ -1163,7 +1163,7 @@ Transform:
   - {fileID: 2058968691}
   - {fileID: 54461142}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
 --- !u!1001 &1252591006
 Prefab:
   m_ObjectHideFlags: 0
@@ -1716,7 +1716,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
 --- !u!1001 &1705668295
 Prefab:
   m_ObjectHideFlags: 0
@@ -1849,7 +1849,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
 --- !u!82 &1735972263
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2227,9 +2227,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: -1.7912974, y: -1.0024368}
+  m_Offset: {x: -1.7912974, y: -0.7371109}
   serializedVersion: 2
-  m_Size: {x: 0.29330865, y: 0.6065394}
+  m_Size: {x: 0.29330865, y: 0.07588625}
 --- !u!1 &2027847853
 GameObject:
   m_ObjectHideFlags: 0
@@ -2293,7 +2293,7 @@ Transform:
   - {fileID: 1371361560}
   - {fileID: 264207162}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
 --- !u!4 &2031864578 stripped
 Transform:
   m_PrefabParentObject: {fileID: 450388, guid: a8ce1f5b35f5e66488fe0859b1a2f29d, type: 2}

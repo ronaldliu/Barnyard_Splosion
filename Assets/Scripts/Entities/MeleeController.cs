@@ -21,7 +21,7 @@ public class MeleeController : Item{
 	}
 	// Update is called once per frame
 	void LateUpdate () {
-		if (swing) {
+		if (swing && held) {
 			if (Time.time - lastFire < .25f) {
 				holdingMe.arm.rotation -= 33;
 				holdingMe.arms = false;
