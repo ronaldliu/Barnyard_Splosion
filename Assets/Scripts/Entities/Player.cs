@@ -88,8 +88,6 @@ public class Player : MonoBehaviour {
         width = healthbar.GetComponent<RectTransform>().rect.width;
 		startMaxXPos = healthbar.GetComponent<RectTransform>().offsetMax.x;
 
-        //print(width + " " + startMaxXPos);
-
         UpdateGravity();
 	}
 	void Update(){
@@ -97,8 +95,8 @@ public class Player : MonoBehaviour {
 
         //Change the width of the HPbar in accordance to the ration of current health to max health
         healthbar.GetComponent<RectTransform>().offsetMax = new Vector2(startMaxXPos - width * (1 - (health / 100)), healthbar.GetComponent<RectTransform>().offsetMax.y);
-        //print(width + " " + health);
-        UpdateGravity();
+
+		UpdateGravity();
 		Vector2 input = new Vector2 (Input.GetAxisRaw ("Horizontal_" + player), Input.GetAxisRaw ("Vertical_" + player));
 		Vector2 aimer = new Vector2 (Input.GetAxisRaw ("AimH_" + player), Input.GetAxisRaw ("AimV_" + player));
 
@@ -135,29 +133,7 @@ public class Player : MonoBehaviour {
                     //arm.rotation = Mathf.Rad2Deg * (aimAngle) - 150; 
                     //backArm.rotation = Mathf.Rad2Deg * (aimAngle) - 150; 
                     // This is currently only set up for the holding rifle animation
-                    if (weaponInHand)
-                    {
-                        //Check to see what weapon type it is and apply the appropriate rotations
-                        if (holding.weaponType == "Rifle")
-                        {
-                            arm.rotation = FrontArmRotation + (aimAngle * 180 / Mathf.PI);
-                            backArm.rotation = BackArmRotation + (aimAngle * 180 / Mathf.PI);
-                            weap.rotation = -31;
-                            weap.x = -.020f;
-                        }
-                        else if (holding.weaponType == "Longsword")
-                        {
-                            arm.rotation = FrontArmRotationNoWeapon + Mathf.Rad2Deg * (aimAngle);
-                            backArm.rotation = BackArmRotationNoWeapon + Mathf.Rad2Deg * (aimAngle);
-                            weap.rotation = -70;
-                        }
-
-                    }
-                    else
-                    {
-                        arm.rotation = FrontArmRotationNoWeapon + Mathf.Rad2Deg * (aimAngle);
-                        backArm.rotation = BackArmRotationNoWeapon + Mathf.Rad2Deg * (aimAngle);
-                    }
+					DetermineWeaponStance();
                 }
                 skeleton.flipX = facing < 0;
 				Debug.DrawRay (character.transform.position, new Vector3 (aimAngle == 90 || aimAngle == 270 ? 0 :
@@ -183,12 +159,9 @@ public class Player : MonoBehaviour {
 					//Add Weapon Fire Support Here
 					anim.state.SetAnimation (3, "Poke", false);
 					controller.Punch (facing);
-					print ("Punching");
 				} else if ((Input.GetButton ("Fire_" + player) || (Input.GetAxisRaw ("Fire_" + player)) < -.25f) && weaponInHand) {
 					holding.Fire ();
-					print ("Shooting");
 				} 
-				print ("Firing: " + Input.GetAxisRaw ("Fire_" + player) + "  Weapon:  " + weaponInHand);
 				//Drop Weapon
 				if (Input.GetButtonDown ("Drop_" + player)) {
 					if (weaponInHand) {
@@ -202,20 +175,20 @@ public class Player : MonoBehaviour {
 				//Dash implemented here
 				float targetVelocityX = 0; 
 				if (input.x != 0) {
-					if (dashTap.TapCheck () && (Mathf.Sign (input.x) == dashTap.moving)) {
+					if (dashTap.TapCheck () && (Mathf.Sign (input.x) == dashTap.moving)) {//Second Tap
 						targetVelocityX = input.x * moveSpeed * 2;
 						if (animReset) {
 							animReset = false;
 							anim.state.ClearTrack (1);
 							anim.state.SetAnimation (1, "Run", true);
 						}
-					} else {
+					} else {//First Tap/Hold
 						targetVelocityX = input.x * moveSpeed; 
 						if (!dashTap.TapCheck ()) {
 							dashTap.moving = Mathf.Sign (input.x);
 						}
 					}
-				} else {
+				} else {//After first tap
 					dashTap.Reset ();
 				}
 				//Horizontal Velocity Smoothing
@@ -239,12 +212,12 @@ public class Player : MonoBehaviour {
 				if (input.y < -0.5f && Mathf.Abs (input.x) < 0.05f) {
 					anim.state.ClearTrack (1);
 
-					anim.state.SetAnimation (1, "Crouch", true);
-					if (crouchTap.TapCheck () && !crouchTap.activeDTap) {
+					anim.state.SetAnimation (1, "Crouch", true);//First Tap Crouch
+					if (crouchTap.TapCheck () && !crouchTap.activeDTap) {//Second Tap Crouch Fall through platform
 						controller.FallThrough ();
 						crouchTap.activeDTap = true;
 					}
-				} else {
+				} else {//After tap reset
 					crouchTap.Reset ();
 				}
 		
@@ -283,9 +256,9 @@ public class Player : MonoBehaviour {
 			break;
 		}
 	}
+
 	//Drop Item, Animate Death, Ect
 	public void Death(){
-		print (player);
 		if (weaponInHand) {
 			DropItem ();
 		}
@@ -297,6 +270,7 @@ public class Player : MonoBehaviour {
 		controller.FallThrough ();
 		dead = true;
 	}
+
 	public void DropItem(){
 		if (! new Vector2 (Input.GetAxisRaw ("AimH_" + player), Input.GetAxisRaw ("AimV_" + player)).Equals(Vector2.zero)) {
 			holding.velocity = new Vector3 (aimAngle == 90 || aimAngle == 270 ? 0 :
@@ -312,6 +286,33 @@ public class Player : MonoBehaviour {
 		holding = null;
 		weaponInHand = false;
 	}
+
+	public void DetermineWeaponStance(){
+		if (weaponInHand)
+		{
+			//Check to see what weapon type it is and apply the appropriate rotations
+			if (holding.weaponType == "Rifle")
+			{
+				arm.rotation = FrontArmRotation + (aimAngle * 180 / Mathf.PI);
+				backArm.rotation = BackArmRotation + (aimAngle * 180 / Mathf.PI);
+				weap.rotation = -31;
+				weap.x = -.020f;
+			}
+			else if (holding.weaponType == "Longsword")
+			{
+				arm.rotation = FrontArmRotationNoWeapon + Mathf.Rad2Deg * (aimAngle);
+				backArm.rotation = BackArmRotationNoWeapon + Mathf.Rad2Deg * (aimAngle);
+				weap.rotation = -70;
+			}
+
+		}
+		else
+		{
+			arm.rotation = FrontArmRotationNoWeapon + Mathf.Rad2Deg * (aimAngle);
+			backArm.rotation = BackArmRotationNoWeapon + Mathf.Rad2Deg * (aimAngle);
+		}
+	}
+
 	public void PickUpItem(Item item){
 		anim.state.ClearTrack (3);
 		boxCollider.size = new Vector2 (.45f, .55f);		
@@ -337,7 +338,7 @@ public class Player : MonoBehaviour {
 
         weaponInHand = true;
 		shotLock = true;
-		print ("Pick Up Successful");
+		//print ("Pick Up Successful");
 		//Add to skeleton here
 	}
 	//This Method is for Converting the More Intuitive Jump Height and Time
@@ -347,6 +348,7 @@ public class Player : MonoBehaviour {
 		gravity = -(jumpHeight * 2) / Mathf.Pow (timeToJumpApex, 2);
 		jumpVelocity = Mathf.Abs (gravity) * timeToJumpApex;
 	}
+
 	public struct TapInfo{
 		public bool lastInput;
 		public bool activeDTap;
@@ -355,6 +357,7 @@ public class Player : MonoBehaviour {
 		public float delay;
 		public int maxTaps;
 		public float moving;
+
 		public TapInfo(float delay,int maxTaps){
 			this.delay = delay;
 			this.maxTaps = maxTaps;
@@ -364,6 +367,7 @@ public class Player : MonoBehaviour {
 			lastTap = 0;
 			moving = 0;
 		}
+
 		public bool TapCheck(){
 			if (!lastInput) {
 				lastTap = Time.time;
@@ -375,6 +379,7 @@ public class Player : MonoBehaviour {
 			}
 			return false;
 		}
+
 		public void Reset(){
 			activeDTap = false;
 			lastInput = false;
