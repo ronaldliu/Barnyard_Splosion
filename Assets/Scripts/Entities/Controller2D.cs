@@ -1,6 +1,7 @@
 ﻿
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 [RequireComponent(typeof (BoxCollider2D))]
 public class Controller2D : RaycastController{
@@ -11,7 +12,7 @@ public class Controller2D : RaycastController{
 	public CollisionInfo collisions; //Collision Struct
 	public LayerMask pickUpMask;
 	public LayerMask climbMask;
-
+	Dictionary<Transform,Player> enemyDictionary = new Dictionary<Transform,Player>();
 	public float punchForce = 20;
 
 	//For Slope Handling
@@ -180,18 +181,21 @@ public class Controller2D : RaycastController{
 					}
 
 					//Jumped/Bounced on Player - Inflict Damage?
-					if ((me.transform.position.y - playerHit.transform.GetComponent<Player> ().transform.position.y) > .54f) {
-						me.velocity.y = me.jumpVelocity;
-						playerHit.transform.GetComponent<Player> ().velocity.y = -10; 	//Add implementation of Dictionary Here
-						playerHit.transform.GetComponent<Player> ().health -= 20;
-						Move (me.velocity * Time.deltaTime);
-					} else {
+					if (!enemyDictionary.ContainsKey (playerHit.transform)) {
+						enemyDictionary.Add (playerHit.transform, playerHit.transform.GetComponent<Player> ());
+					}
+					me.velocity.y = me.jumpVelocity;
+					enemyDictionary[playerHit.transform].velocity.y = -10; 	//implementation of Dictionary Here
+					enemyDictionary[playerHit.transform].health -= 20;
+					Move (me.velocity * Time.deltaTime);
+				
+				} else {
 						velocity.y = 0;
 					}
 
 				}
 			}
-		}
+
 		if (collisions.climbingSlope) {
 			float directionX = Mathf.Sign (velocity.x);
 			rayLength = Mathf.Abs (velocity.x) + skinWidth;

@@ -35,6 +35,7 @@ public class LevelMenu : MonoBehaviour {
 			if (Input.GetButtonDown ("Accept_P" + (i + 1))) {
 				if (readyToLoad == true) {
 					GameObject.Find ("GameOptions").GetComponent<GameOptions> ().level = maps [current];
+					Destroy (GameObject.Find ("Menu Music"));
 					SceneManager.LoadScene (maps [current]);
 				} else {
 					PressA.GetComponent<SpriteRenderer> ().color = Color.white;

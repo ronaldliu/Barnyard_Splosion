@@ -107,6 +107,7 @@ public class GameHandler: MonoBehaviour {
 	void InitiateGameOver(){
 		gameEnd = true;
 		GameObject.Find ("GameState").GetComponent<UnityEngine.UI.Text> ().text = "Match End";
+		Destroy (info.gameObject);
 		StartCoroutine(MenuDelay ());
 
 	}
